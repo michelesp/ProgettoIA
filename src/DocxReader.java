@@ -12,13 +12,11 @@ import org.docx4j.wml.P;
 import org.docx4j.wml.R;
 import org.docx4j.wml.Text;
 import org.docx4j.wml.Tr;
-import org.docx4j.wml.R.Tab;
 
 import sourcedata.BloodAnalysisResults;
 import sourcedata.DailyClinicDiary;
 import sourcedata.Exam;
 import sourcedata.ExamTable;
-import sourcedata.PairData;
 import sourcedata.StructuredDataType;
 import sourcedata.TableDataItem;
 import sourcedata.TableType;
@@ -43,68 +41,28 @@ public class DocxReader {
 	public StructuredDataType getNextObjectType() {
 		Object o = documentElm.get(index);
 		if(o instanceof P){
-			if(((P)o).getContent().size()==1)
-				return StructuredDataType.STRING;
-			return StructuredDataType.PAIR;
+			return StructuredDataType.STRING;
 		}
 		return StructuredDataType.TAB;
 	}
 
 	public String getNextString() {
-		if(documentElm.get(index).getClass()!=P.class && ((P)documentElm.get(index)).getContent().size()>1)
+		if(documentElm.get(index).getClass()!=P.class)
 			throw new RuntimeException();
 		P p = (P) documentElm.get(index++);
-		R r = (R) p.getContent().get(0);
-		if(r.getContent().size()==1 && r.getContent().get(0) instanceof JAXBElement)
-			return ((Text)((JAXBElement)r.getContent().get(0)).getValue()).getValue();
-		else if(r.getContent().size()==2){
+		String str = "";
+		for(Object o : p.getContent()){
+			R r = (R) o;
 			for(Object o1 : r.getContent()){
-				JAXBElement j = (JAXBElement)o1;
-				if(j.getValue() instanceof Text)
-					return ((Text)j.getValue()).getValue();
-				else;					//dovrebbe essere solo Br
-			}
-		}
-		return null;
-	}
-
-	public PairData getNextPairData() {
-		if(documentElm.get(index).getClass()!=P.class && ((P)documentElm.get(index)).getContent().size()==1)
-			throw new RuntimeException();
-		P p = (P) documentElm.get(index++);
-		String name="", value="";
-		boolean nameSetted=false;
-		for(Object o1 : p.getContent()){
-			R r = (R) o1;
-			if(r.getContent().size()==1){
-				if(r.getContent().get(0) instanceof JAXBElement){
-					JAXBElement j = (JAXBElement) r.getContent().get(0);
-					if(j.getValue() instanceof Text){
-						if(((Text)j.getValue()).getValue().length()>0){
-							if(!nameSetted){
-								//System.err.println(((Text)j.getValue()).getValue());
-								name = ((Text)j.getValue()).getValue();
-								nameSetted = true;
-							}
-							else value += ((Text)j.getValue()).getValue();
-						}
-					}
-					else if(j.getValue() instanceof Tab){
-
+				if(o1 instanceof JAXBElement){
+					if((((JAXBElement)o1).getValue()) instanceof Text){
+						str += ((Text)((JAXBElement)o1).getValue()).getValue();
 					}
 				}
 			}
-			else{
-				/*for(Object o2 : r.getContent()){
-					JAXBElement j = (JAXBElement) o2;
-					if(j.getValue() instanceof Text){
-						System.out.println(((Text)j.getValue()).getValue());
-					}
-					else; //tab oppure LastRenderedPageBreak
-				}*/
-			}
+			//str += " ";
 		}
-		return new PairData(name, value);
+		return str;
 	}
 
 	public List<TableDataItem> getNextTableData() {

@@ -12,8 +12,6 @@ public class TestDocxReader {
 		while(dr.hasNext()){
 			if(dr.getNextObjectType()==StructuredDataType.STRING)
 				System.out.println(dr.getNextString());
-			else if(dr.getNextObjectType()==StructuredDataType.PAIR)
-				System.out.println(dr.getNextPairData());
 			else dr.getNextTableData();
 		}
 	}
