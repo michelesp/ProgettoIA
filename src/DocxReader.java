@@ -14,16 +14,13 @@ import org.docx4j.wml.Text;
 import org.docx4j.wml.Tr;
 
 import sourcedata.BloodAnalysisResults;
-import sourcedata.BloodAnalysisTable;
 import sourcedata.DailyClinicDiaryItem;
-import sourcedata.DailyClinicDiaryTable;
 import sourcedata.Exam;
 import sourcedata.ExamTable;
 import sourcedata.StructuredDataType;
 import sourcedata.TableDataItem;
 import sourcedata.TableType;
 import sourcedata.TypeSample;
-import sourcedata.TypeSampleTable;
 
 import org.docx4j.wml.Tbl;
 import org.docx4j.wml.Tc;
@@ -32,7 +29,6 @@ public class DocxReader {
 	private List<Object> documentElm;
 	private int index;
 
-	
 	public DocxReader(File file) throws Docx4JException {
 		documentElm = Docx4J.load(file).getMainDocumentPart().getContent();
 		index = 0;
@@ -86,7 +82,7 @@ public class DocxReader {
 
 	private List<TableDataItem> getDailyClinicDiaryTable(Tbl tbl) {
 		LocalDate localDate = null;
-		List<TableDataItem> table = new DailyClinicDiaryTable();
+		List<TableDataItem> table = new ArrayList<>();
 		for(int i=1; i<tbl.getContent().size(); i++){
 			LocalTime localTime;
 			List<String> data = new ArrayList<>();
@@ -126,7 +122,7 @@ public class DocxReader {
 	}
 
 	private List<TableDataItem> getTypeSampleTable(Tbl tbl) {
-		List<TableDataItem> table = new TypeSampleTable();
+		List<TableDataItem> table = new ArrayList<>();
 		int i=2;
 		boolean derived = false;
 		for(; i<tbl.getContent().size() && !derived; i++) {
@@ -172,7 +168,7 @@ public class DocxReader {
 	}
 
 	private List<TableDataItem> getBloodAnalysisTable(Tbl tbl) {
-		List<TableDataItem> table = new BloodAnalysisTable();
+		List<TableDataItem> table = new ArrayList<>();
 		for(int i=1; i<tbl.getContent().size(); i++){
 			String[] str = new String[4];
 			float f;
