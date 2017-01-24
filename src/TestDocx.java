@@ -16,6 +16,7 @@ import sourcedata.TypeSampleTable;
 import translation.TableTranslator;
 import translation.Translator;
 
+
 public class TestDocx {
 	static final String FILE = "Cartella_Clinica_Trascritta.docx";
 	
