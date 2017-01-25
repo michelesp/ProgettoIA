@@ -2,7 +2,7 @@ package protege;
 
 public class Info {
 
-	private String info,date;
+	private String info, date;
 	
 	public Info(String i,String d){
 		info=i;
@@ -24,6 +24,9 @@ public class Info {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
+	public String toString()
+	{
+		return "Info:"+info+",date:"+date;
+	}
 	
 }
