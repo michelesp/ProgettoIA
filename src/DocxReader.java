@@ -31,6 +31,7 @@ public class DocxReader {
 
 	public DocxReader(File file) throws Docx4JException {
 		documentElm = Docx4J.load(file).getMainDocumentPart().getContent();
+		
 		index = 0;
 	}
 
