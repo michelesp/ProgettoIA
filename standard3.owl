@@ -1,0 +1,999 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.luigivecchione.me/standard-entity-representation#"
+     xml:base="http://www.luigivecchione.me/standard-entity-representation"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:standard-entity-representation="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#">
+    <owl:Ontology rdf:about="http://www.luigivecchione.me/standard-entity-representation">
+        <owl:versionIRI rdf:resource="http://www.luigivecchione.me/standard-entity-representation/1.0"/>
+        <owl:imports rdf:resource="http://www.luigivecchione.me/standard-entity-representation"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hasOccured -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hasOccured">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#wordOccurency"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">serve per verificare il numero di occorenze della parola nel testo</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#isType -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#isType">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#specificType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medicCohesion -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medicCohesion">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cohesionRate"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">define the medical cohesion of the founded term
+</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#dateTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#dateTime">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#A-aDO2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#A-aDO2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#AST -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#AST">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ATII -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ATII">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#BEecf -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#BEecf">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#BNP -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#BNP">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#BroncoAspirato -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#BroncoAspirato">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#C.P.K. -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#C.P.K.">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#Glu -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#Glu">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#HCO-3 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#HCO-3">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#HCO2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#HCO2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#HCO3- -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#HCO3-">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#HCO3std -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#HCO3std">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#Hct -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#Hct">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#I.N.R -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#I.N.R">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#LAT -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#LAT">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#LDH -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#LDH">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#O2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#O2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PCO2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PCO2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PCT -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PCT">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PDW -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PDW">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PO2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PO2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PTRatio -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PTRatio">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PTT -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#PTT">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#Ph -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#Ph">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#RDW -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#RDW">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#RI -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#RI">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#SAO2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#SAO2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#SO2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#SO2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#SPO2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#SPO2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#TCO2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#TCO2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#THbc -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#THbc">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#aPTT -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#aPTT">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#aPTTRatio -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#aPTTRatio">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#albumina -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#albumina">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#amilasiTotale -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#amilasiTotale">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#anamnesi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#anamnesi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#antiTrombina -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#antiTrombina">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#azotemia -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#azotemia">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#bilirubinaTotale -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#bilirubinaTotale">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#calcioNelSiero -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#calcioNelSiero">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#candida -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#candida">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cardiologica -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cardiologica">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cittadinanza -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cittadinanza"/>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cognome -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cognome"/>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cohesionRate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cohesionRate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#objectProperties"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#concEmoglobCoprMedia -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#concEmoglobCoprMedia">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#creatininemia -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#creatininemia">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#diagnosi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#diagnosi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#diagnosis -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#diagnosis">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ematocrito -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ematocrito">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emoglobina -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emoglobina">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame">
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#objectProperties"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#equipment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#equipment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fibrinogenoClauss -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fibrinogenoClauss">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fosforoNelSiero -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fosforoNelSiero">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#frequenzaCardiaca -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#frequenzaCardiaca">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gBasofili -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gBasofili">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gBasofiliP -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gBasofiliP">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gEosinofili -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gEosinofili">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gEosinofiliP -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gEosinofiliP">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gNeutrofili -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gNeutrofili">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gNeutrofilip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#gNeutrofilip">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#globuliBianchi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#globuliBianchi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#globuliRossi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#globuliRossi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulina -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulina">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medicine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#linfociti -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#linfociti">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#linfocitip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#linfocitip">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#magnesioNelSiero -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#magnesioNelSiero">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medical -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medical">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medicine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medicine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mioglobinaSierica -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mioglobinaSierica">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#monociti -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#monociti">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#monocitip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#monocitip">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#nascita -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#nascita"/>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#nome -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#nome"/>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#objectProperties -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#objectProperties"/>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#organ -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#organ">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#paO2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#paO2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parametri -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parametri">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#person">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#piastrine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#piastrine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#potassioNelSiero -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#potassioNelSiero">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pressione -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pressione">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pressioneArteriosa -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pressioneArteriosa">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#residenza -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#residenza"/>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#secrezioni -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#secrezioni">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#symptoms"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sesso -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sesso"/>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sodioNelSiero -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sodioNelSiero">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#specificType -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#specificType">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#objectProperties"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#symptoms -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#symptoms">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tempoDiProtrombina -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tempoDiProtrombina">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#terapia -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#terapia">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#timing -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#timing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#entityFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#transaminasiAlta -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#transaminasiAlta">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#troponinaISierica -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#troponinaISierica">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tubo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tubo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#equipment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#urinocoltura -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#urinocoltura">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vacuum -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vacuum">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#equipment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vena -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vena">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#organ"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#volCorpuscolareMedio -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#volCorpuscolareMedio">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#volPiastrinicoMedio -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#volPiastrinicoMedio">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emocromo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#wordOccurency -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#wordOccurency">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#objectProperties"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">classe contenente i possibili valori numerici delle occorrenze
+</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#08/03/2016 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#08/03/2016"/>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#2016-03-08T00:00:00 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#2016-03-08T00:00:00">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#dateTime"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-03-08T00:00:00</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#Be(B) -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#Be(B)">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#CA++(7.4) -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#CA++(7.4)">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#CK-MP/MASSA -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#CK-MP/MASSA">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#Ca++ -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#Ca++">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#K+ -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#K+">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#NA+ -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#NA+">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#esami/e -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#esami/e">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#diagnosis"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#paO2/pAO2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#paO2/pAO2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emogasanalisi"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi -->
+

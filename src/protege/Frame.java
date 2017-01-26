@@ -1,6 +1,7 @@
 package protege;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Frame {
@@ -24,9 +25,9 @@ public class Frame {
 		this.category = category;
 		extracted_info = new ArrayList<Info>();
 	}
-	public void addInfo(String info, LocalDate date)
+	public void addInfo(String info, LocalDateTime datetime)
 	{
-		extracted_info.add(new Info(info,""));
+		extracted_info.add(new Info(info,datetime.toString()));
 	}
 	public void setTerm(String term) {
 		this.term = term;
@@ -75,6 +76,11 @@ public class Frame {
 	public int getRecurrency() {
 		return recurrency;
 	}
+	
+	public void addRecurrency() {
+		recurrency++;
+	}
+	
 	public String toString()
 	{
 		return "Term:"+term+",type:"+type+",category:"+category+",cohesion:"+medic_cohesion+extracted_info.toString();
@@ -82,10 +88,6 @@ public class Frame {
 	public boolean equals(Frame another)
 	{
 		return another.term.equals(this.term);
-	}
-	public int addRecurrency()
-	{
-		return this.recurrency++;
 	}
 	
 
