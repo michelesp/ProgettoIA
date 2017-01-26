@@ -73,7 +73,12 @@ public class Extractor {
 						frame = map.get(value);
 						if(frame == null)
 						{
-							frame = new Frame(value,set.toString().substring(1, set.toString().length()-1),pos);
+							String category;
+							if(pos.startsWith("NN"))
+								category = "noun";
+							else 
+								category = "verb";
+							frame = new Frame(value,category,set.toString().substring(1, set.toString().length()-1));
 						}
 						else
 							frame.addRecurrency();
