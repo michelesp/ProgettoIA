@@ -1,5 +1,6 @@
 package protege;
 
+
 public class Info {
 
 	private String info, date;
