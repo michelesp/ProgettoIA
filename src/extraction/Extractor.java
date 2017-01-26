@@ -78,6 +78,7 @@ public class Extractor {
 								category = "noun";
 							else 
 								category = "verb";
+							
 							frame = new Frame(value,category,set.toString().substring(1, set.toString().length()-1));
 						}
 						else
