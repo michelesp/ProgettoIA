@@ -23,6 +23,7 @@ import edu.stanford.nlp.util.CoreMap;
 import gov.nih.nlm.nls.metamap.lite.EntityLookup4;
 import gov.nih.nlm.nls.metamap.lite.types.Entity;
 import protege.Frame;
+import util.UMLStoProtegeCategotyMapping;
 
 public class Extractor {
 
@@ -37,7 +38,7 @@ public class Extractor {
 	}
 	public Collection<Frame> buildFrame(String text, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
 	{
-		//Usare una Mappa di Term,Frame così da scorrere il testo un'unica volta
+		//Usare una Mappa di Term,Frame cosï¿½ da scorrere il testo un'unica volta
 		//e aggiungere informazioni al frame precedente eventualmente
 		//ci siano informazioni da aggiungere
 		EntityLookup4 el = new EntityLookup4();
@@ -58,7 +59,7 @@ public class Extractor {
 
 					String value = iWord.originalText();
 					String pos = iWord.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-					//Se non è un nome o un verbo non considero la creazione del frame
+					//Se non ï¿½ un nome o un verbo non considero la creazione del frame
 					if(!(pos.startsWith("NN")||pos.startsWith("VB")))
 						continue;
 					List<Entity> entityList = matcher.getEntities(value);
@@ -79,8 +80,7 @@ public class Extractor {
 								category = "noun";
 							else 
 								category = "verb";
-							
-							frame = new Frame(value,category,set.toString().substring(1, set.toString().length()-1));
+							frame = new Frame(value,category,UMLStoProtegeCategotyMapping.mapping(set.toString().substring(1, set.toString().length()-1)));
 						}
 						else
 							frame.addRecurrency();
