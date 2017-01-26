@@ -83,6 +83,10 @@ public class Frame {
 	{
 		return another.term.equals(this.term);
 	}
+	public int addRecurrency()
+	{
+		return this.recurrency++;
+	}
 	
 
 }
