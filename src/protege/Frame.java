@@ -27,7 +27,7 @@ public class Frame {
 	}
 	public void addInfo(String info, LocalDateTime datetime)
 	{
-		extracted_info.add(new Info(info,datetime.toString()));
+		extracted_info.add(new Info(info,(datetime!=null?datetime.toString():"")));
 	}
 	public void setTerm(String term) {
 		this.term = term;

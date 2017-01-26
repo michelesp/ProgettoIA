@@ -31,7 +31,7 @@ public class ProtegeHandler {
 	public void addFrame(Frame frame) {
 		OntClass category = model.getOntClass(NS + frame.getCategory());
 		OntClass term = model.createClass(NS + frame.getTerm());
-		//term.setSubClass(category);
+		System.err.println(frame.getCategory()+ " is null? "+(category==null));
 		model.add(term, RDFS.subClassOf, category);
 		for(Info info : frame.getExtracted_info()){
 			Individual individual = model.createIndividual(NS+info.getInfo(), term);
