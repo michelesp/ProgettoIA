@@ -3,14 +3,19 @@ package extraction;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import edu.stanford.nlp.ie.util.RelationTriple;
+import edu.stanford.nlp.international.Language;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.IndexedWord;
+import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
 import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations;
 import edu.stanford.nlp.trees.GrammaticalRelation;
+import edu.stanford.nlp.trees.TypedDependency;
 import edu.stanford.nlp.util.CoreMap;
 import gov.nih.nlm.nls.metamap.lite.EntityLookup4;
 import gov.nih.nlm.nls.metamap.lite.types.Entity;
@@ -108,8 +113,8 @@ public class Extractor {
 		if (sentences != null && ! sentences.isEmpty()) {
 			for(CoreMap sentence : sentences)
 			{
-				System.out.println("The first sentence is:");
-			    System.out.println(sentence.toShorterString());
+				//System.out.println("The first sentence is:");
+			    //System.out.println(sentence.toShorterString());
 			    //Grafo semantico con dipendenze e valori di pos 
 			    SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class);
 			    for(IndexedWord iWord: sg.vertexListSorted())
@@ -129,11 +134,14 @@ public class Extractor {
 			        	continue;
 			        else
 			        {
-			        	//System.out.println(iWords.get(0).keySet());
+			        	Collection<TypedDependency> deps = sg.typedDependencies();
 			        	Frame frame = new Frame(value,"",pos);
 			        	//Prendo quelle che io SUPPONGO siano le dipendenze grammaticali che dobbiamo considerare
 			        	//Potrei accedervi prendendo dalla parola tutte le grammatical relation ma non so cosa farmene 
 			        	Set<IndexedWord> descWords = sg.descendants(iWord);
+			        	//Set<IndexedWord> compounds = sg.getChildrenWithReln(iWord, GrammaticalRelation.valueOf(Language.English,"compound"));
+			        	addCompoundNamesToFrame("compound", frame, descWords, deps);
+			        	//addCompoundNamesToFrame("nummod", frame, descWords, deps);
 			        	for(IndexedWord desc : descWords)
 			        	{
 			        		//Nei discendenti compare anche il nodo stesso
@@ -148,7 +156,7 @@ public class Extractor {
 			        			/*List<Entity> subEntities = matcher.getEntities(desc.word());
 			        			if(subEntities.isEmpty())
 			        				continue;*/
-			        			frame.addInfo(desc.word(), null);
+			        			frame.addInfo(desc.originalText(), null);
 			        		}
 			        	}
 			        	System.out.println("Frame:"+frame);
@@ -167,5 +175,22 @@ public class Extractor {
 				return false;
 		}
 		return true;
+	}
+	private void addCompoundNamesToFrame(String relName, Frame frame, Set<IndexedWord> descWords, Collection<TypedDependency> deps)
+	{
+		for(TypedDependency dep : deps)
+    	{
+    		if(dep.reln().getShortName().equals(relName))
+    		{
+    			IndexedWord d = dep.dep();
+    			IndexedWord g = dep.gov();
+    			if(!filter(g)&&!filter(d))
+    			{
+    				frame.addInfo(d.originalText()+" "+g.originalText(), null);
+    			}
+    			descWords.remove(d);
+    			descWords.remove(g);
+    		}
+    	}
 	}
 }

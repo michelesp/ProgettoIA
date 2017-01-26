@@ -14,7 +14,7 @@ public class NLProcessor {
 	public NLProcessor()
 	{
 		 Properties props = new Properties();
-		 props.setProperty("annotators", "tokenize, ssplit, pos, depparse");
+		 props.setProperty("annotators", "tokenize,ssplit,pos,lemma,depparse");
 		 pipeline = new StanfordCoreNLP(props);
 	}
 	
