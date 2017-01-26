@@ -14,11 +14,14 @@ public class UMLSTest {
 
 	public static void main(String[] args) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
 		// TODO Auto-generated method stub
-		String text= "FiO2";
+		String text= "patient";
 		UMLSMatcher matcher = new UMLSMatcher();
 		EntityLookup4 el = new EntityLookup4();
 		List<Entity> entityList = matcher.getEntities(text);
 		System.out.println(entityList.size());
+		String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+		Set<String> set1 = el.getSemanticTypeSet(cui);
+		System.out.println(set1.toString());
 		for (Entity entity: entityList) {
 			for (Ev ev: entity.getEvSet()) {
 				System.out.print(ev.getConceptInfo().getCUI() + "|" + entity.getMatchedText());

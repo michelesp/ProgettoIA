@@ -6,25 +6,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
-import edu.stanford.nlp.ie.util.RelationTriple;
-import edu.stanford.nlp.international.Language;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.IndexedWord;
 import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
 import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations;
-import edu.stanford.nlp.trees.GrammaticalRelation;
 import edu.stanford.nlp.trees.TypedDependency;
+import edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations;
 import edu.stanford.nlp.util.CoreMap;
 import gov.nih.nlm.nls.metamap.lite.EntityLookup4;
 import gov.nih.nlm.nls.metamap.lite.types.Entity;
-import gov.nih.nlm.nls.metamap.lite.types.Ev;
 import protege.Frame;
 
 public class Extractor {
@@ -52,36 +48,39 @@ public class Extractor {
 				//System.out.println(sentence.toShorterString());
 				//Grafo semantico con dipendenze e valori di pos 
 				SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class);
+				//Possibile ottimizzazione prendendo solo i figli con determinate relazioni?
 				Collection<TypedDependency> deps = sg.typedDependencies();
+				//System.out.println(deps.toString());
 				for(IndexedWord iWord: sg.vertexListSorted())
 				{
 					ArrayList<String> extractedInfo = new ArrayList<>();
-					
+
 					String value = iWord.originalText();
 					String pos = iWord.get(CoreAnnotations.PartOfSpeechAnnotation.class);
 					//Se non è un nome o un verbo non considero la creazione del frame
 					if(!(pos.startsWith("NN")||pos.startsWith("VB")))
 						continue;
-					List<Entity> entities = matcher.getEntities(value);
-					Set<String> set = null;
+					List<Entity> entityList = matcher.getEntities(value);
+
 					Frame frame = null;
-					if(entities.isEmpty())
+					if(entityList.isEmpty())
 						continue;
 					else
 					{
+						//SemanticType con score massimo
+						String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+						Set<String> set = el.getSemanticTypeSet(cui);
 						frame = map.get(value);
 						if(frame == null)
 						{
-							frame = new Frame(value,"",pos);
-							map.put(value, frame);
+							frame = new Frame(value,set.toString().substring(1, set.toString().length()-1),pos);
 						}
 						else
 							frame.addRecurrency();
-						
+
 						//Prendo quelle che io SUPPONGO siano le dipendenze grammaticali che dobbiamo considerare
 						//Potrei accedervi prendendo dalla parola tutte le grammatical relation ma non so cosa farmene 
 						Set<IndexedWord> descWords = sg.descendants(iWord);
-
 						for(IndexedWord desc : descWords)
 						{
 							//Nei discendenti compare anche il nodo stesso
@@ -94,10 +93,14 @@ public class Extractor {
 							}
 						}
 						mergeExtractedInfo(extractedInfo,deps);
-						//System.out.println(extractedInfo);
-						for(String s : extractedInfo)
-							frame.addInfo(s, null);
-						System.out.println(frame);
+						if(extractedInfo.size()>0)
+						{
+							//System.out.println(extractedInfo);
+							for(String s : extractedInfo)
+								frame.addInfo(s, date);
+							map.put(value, frame);
+							System.out.println(frame);
+						}
 					}
 				}
 			}
@@ -118,7 +121,7 @@ public class Extractor {
 				//	System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
 					extractedInfo.add(g.originalText()+" "+d.originalText());
 				}
-			//	System.out.println("NRemoving: "+g.originalText()+" and "+d.originalText());
+				//System.out.println("NRemoving: "+g.originalText()+" and "+d.originalText());
 				extractedInfo.remove(g.originalText());
 				extractedInfo.remove(d.originalText());
 			}
@@ -134,34 +137,41 @@ public class Extractor {
 				//System.out.println("Compound "+d.originalText()+" "+g.originalText());
 				if(!filter(g)&&!filter(d))
 				{
-					for (ListIterator<String> it = extractedInfo.listIterator(); it.hasNext(); ) {
-						{  
-							String s = it.next();
-							if(s.startsWith(g.originalText()))
-							{
-							//	System.out.println("CRemoving: "+s);
-								it.remove();
-							//	System.out.println("CAdding: "+d.originalText()+" "+s);
-								it.add(d.originalText()+" "+s);
-							}
-							if(s.startsWith(d.originalText()))
-								it.remove();
+					boolean found = false;
+					for (ListIterator<String> it = extractedInfo.listIterator(); it.hasNext(); ) 
+					{  
+						String s = it.next();
+						if(s.startsWith(g.originalText()))
+						{
+							found = true;
+							//System.out.println("CRemoving: "+s);
+							it.remove();
+							//System.out.println("CAdding: "+d.originalText()+" "+s);
+							it.add(d.originalText()+" "+s);
 						}
 					}
-					//extractedInfo.add(d.originalText()+" "+g.originalText());
+					for (ListIterator<String> it = extractedInfo.listIterator(); it.hasNext(); ) 
+					{ 
+						String s = it.next();
+						if(s.startsWith(d.originalText()) && found)
+							it.remove();
+					}
 				}
+				//extractedInfo.add(d.originalText()+" "+g.originalText());
 			}
 		}
 
-	//	System.out.println("After compound:\n"+extractedInfo);
+		//System.out.println("After compound:\n"+extractedInfo);
 	}
-	private boolean filter(IndexedWord word)
+
+//StopWord Removal
+private boolean filter(IndexedWord word)
+{
+	String pos = word.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+	if(!(pos.equals("TO")||pos.equals("RB")||pos.equals("IN")||pos.equals("DT")||pos.equals(",")||pos.equals(".")))
 	{
-		String pos = word.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-		if(!(pos.equals("TO")||pos.equals("RB")||pos.equals("IN")||pos.equals("DT")||pos.equals(",")||pos.equals(".")))
-		{
-			return false;
-		}
-		return true;
+		return false;
 	}
+	return true;
+}
 }
