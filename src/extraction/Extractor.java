@@ -3,6 +3,7 @@ package extraction;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -34,7 +35,7 @@ public class Extractor {
 		matcher = new UMLSMatcher();
 		map = new HashMap<>();
 	}
-	public Collection<Frame> buildFrame(String text, LocalDate date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
+	public Collection<Frame> buildFrame(String text, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
 	{
 		//Usare una Mappa di Term,Frame così da scorrere il testo un'unica volta
 		//e aggiungere informazioni al frame precedente eventualmente
