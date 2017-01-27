@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
@@ -13,10 +14,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.IndexedWord;
+import edu.stanford.nlp.ling.tokensregex.CoreMapExpressionExtractor;
 import edu.stanford.nlp.ling.tokensregex.Env;
+import edu.stanford.nlp.ling.tokensregex.MatchedExpression;
 import edu.stanford.nlp.ling.tokensregex.NodePattern;
 import edu.stanford.nlp.ling.tokensregex.TokenSequenceMatcher;
 import edu.stanford.nlp.ling.tokensregex.TokenSequencePattern;
@@ -39,11 +43,12 @@ public class Extractor {
 	String iWordP= "((?:[a-z][a-z]+))";
 	String lParP= "((?:-LRB-))";
 	String alphaNumP = "((?:[a-z][a-z]*[0-9]+[a-z0-9]*))";
-	String followP = "((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+)(?![-+0-9\\.]))?)*))";
+	String oldFollowP = "((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+)(?![-+0-9\\.]))?)*))";
+	String followP =  "((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+))?)*))";
 	String spacesP = "( )*";
 	String rParP = "((?:-RRB-))";
-	String regex = iWordP+spacesP+lParP+spacesP+alphaNumP+spacesP+followP;
-	String regexF = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*[0-9]+[a-z0-9]*))((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+)(?![-+0-9\\.]))?)*))";
+	String regex = iWordP+spacesP+lParP+spacesP+alphaNumP+spacesP+followP+spacesP+rParP;
+	String regexF = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*[0-9]+[a-z0-9]*))( )*((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+))?)*))( )*((?:-RRB-))";
 	public Extractor()
 	{
 		processor = new NLProcessor();
@@ -59,6 +64,7 @@ public class Extractor {
 		EntityLookup4 el = new EntityLookup4();
 		//Frasi annotate dall'NLPProcessor
 		List<CoreMap> sentences = processor.getAnnotatedSentences(text);
+		ArrayList<String> matchedPatterns = null;
 		if (sentences != null && ! sentences.isEmpty()) {
 			for(CoreMap sentence : sentences)
 			{
@@ -66,17 +72,27 @@ public class Extractor {
 				Env env = TokenSequencePattern.getNewEnv();
 				env.setDefaultStringMatchFlags(NodePattern.CASE_INSENSITIVE);
 				env.setDefaultStringPatternFlags(Pattern.CASE_INSENSITIVE);
-				
 				TokenSequencePattern pattern = TokenSequencePattern.compile(env,"(?m) /"+regex+"/");
 				TokenSequenceMatcher matcherT = pattern.getMatcher(tokens);
-				System.out.println("Matcher");
+				matchedPatterns = new ArrayList<>();
 				while (matcherT.find()) {
-					String matchedString = matcherT.group();
-					List<CoreMap> matchedTokens = matcherT.groupNodes();
-					System.out.println(matchedString);
-					System.out.println("Matched: "+matchedTokens.size());
+					matchedPatterns.add(matcherT.group().replaceAll("-LRB-", "(").replaceAll("-RRB-", ")"));
+					//String matchedString = matcherT.group();
+					//List<CoreMap> matchedTokens = matcherT.groupNodes();
+					//System.out.println(matchedString);
+					//System.out.println("Matched: "+matchedTokens.size());
 				}
-				System.out.println(sentence.toShorterString());
+			/*	CoreMapExpressionExtractor extractor = CoreMapExpressionExtractor
+				            .createExtractorFromFiles(env,
+				                    "./rulex.txt");
+				 List<MatchedExpression> matchedExpressions = extractor
+			                .extractExpressions(sentence);
+			        for (MatchedExpression matched : matchedExpressions) {
+			            // Print out matched text and value
+			           System.out.println("matched: " + matched.getText()
+			                    + " with value " + matched.getValue());
+			        }*/
+				//System.out.println(sentence.toShorterString());
 				//Grafo semantico con dipendenze e valori di pos 
 				SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class);
 				//Possibile ottimizzazione prendendo solo i figli con determinate relazioni?
@@ -85,7 +101,6 @@ public class Extractor {
 				for(IndexedWord iWord: sg.vertexListSorted())
 				{
 					ArrayList<String> extractedInfo = new ArrayList<>();
-
 					String value = iWord.originalText();
 					String pos = iWord.get(CoreAnnotations.PartOfSpeechAnnotation.class);
 					//Se non � un nome o un verbo non considero la creazione del frame
@@ -132,6 +147,7 @@ public class Extractor {
 						if(extractedInfo.size()>0)
 						{
 							//System.out.println(extractedInfo);
+							mergeMatchedRegex(matchedPatterns,extractedInfo);
 							for(String s : extractedInfo)
 								frame.addInfo(s, date);
 							map.put(value, frame);
@@ -154,7 +170,7 @@ public class Extractor {
 				IndexedWord g = dep.gov();
 				if(!filter(g)&&!filter(d))
 				{
-					//	System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
+				//	System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
 					extractedInfo.add(g.originalText()+" "+d.originalText());
 				}
 				//System.out.println("NRemoving: "+g.originalText()+" and "+d.originalText());
@@ -189,7 +205,7 @@ public class Extractor {
 					for (ListIterator<String> it = extractedInfo.listIterator(); it.hasNext(); ) 
 					{ 
 						String s = it.next();
-						if(s.startsWith(d.originalText()) && found)
+						if(s.equals(d.originalText()) && found)
 							it.remove();
 					}
 				}
@@ -199,7 +215,21 @@ public class Extractor {
 
 		//System.out.println("After compound:\n"+extractedInfo);
 	}
-
+	private void mergeMatchedRegex(ArrayList<String> matchedPatterns, ArrayList<String> extractedInfo)
+	{
+		for (String pattern : matchedPatterns ) 
+		{ 
+			for (ListIterator<String> it2 = extractedInfo.listIterator(); it2.hasNext(); ) 
+			{ 
+				String word = it2.next();
+				if(pattern.indexOf(word)!=-1)
+				{
+					it2.remove();
+				}
+			}
+			extractedInfo.add(pattern);
+		}
+	}
 	//StopWord Removal
 	private boolean filter(IndexedWord word)
 	{
