@@ -80,13 +80,8 @@ public class Extractor {
 				matchedPatterns = new ArrayList<>();
 				while (matcherT.find()) {
 					matchedPatterns.add(matcherT.group().replaceAll("-LRB-", "(").replaceAll("-RRB-", ")"));
-					//String matchedString = matcherT.group();
-					//List<CoreMap> matchedTokens = matcherT.groupNodes();
-					//System.out.println(matchedString);
-					//System.out.println("Matched: "+matchedTokens.size());
 				}
 				//System.out.println(sentence.toShorterString());
-				//System.out.println(sentence.keySet());
 				//Grafo semantico con dipendenze e valori di pos 
 				SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.EnhancedDependenciesAnnotation.class);
 				//Possibile ottimizzazione prendendo solo i figli con determinate relazioni?
@@ -125,10 +120,8 @@ public class Extractor {
 						//Prendo quelle che io SUPPONGO siano le dipendenze grammaticali che dobbiamo considerare
 						//Potrei accedervi prendendo dalla parola tutte le grammatical relation ma non so cosa farmene 
 						Set<IndexedWord> descWords = sg.descendants(iWord);
-						//System.out.print("Desc of "+iWord.originalText());
 						for(IndexedWord desc : descWords)
 						{
-							//System.out.print(" "+desc.word());
 							//Nei discendenti compare anche il nodo stesso
 							if(desc.originalText().equals(value))
 								continue;
@@ -141,8 +134,6 @@ public class Extractor {
 						mergeExtractedInfo(extractedInfo,deps);
 						if(extractedInfo.size()>0)
 						{
-							//System.out.println(extractedInfo);
-							//System.out.println("Before match: "+matchedPatterns);
 							mergeMatchedRegex(matchedPatterns,extractedInfo);
 							for(String s : extractedInfo)
 								frame.addInfo(s, date);
