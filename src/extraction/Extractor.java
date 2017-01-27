@@ -243,6 +243,7 @@ public class Extractor {
 			return true;
 		}
 		return false;
+		
 		/*if(!(pos.equals("TO")||pos.equals("RB")||pos.equals("IN")||pos.equals("DT")||pos.equals(",")||pos.equals(".")||pos.equals(":")))
 		{
 			return false;
