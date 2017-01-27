@@ -15,6 +15,7 @@ public class UMLSMatcher {
 	private MetaMapLite metaMapLiteInst;
 	public UMLSMatcher()
 	{
+		
 		Properties myProperties = MetaMapLite.getDefaultConfiguration();
 		MetaMapLite.expandModelsDir(myProperties,
 				"./data/models");
@@ -22,6 +23,7 @@ public class UMLSMatcher {
 				"./data/ivf/strict");
 		myProperties.setProperty("metamaplite.excluded.termsfile",
 				"./data/specialterms.txt");
+		myProperties.setProperty("metamaplite.enable.postagging", "false");
 		try {
 			metaMapLiteInst = new MetaMapLite(myProperties);
 		} catch (ClassNotFoundException e) {

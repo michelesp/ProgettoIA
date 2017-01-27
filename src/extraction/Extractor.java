@@ -11,9 +11,15 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.IndexedWord;
+import edu.stanford.nlp.ling.tokensregex.Env;
+import edu.stanford.nlp.ling.tokensregex.NodePattern;
+import edu.stanford.nlp.ling.tokensregex.TokenSequenceMatcher;
+import edu.stanford.nlp.ling.tokensregex.TokenSequencePattern;
 import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
 import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations;
@@ -30,6 +36,14 @@ public class Extractor {
 	NLProcessor processor;
 	UMLSMatcher matcher;
 	Map<String,Frame> map;
+	String iWordP= "((?:[a-z][a-z]+))";
+	String lParP= "((?:-LRB-))";
+	String alphaNumP = "((?:[a-z][a-z]*[0-9]+[a-z0-9]*))";
+	String followP = "((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+)(?![-+0-9\\.]))?)*))";
+	String spacesP = "( )*";
+	String rParP = "((?:-RRB-))";
+	String regex = iWordP+spacesP+lParP+spacesP+alphaNumP+spacesP+followP;
+	String regexF = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*[0-9]+[a-z0-9]*))((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+)(?![-+0-9\\.]))?)*))";
 	public Extractor()
 	{
 		processor = new NLProcessor();
@@ -38,6 +52,7 @@ public class Extractor {
 	}
 	public Collection<Frame> buildFrame(String text, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
 	{
+
 		//Usare una Mappa di Term,Frame cos� da scorrere il testo un'unica volta
 		//e aggiungere informazioni al frame precedente eventualmente
 		//ci siano informazioni da aggiungere
@@ -47,7 +62,21 @@ public class Extractor {
 		if (sentences != null && ! sentences.isEmpty()) {
 			for(CoreMap sentence : sentences)
 			{
-				//System.out.println(sentence.toShorterString());
+				List<CoreLabel> tokens =  sentence.get(CoreAnnotations.TokensAnnotation.class);
+				Env env = TokenSequencePattern.getNewEnv();
+				env.setDefaultStringMatchFlags(NodePattern.CASE_INSENSITIVE);
+				env.setDefaultStringPatternFlags(Pattern.CASE_INSENSITIVE);
+				
+				TokenSequencePattern pattern = TokenSequencePattern.compile(env,"(?m) /"+regex+"/");
+				TokenSequenceMatcher matcherT = pattern.getMatcher(tokens);
+				System.out.println("Matcher");
+				while (matcherT.find()) {
+					String matchedString = matcherT.group();
+					List<CoreMap> matchedTokens = matcherT.groupNodes();
+					System.out.println(matchedString);
+					System.out.println("Matched: "+matchedTokens.size());
+				}
+				System.out.println(sentence.toShorterString());
 				//Grafo semantico con dipendenze e valori di pos 
 				SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class);
 				//Possibile ottimizzazione prendendo solo i figli con determinate relazioni?
@@ -125,7 +154,7 @@ public class Extractor {
 				IndexedWord g = dep.gov();
 				if(!filter(g)&&!filter(d))
 				{
-				//	System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
+					//	System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
 					extractedInfo.add(g.originalText()+" "+d.originalText());
 				}
 				//System.out.println("NRemoving: "+g.originalText()+" and "+d.originalText());
@@ -171,14 +200,14 @@ public class Extractor {
 		//System.out.println("After compound:\n"+extractedInfo);
 	}
 
-//StopWord Removal
-private boolean filter(IndexedWord word)
-{
-	String pos = word.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-	if(!(pos.equals("TO")||pos.equals("RB")||pos.equals("IN")||pos.equals("DT")||pos.equals(",")||pos.equals(".")))
+	//StopWord Removal
+	private boolean filter(IndexedWord word)
 	{
-		return false;
+		String pos = word.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+		if(!(pos.equals("TO")||pos.equals("RB")||pos.equals("IN")||pos.equals("DT")||pos.equals(",")||pos.equals(".")))
+		{
+			return false;
+		}
+		return true;
 	}
-	return true;
-}
 }
