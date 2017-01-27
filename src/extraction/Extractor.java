@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import com.google.common.collect.Sets;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
@@ -49,6 +51,7 @@ public class Extractor {
 	String rParP = "((?:-RRB-))";
 	String regex = iWordP+spacesP+lParP+spacesP+alphaNumP+spacesP+followP+spacesP+rParP;
 	String regexF = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*[0-9]+[a-z0-9]*))( )*((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+))?)*))( )*((?:-RRB-))";
+	Set<String> toFilter = Sets.newHashSet("CC","TO","RB","IN",":",".",",","RP","DT");
 	public Extractor()
 	{
 		processor = new NLProcessor();
@@ -82,19 +85,10 @@ public class Extractor {
 					//System.out.println(matchedString);
 					//System.out.println("Matched: "+matchedTokens.size());
 				}
-			/*	CoreMapExpressionExtractor extractor = CoreMapExpressionExtractor
-				            .createExtractorFromFiles(env,
-				                    "./rulex.txt");
-				 List<MatchedExpression> matchedExpressions = extractor
-			                .extractExpressions(sentence);
-			        for (MatchedExpression matched : matchedExpressions) {
-			            // Print out matched text and value
-			           System.out.println("matched: " + matched.getText()
-			                    + " with value " + matched.getValue());
-			        }*/
 				//System.out.println(sentence.toShorterString());
+				//System.out.println(sentence.keySet());
 				//Grafo semantico con dipendenze e valori di pos 
-				SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class);
+				SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.EnhancedDependenciesAnnotation.class);
 				//Possibile ottimizzazione prendendo solo i figli con determinate relazioni?
 				Collection<TypedDependency> deps = sg.typedDependencies();
 				//System.out.println(deps.toString());
@@ -107,7 +101,6 @@ public class Extractor {
 					if(!(pos.startsWith("NN")||pos.startsWith("VB")))
 						continue;
 					List<Entity> entityList = matcher.getEntities(value);
-
 					Frame frame = null;
 					if(entityList.isEmpty())
 						continue;
@@ -132,8 +125,10 @@ public class Extractor {
 						//Prendo quelle che io SUPPONGO siano le dipendenze grammaticali che dobbiamo considerare
 						//Potrei accedervi prendendo dalla parola tutte le grammatical relation ma non so cosa farmene 
 						Set<IndexedWord> descWords = sg.descendants(iWord);
+						//System.out.print("Desc of "+iWord.originalText());
 						for(IndexedWord desc : descWords)
 						{
+							//System.out.print(" "+desc.word());
 							//Nei discendenti compare anche il nodo stesso
 							if(desc.originalText().equals(value))
 								continue;
@@ -147,6 +142,7 @@ public class Extractor {
 						if(extractedInfo.size()>0)
 						{
 							//System.out.println(extractedInfo);
+							//System.out.println("Before match: "+matchedPatterns);
 							mergeMatchedRegex(matchedPatterns,extractedInfo);
 							for(String s : extractedInfo)
 								frame.addInfo(s, date);
@@ -170,12 +166,27 @@ public class Extractor {
 				IndexedWord g = dep.gov();
 				if(!filter(g)&&!filter(d))
 				{
+					boolean added = false;
+					for (ListIterator<String> it = extractedInfo.listIterator(); it.hasNext(); ) 
+					{ 
+						String s = it.next();
+						if((s.contains(g.originalText()) || s.contains(d.originalText())) && !s.contains(g.originalText()+" "+d.originalText()) && !added)
+						{
+							it.add(g.originalText()+" "+d.originalText());
+							added = true;
+							//it.remove();
+						}
+					}
 				//	System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
-					extractedInfo.add(g.originalText()+" "+d.originalText());
+					//extractedInfo.add(g.originalText()+" "+d.originalText());
 				}
 				//System.out.println("NRemoving: "+g.originalText()+" and "+d.originalText());
 				extractedInfo.remove(g.originalText());
 				extractedInfo.remove(d.originalText());
+			}
+			if(dep.reln().getShortName().startsWith("aux"))
+			{
+				extractedInfo.remove(dep.dep().originalText());
 			}
 		}
 
@@ -222,8 +233,10 @@ public class Extractor {
 			for (ListIterator<String> it2 = extractedInfo.listIterator(); it2.hasNext(); ) 
 			{ 
 				String word = it2.next();
+
 				if(pattern.indexOf(word)!=-1)
 				{
+					//System.out.println("adding, instead of:"+word);
 					it2.remove();
 				}
 			}
@@ -234,10 +247,15 @@ public class Extractor {
 	private boolean filter(IndexedWord word)
 	{
 		String pos = word.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-		if(!(pos.equals("TO")||pos.equals("RB")||pos.equals("IN")||pos.equals("DT")||pos.equals(",")||pos.equals(".")))
+		if(toFilter.contains(pos))
+		{
+			return true;
+		}
+		return false;
+		/*if(!(pos.equals("TO")||pos.equals("RB")||pos.equals("IN")||pos.equals("DT")||pos.equals(",")||pos.equals(".")||pos.equals(":")))
 		{
 			return false;
 		}
-		return true;
+		return true;*/
 	}
 }
