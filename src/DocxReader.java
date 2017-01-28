@@ -14,13 +14,16 @@ import org.docx4j.wml.Text;
 import org.docx4j.wml.Tr;
 
 import sourcedata.BloodAnalysisResults;
+import sourcedata.BloodAnalysisTable;
 import sourcedata.DailyClinicDiaryItem;
+import sourcedata.DailyClinicDiaryTable;
 import sourcedata.Exam;
 import sourcedata.ExamTable;
 import sourcedata.StructuredDataType;
 import sourcedata.TableDataItem;
 import sourcedata.TableType;
 import sourcedata.TypeSample;
+import sourcedata.TypeSampleTable;
 
 import org.docx4j.wml.Tbl;
 import org.docx4j.wml.Tc;
@@ -31,7 +34,6 @@ public class DocxReader {
 
 	public DocxReader(File file) throws Docx4JException {
 		documentElm = Docx4J.load(file).getMainDocumentPart().getContent();
-		
 		index = 0;
 	}
 
@@ -53,11 +55,13 @@ public class DocxReader {
 		P p = (P) documentElm.get(index++);
 		String str = "";
 		for(Object o : p.getContent()){
-			R r = (R) o;
-			for(Object o1 : r.getContent()){
-				if(o1 instanceof JAXBElement){
-					if((((JAXBElement)o1).getValue()) instanceof Text){
-						str += ((Text)((JAXBElement)o1).getValue()).getValue();
+			if(o instanceof R) {
+				R r = (R) o;
+				for(Object o1 : r.getContent()){
+					if(o1 instanceof JAXBElement){
+						if((((JAXBElement)o1).getValue()) instanceof Text){
+							str += ((Text)((JAXBElement)o1).getValue()).getValue();
+						}
 					}
 				}
 			}
@@ -83,7 +87,7 @@ public class DocxReader {
 
 	private List<TableDataItem> getDailyClinicDiaryTable(Tbl tbl) {
 		LocalDate localDate = null;
-		List<TableDataItem> table = new ArrayList<>();
+		List<TableDataItem> table = new DailyClinicDiaryTable();
 		for(int i=1; i<tbl.getContent().size(); i++){
 			LocalTime localTime;
 			List<String> data = new ArrayList<>();
@@ -123,7 +127,7 @@ public class DocxReader {
 	}
 
 	private List<TableDataItem> getTypeSampleTable(Tbl tbl) {
-		List<TableDataItem> table = new ArrayList<>();
+		List<TableDataItem> table = new TypeSampleTable();
 		int i=2;
 		boolean derived = false;
 		for(; i<tbl.getContent().size() && !derived; i++) {
@@ -169,7 +173,7 @@ public class DocxReader {
 	}
 
 	private List<TableDataItem> getBloodAnalysisTable(Tbl tbl) {
-		List<TableDataItem> table = new ArrayList<>();
+		List<TableDataItem> table = new BloodAnalysisTable();
 		for(int i=1; i<tbl.getContent().size(); i++){
 			String[] str = new String[4];
 			float f;
@@ -226,9 +230,15 @@ public class DocxReader {
 		Tr tr = (Tr) tbl.getContent().get(tbl.getContent().size()-1);
 		Tc tc = (Tc) ((JAXBElement)tr.getContent().get(1)).getValue();
 		P p= (P) tc.getContent().get(0);
-		R r = (R) p.getContent().get(1);
-		Text t = (Text) ((JAXBElement)r.getContent().get(0)).getValue();
-		((ExamTable)table).setMedicalDepartment(t.getValue());
+		String str = "";
+		for(int i=p.getContent().size()-1; i<p.getContent().size(); i++){
+			if(p.getContent().get(i) instanceof R) {
+				R r = (R) p.getContent().get(i);
+				Text t = (Text) ((JAXBElement)r.getContent().get(0)).getValue();
+				str += t.getValue();
+			}
+		}
+		((ExamTable)table).setMedicalDepartment(str);
 		return table;
 	}
 
