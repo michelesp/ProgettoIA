@@ -1,17 +1,9 @@
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.docx4j.openpackaging.exceptions.Docx4JException;
-import org.xml.sax.SAXException;
 
 import extraction.Extractor;
 import protege.Frame;
@@ -31,7 +23,7 @@ public class Main {
 
 	static final String FILE = "Cartella_Clinica_Trascritta.docx";
 	static final String SOURCE = "http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation";
-	static final String ONTOLOGY_SOURCE = "standard3.owl";
+	static final String ONTOLOGY_SOURCE = "StandardEntity1.owl";
 	static final String ONTOLOGY_OUTPUT = "mymodel.owl";
 	
 	public static void main(String[] args) throws IllegalAccessException, InvocationTargetException, Exception {

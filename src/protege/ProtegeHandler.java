@@ -1,5 +1,6 @@
 package protege;
 
+
 import java.io.InputStreamReader;
 import java.io.Writer;
 
@@ -20,7 +21,7 @@ public class ProtegeHandler {
 	public ProtegeHandler(String source, InputStreamReader ontologySource, Writer writer) {
 		this.NS = source + "#";
 		this.writer = writer;
-		model = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RULE_INF );
+		model = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM );
 		model.read(ontologySource, source);
 	}
 	
@@ -34,7 +35,6 @@ public class ProtegeHandler {
 		model.add(term, RDFS.subClassOf, category);
 		for(Info info : frame.getExtracted_info()){
 			Individual individual = model.createIndividual(NS+info.getInfo(), term);
-			//DatatypeProperty dateTime = model.getDatatypeProperty("dateTime");
 			DatatypeProperty dateTime = model.createDatatypeProperty(NS+"dateTime");
 			individual.addProperty(dateTime, model.createTypedLiteral(info.getDate()));
 		}
