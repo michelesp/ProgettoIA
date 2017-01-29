@@ -1,5 +1,6 @@
 package extraction;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
@@ -14,6 +15,8 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
+
+import org.ini4j.InvalidFileFormatException;
 
 import com.google.common.collect.Sets;
 
@@ -52,11 +55,14 @@ public class Extractor {
 	String regex = iWordP+spacesP+lParP+spacesP+alphaNumP+spacesP+followP+spacesP+rParP;
 	String regexF = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*[0-9]+[a-z0-9]*))( )*((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+))?)*))( )*((?:-RRB-))";
 	Set<String> toFilter = Sets.newHashSet("CC","TO","RB","IN",":",".",",","RP","DT");
-	public Extractor()
+	UMLStoProtegeCategotyMapping mapping;
+	
+	public Extractor() throws InvalidFileFormatException, IOException
 	{
 		processor = new NLProcessor();
 		matcher = new UMLSMatcher();
 		map = new HashMap<>();
+		mapping = new UMLStoProtegeCategotyMapping(new File("conf.ini"));
 	}
 	public Collection<Frame> buildFrame(String text, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
 	{
@@ -112,7 +118,7 @@ public class Extractor {
 								category = "noun";
 							else 
 								category = "verb";
-							frame = new Frame(value,category,UMLStoProtegeCategotyMapping.mapping(set.toString().substring(1, set.toString().length()-1)));
+							frame = new Frame(value,category,mapping.mapping(set.toString().substring(1, set.toString().length()-1)));
 						}
 						else
 							frame.addRecurrency();
