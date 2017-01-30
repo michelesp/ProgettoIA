@@ -82,6 +82,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#CBC -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#CBC">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cohesionRate -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cohesionRate">
