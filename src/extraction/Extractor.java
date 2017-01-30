@@ -64,6 +64,41 @@ public class Extractor {
 		map = new HashMap<>();
 		mapping = new UMLStoProtegeCategotyMapping(new File("conf.ini"));
 	}
+	
+	public void buildFrame(String name, String value, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
+		if(value.length()>20)
+		{
+		Frame frame = map.get(normalize(value));
+		if(frame == null)
+		{
+			String type = "noun";
+			String category = "";
+			EntityLookup4 el = new EntityLookup4();
+			List<Entity> entityList = matcher.getEntities(value);
+			if(entityList.size()>0)
+			{
+			String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+			Set<String> set = el.getSemanticTypeSet(cui);
+			category = set.toString().substring(1, set.toString().length()-1);
+			}
+			frame = new Frame(normalize(value),type,mapping.mapping(category));
+			map.put(normalize(value), frame);
+		}
+		else
+			frame.addRecurrency();
+		if(name!=null)
+			frame.addInfo(normalize(name), date);
+		}
+		else
+		{
+			buildFrame(value,date);
+		}
+	}
+	
+	public Collection<Frame> getFrames() {
+		return map.values();
+	}
+	
 	public Collection<Frame> buildFrame(String text, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
 	{
 
@@ -110,7 +145,7 @@ public class Extractor {
 						//SemanticType con score massimo
 						String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
 						Set<String> set = el.getSemanticTypeSet(cui);
-						frame = map.get(value);
+						frame = map.get(normalize(value));
 						if(frame == null)
 						{
 							String category;
@@ -118,7 +153,7 @@ public class Extractor {
 								category = "noun";
 							else 
 								category = "verb";
-							frame = new Frame(value,category,mapping.mapping(set.toString().substring(1, set.toString().length()-1)));
+							frame = new Frame(normalize(value),category,mapping.mapping(set.toString().substring(1, set.toString().length()-1)));
 						}
 						else
 							frame.addRecurrency();
@@ -129,12 +164,12 @@ public class Extractor {
 						for(IndexedWord desc : descWords)
 						{
 							//Nei discendenti compare anche il nodo stesso
-							if(desc.originalText().equals(value))
+							if(desc.originalText().equals(normalize(value)))
 								continue;
 							//"Stopword removal"
 							if(!filter(desc))
 							{
-								extractedInfo.add(desc.originalText());
+								extractedInfo.add(normalize(desc.originalText()));
 							}
 						}
 						mergeExtractedInfo(extractedInfo,deps);
@@ -143,7 +178,7 @@ public class Extractor {
 							mergeMatchedRegex(matchedPatterns,extractedInfo);
 							for(String s : extractedInfo)
 								frame.addInfo(s, date);
-							map.put(value, frame);
+							map.put(normalize(value), frame);
 							System.out.println(frame);
 						}
 					}
@@ -255,5 +290,9 @@ public class Extractor {
 			return false;
 		}
 		return true;*/
+	}
+	
+	private String normalize(String str) {
+		return str.toLowerCase().replaceAll("[^a-zA-Z]", "");
 	}
 }

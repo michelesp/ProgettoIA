@@ -26,6 +26,6 @@ public class UMLStoProtegeCategotyMapping {
 		if(map.containsKey(str))
 			return map.get(str);
 		System.err.println("unmapped word: "+str);
-		return null;
+		return "medic";
 	}
 }

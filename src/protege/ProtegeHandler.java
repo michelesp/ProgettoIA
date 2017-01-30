@@ -17,26 +17,35 @@ public class ProtegeHandler {
 	private final String NS;
 	private OntModel model;
 	private Writer writer;
-	
+
 	public ProtegeHandler(String source, InputStreamReader ontologySource, Writer writer) {
 		this.NS = source + "#";
 		this.writer = writer;
 		model = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM );
 		model.read(ontologySource, source);
 	}
-	
+
 	public void save() {
 		model.write(writer, "RDF/XML-ABBREV");
 	}
-	
+
 	public void addFrame(Frame frame) {
 		OntClass category = model.getOntClass(NS + frame.getCategory());
 		OntClass term = model.createClass(NS + frame.getTerm());
 		model.add(term, RDFS.subClassOf, category);
 		for(Info info : frame.getExtracted_info()){
-			Individual individual = model.createIndividual(NS+info.getInfo(), term);
-			DatatypeProperty dateTime = model.createDatatypeProperty(NS+"dateTime");
-			individual.addProperty(dateTime, model.createTypedLiteral(info.getDate()));
+			//if(model.getOntClass(NS+info.getInfo())==null)
+			//	continue;
+			try{
+				Individual individual = model.getIndividual(NS+info.getInfo());
+				if(individual==null)
+					individual = model.createIndividual(NS+info.getInfo(), term);
+				DatatypeProperty dateTime = model.createDatatypeProperty(NS+"dateTime");
+				individual.addProperty(dateTime, model.createTypedLiteral(info.getDate()));
+			}catch (Exception e) {
+				System.err.println("errore: "+info.getInfo());
+				System.err.println(e.getMessage());
+			}
 		}
 		ObjectProperty hasOccurred = model.getObjectProperty(NS+"hasOccured");
 		ObjectProperty isType = model.getObjectProperty(NS+"isType");
@@ -45,5 +54,5 @@ public class ProtegeHandler {
 		model.add(term, isType, ""+frame.getType());
 		model.add(term, medicCohesion, ""+frame.getMedic_cohesion());
 	}
-	
+
 }

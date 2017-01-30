@@ -183,9 +183,11 @@ public class DocxReader {
 				Tc tc = (Tc) ((JAXBElement)tr.getContent().get(j)).getValue();
 				P p = (P) tc.getContent().get(0);
 				if(p.getContent().size()>0){
-					R r = (R) p.getContent().get(0);
-					Text t = (Text) ((JAXBElement)r.getContent().get(0)).getValue();
-					str[j] = t.getValue();
+					if(p.getContent().get(0) instanceof R){
+						R r = (R) p.getContent().get(0);
+						Text t = (Text) ((JAXBElement)r.getContent().get(0)).getValue();
+						str[j] = t.getValue();
+					}
 				}
 				else str[j] = "";
 			}

@@ -4,6 +4,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import extraction.Extractor;
 import protege.Frame;
@@ -22,12 +24,14 @@ import translation.Translator;
 public class Main {
 
 	static final String FILE = "Cartella_Clinica_Trascritta.docx";
+	static final String FILE_TRADOTTO = "Cartella_Clinica_Tradotta.docx";
 	static final String SOURCE = "http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation";
 	static final String ONTOLOGY_SOURCE = "StandardEntity1.owl";
 	static final String ONTOLOGY_OUTPUT = "mymodel.owl";
+	static final boolean TRADOTTA = true;
 	
 	public static void main(String[] args) throws IllegalAccessException, InvocationTargetException, Exception {
-		DocxReader dr = new DocxReader(new File(FILE));
+		DocxReader dr = new DocxReader(new File((TRADOTTA?FILE_TRADOTTO:FILE)));
 		Translator t = new Translator();
 		TableTranslator tt = new TableTranslator("it", "eng", "plain", t);
 		Extractor ex = new Extractor();
@@ -35,27 +39,34 @@ public class Main {
 				new InputStreamReader(new FileInputStream(ONTOLOGY_SOURCE)), 
 				new PrintWriter(ONTOLOGY_OUTPUT));
 		while(dr.hasNext()){
-			if(dr.getNextObjectType()==StructuredDataType.STRING)
-				for(Frame f : ex.buildFrame(t.translatePOST(dr.getNextString(), "it", "eng", "plain"),null))
-					protegeHandler.addFrame(f);
+			if(dr.getNextObjectType()==StructuredDataType.STRING){
+				String str = (TRADOTTA?dr.getNextString():t.translatePOST(dr.getNextString(), "it", "eng", "plain"));
+				String regex = "( )*(:)( )*";
+				String[] s = str.split(regex);
+				if(s.length>1){
+					System.out.println(s[0]+" \t "+s[1]);
+					ex.buildFrame(s[0], s[1], null);
+				}
+				else ex.buildFrame(null, s[0], null);
+			}
+				/*for(Frame f : ex.buildFrame((TRADOTTA?dr.getNextString():t.translatePOST(dr.getNextString(), "it", "eng", "plain")),null))
+					protegeHandler.addFrame(f);*/
 			else{
 				List<TableDataItem> l = dr.getNextTableData();
 				if(l instanceof ExamTable) {
-					ExamTable et = tt.translate((ExamTable)l);
+					ExamTable et = (TRADOTTA?(ExamTable)l:tt.translate((ExamTable)l));
 					for(int i=0; i<et.size(); i++) {
 						Exam e = (Exam)et.get(i);
 						for(String str : e.getData())
-							for(Frame f : ex.buildFrame(str, null))
-									protegeHandler.addFrame(f);
+							ex.buildFrame(str, null);
 					}
 				}
 				else if(l instanceof DailyClinicDiaryTable) {
-					DailyClinicDiaryTable dcdt = tt.translate((DailyClinicDiaryTable)l);
+					DailyClinicDiaryTable dcdt = (TRADOTTA?(DailyClinicDiaryTable)l:tt.translate((DailyClinicDiaryTable)l));
 					for(int i=0; i<dcdt.size(); i++) {
 						DailyClinicDiaryItem dcdi = (DailyClinicDiaryItem)dcdt.get(i);
 						for(String str : dcdi.getData())
-							for(Frame f : ex.buildFrame(str, null))
-								protegeHandler.addFrame(f);
+							ex.buildFrame(str, null);
 					}
 				}
 				else if(l instanceof TypeSampleTable)
@@ -66,6 +77,8 @@ public class Main {
 					;
 			}
 		}
+		for(Frame f : ex.getFrames())
+			protegeHandler.addFrame(f);
 		protegeHandler.save();
 	}
 	
