@@ -131,41 +131,61 @@ public class DocxReader {
 		int i=2;
 		boolean derived = false;
 		for(; i<tbl.getContent().size() && !derived; i++) {
-			String[] str = new String[3];
+			String[] str = new String[]{"", "", ""};
 			Tr tr = (Tr) tbl.getContent().get(i);
 			for(int j=0; j<tr.getContent().size(); j++){
 				Tc tc = (Tc) ((JAXBElement)tr.getContent().get(j)).getValue();
-				P p = (P) tc.getContent().get(0);
-				if(p.getContent().size()>0){
-					if(p.getContent().get(0) instanceof R){
-						R r = (R) p.getContent().get(0);
-						Text t = (Text) ((JAXBElement)r.getContent().get(0)).getValue();
-						str[j] = t.getValue();
+				for(int k=0; k<tc.getContent().size(); k++){
+					if(tc.getContent().get(k) instanceof P){
+						P p = (P) tc.getContent().get(k);
+						if(p.getContent().size()>0){
+							for(int k1=0; k1<p.getContent().size(); k1++){
+								if(p.getContent().get(k1) instanceof R){
+									R r = (R) p.getContent().get(k1);
+									for(int k2=0; k2<r.getContent().size(); k2++){
+										if(r.getContent().get(k2) instanceof JAXBElement){
+											Text t = (Text) ((JAXBElement)r.getContent().get(k2)).getValue();
+											str[j] += t.getValue();
+										}
+									}
+								}
+							}
+						}
+						else{
+							if(j==0)
+								derived = true;
+							str[j] = "";
+						}
 					}
-				}
-				else{
-					if(j==0)
-						derived = true;
-					str[j] = "";
 				}
 			}
 			table.add(new TypeSample(str[0], str[1], str[2], derived));
 		}
 		derived = true;
 		for(; i<tbl.getContent().size(); i++) {
-			String[] str = new String[3];
+			String[] str = new String[]{ "", "", ""};
 			Tr tr = (Tr) tbl.getContent().get(i);
 			for(int j=0; j<tr.getContent().size(); j++){
 				Tc tc = (Tc) ((JAXBElement)tr.getContent().get(j)).getValue();
-				P p = (P) tc.getContent().get(0);
-				if(p.getContent().size()>0){
-					if(p.getContent().get(0) instanceof R){
-						R r = (R) p.getContent().get(0);
-						Text t = (Text) ((JAXBElement)r.getContent().get(0)).getValue();
-						str[j] = t.getValue();
+				for(int k=0; k<tc.getContent().size(); k++){
+					if(tc.getContent().get(k) instanceof P){
+						P p = (P) tc.getContent().get(k);
+						if(p.getContent().size()>0){
+							for(int k1=0; k1<p.getContent().size(); k1++){
+								if(p.getContent().get(k1) instanceof R){
+									R r = (R) p.getContent().get(k1);
+									for(int k2=0; k2<r.getContent().size(); k2++){
+										if(r.getContent().get(k2) instanceof JAXBElement){
+											Text t = (Text) ((JAXBElement)r.getContent().get(k2)).getValue();
+											str[j] = t.getValue();
+										}
+									}
+								}
+							}
+						}
+						else str[j] = "";
 					}
 				}
-				else str[j] = "";
 			}
 			table.add(new TypeSample(str[0], str[1], str[2], derived));
 		}

@@ -26,7 +26,7 @@ public class ProtegeHandler {
 	}
 
 	public void save() {
-		model.write(writer, "RDF/XML-ABBREV");
+		model.write(writer, "RDF/XML");
 	}
 
 	public void addFrame(Frame frame) {
