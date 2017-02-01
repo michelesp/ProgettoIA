@@ -81,10 +81,12 @@ public class ProtegeHandler {
 		      QuerySolution soln = results.nextSolution() ;
 		      RDFNode x = soln.get("x") ;         // Get a result variable by name.
 		      Resource r = soln.getResource("x") ; // Get a result variable - must be a resource
-		     // Literal l = soln.getLiteral("x") ;   // Get a result variable - must be a literal
+		      //Literal l = soln.getLiteral("x") ;   // Get a result variable - must be a literal
 		      System.out.println(x.toString());
-		     // System.out.println(l.getString());
+		      //System.out.println(l.getString());
 		      System.out.println(r.getLocalName());
+		      if(x.isLiteral())
+		    	  System.out.println(x.toString());
 		    }
 		  
 		    
