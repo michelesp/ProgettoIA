@@ -177,7 +177,7 @@ public class DocxReader {
 									for(int k2=0; k2<r.getContent().size(); k2++){
 										if(r.getContent().get(k2) instanceof JAXBElement){
 											Text t = (Text) ((JAXBElement)r.getContent().get(k2)).getValue();
-											str[j] = t.getValue();
+											str[j] += t.getValue();
 										}
 									}
 								}
@@ -211,7 +211,7 @@ public class DocxReader {
 									for(int k2 = 0; k2<r.getContent().size(); k2++){
 										if(r.getContent().get(k2) instanceof JAXBElement){
 											Text t = (Text) ((JAXBElement)r.getContent().get(k2)).getValue();
-											str[j] = t.getValue();
+											str[j] += t.getValue();
 										}
 									}
 								}

@@ -57,8 +57,10 @@ public class Extractor {
 	String followP =  "((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+))?)*))";
 	String spacesP = "( )*";
 	String rParP = "((?:-RRB-))";
-	String regex = iWordP+spacesP+lParP+spacesP+alphaNumP+spacesP+followP+spacesP+rParP;
-	String regexF = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*[0-9]+[a-z0-9]*))( )*((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+))?)*))( )*((?:-RRB-))";
+	String regexOriginal = iWordP+spacesP+lParP+spacesP+alphaNumP+spacesP+followP+spacesP+rParP;
+	String regex2 = "((?:[a-z][a-z]*( )*[a-z0-9]*))";
+	String regex = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*( )*[a-z0-9]*))( )*((?:(,( )*[a-z][a-z]*( )*[a-z0-9]*( )*((\\d*\\.\\d+))?)*))( )*((?:-RRB-))";
+	String regexFOriginal = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*[0-9]+[a-z0-9]*))( )*((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+))?)*))( )*((?:-RRB-))";
 	Set<String> toFilter = Sets.newHashSet("CC","TO","RB","IN",":",".",",","RP","DT");
 	UMLStoProtegeCategotyMapping mapping;
 
@@ -84,6 +86,8 @@ public class Extractor {
 	
 	public void buildBloodGasAnalysisFrame(String name, String value, LocalDateTime date) {
 		Frame frame;
+		//System.err.println(name+" \t => \t "+normalize(name));
+		//System.err.println(value+" \t => \t "+normalize(value));
 		name = normalize(name);
 		value = normalize(value);
 		if(map.get(name)==null){
@@ -117,6 +121,8 @@ public class Extractor {
 				frame.addRecurrency();
 			if(name!=null)
 				frame.addInfo(normalize(name), date);
+			
+			System.out.println(frame);
 		}
 		else
 		{
@@ -126,6 +132,7 @@ public class Extractor {
 
 	public Collection<Frame> getFrames() {
 		return map.values();
+		
 	}
 
 	public Collection<Frame> buildFrame(String text, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
@@ -142,6 +149,7 @@ public class Extractor {
 			for(CoreMap sentence : sentences)
 			{
 				List<CoreLabel> tokens =  sentence.get(CoreAnnotations.TokensAnnotation.class);
+				//System.out.println("Tokens: "+tokens.toString());
 				Env env = TokenSequencePattern.getNewEnv();
 				env.setDefaultStringMatchFlags(NodePattern.CASE_INSENSITIVE);
 				env.setDefaultStringPatternFlags(Pattern.CASE_INSENSITIVE);
@@ -150,7 +158,9 @@ public class Extractor {
 				matchedPatterns = new ArrayList<>();
 				while (matcherT.find()) {
 					matchedPatterns.add(matcherT.group().replaceAll("-LRB-", "(").replaceAll("-RRB-", ")"));
+					//System.out.println("Matched:" +matcherT.group());
 				}
+				
 				//System.out.println(sentence.toShorterString());
 				//Grafo semantico con dipendenze e valori di pos 
 				SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.EnhancedDependenciesAnnotation.class);
@@ -193,12 +203,12 @@ public class Extractor {
 						for(IndexedWord desc : descWords)
 						{
 							//Nei discendenti compare anche il nodo stesso
-							if(desc.originalText().equals(normalize(value)))
+							if(normalize(desc.originalText()).equals(normalize(value)))
 								continue;
 							//"Stopword removal"
 							if(!filter(desc))
 							{
-								extractedInfo.add(normalize(desc.originalText()));
+								extractedInfo.add(desc.originalText());
 							}
 						}
 						mergeExtractedInfo(extractedInfo,deps);
@@ -216,7 +226,7 @@ public class Extractor {
 		}
 		return map.values();
 	}
-	private void mergeExtractedInfo(ArrayList<String> extractedInfo, Collection<TypedDependency> deps) {
+	private void mergeExtractedInfo(ArrayList<String> extractedInfo, Collection<TypedDependency> deps) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
 		// TODO Auto-generated method stub
 		//System.out.println("Before:\n"+extractedInfo);
 		for(TypedDependency dep : deps)
@@ -233,12 +243,16 @@ public class Extractor {
 						String s = it.next();
 						if((s.contains(g.originalText()) || s.contains(d.originalText())) && !s.contains(g.originalText()+" "+d.originalText()) && !added)
 						{
+							
+						
+							System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
+							 
 							it.add(g.originalText()+" "+d.originalText());
+							buildFrame(d.originalText(),g.originalText(),null);
 							added = true;
 							//it.remove();
 						}
 					}
-					//	System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
 					//extractedInfo.add(g.originalText()+" "+d.originalText());
 				}
 				//System.out.println("NRemoving: "+g.originalText()+" and "+d.originalText());

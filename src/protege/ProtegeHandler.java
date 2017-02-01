@@ -37,7 +37,10 @@ public class ProtegeHandler {
 			//if(model.getOntClass(NS+info.getInfo())==null)
 			//	continue;
 			try{
-				Individual individual = model.createIndividual(NS+info.getInfo()+"Individual", term);
+				Individual individual;
+				if(model.getOntClass(NS+info.getInfo())!=null)
+					individual = model.createIndividual(NS+info.getInfo()+"Individual", term);
+				else individual = model.createIndividual(NS+info.getInfo(), term);
 				DatatypeProperty dateTime = model.createDatatypeProperty(NS+"dateTime");
 				individual.addProperty(dateTime, model.createTypedLiteral(info.getDate()));
 			}catch (Exception e) {
