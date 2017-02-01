@@ -32,7 +32,7 @@ public class ProtegeHandler {
 	}
 
 	public void save() {
-		model.write(writer, "RDF/XML-ABBREV");
+		model.write(writer, "RDF/XML");
 	}
 
 	public void addFrame(Frame frame) {
@@ -43,9 +43,7 @@ public class ProtegeHandler {
 			//if(model.getOntClass(NS+info.getInfo())==null)
 			//	continue;
 			try{
-				Individual individual = model.getIndividual(NS+info.getInfo());
-				if(individual==null)
-					individual = model.createIndividual(NS+info.getInfo(), term);
+				Individual individual = model.createIndividual(NS+info.getInfo()+"Individual", term);
 				DatatypeProperty dateTime = model.createDatatypeProperty(NS+"dateTime");
 				individual.addProperty(dateTime, model.createTypedLiteral(info.getDate()));
 			}catch (Exception e) {

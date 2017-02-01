@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 import org.ini4j.InvalidFileFormatException;
 
 import com.google.common.collect.Sets;
+import com.sun.java_cup.internal.runtime.Symbol;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
@@ -56,7 +57,7 @@ public class Extractor {
 	String regexF = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*[0-9]+[a-z0-9]*))( )*((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+))?)*))( )*((?:-RRB-))";
 	Set<String> toFilter = Sets.newHashSet("CC","TO","RB","IN",":",".",",","RP","DT");
 	UMLStoProtegeCategotyMapping mapping;
-	
+
 	public Extractor() throws InvalidFileFormatException, IOException
 	{
 		processor = new NLProcessor();
@@ -65,40 +66,64 @@ public class Extractor {
 		mapping = new UMLStoProtegeCategotyMapping(new File("conf.ini"));
 	}
 	
-	public void buildFrame(String name, String value, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
-		if(value.length()>20)
-		{
-		Frame frame = map.get(normalize(value));
-		if(frame == null)
-		{
-			String type = "noun";
-			String category = "";
-			EntityLookup4 el = new EntityLookup4();
-			List<Entity> entityList = matcher.getEntities(value);
-			if(entityList.size()>0)
-			{
-			String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
-			Set<String> set = el.getSemanticTypeSet(cui);
-			category = set.toString().substring(1, set.toString().length()-1);
-			}
-			frame = new Frame(normalize(value),type,mapping.mapping(category));
-			map.put(normalize(value), frame);
+	public void buildCBCFrame(String name, String value, LocalDateTime date) {
+		Frame frame;
+		name = normalize(name);
+		value = normalize(value);
+		if(map.get(name)==null){
+			frame = new Frame(name, "noun", "CBC");
+			map.put(name, frame);
 		}
-		else
-			frame.addRecurrency();
-		if(name!=null)
-			frame.addInfo(normalize(name), date);
+		else frame = map.get(name);
+		frame.addInfo(value, date);
+	}
+	
+	public void buildBloodGasAnalysisFrame(String name, String value, LocalDateTime date) {
+		Frame frame;
+		name = normalize(name);
+		value = normalize(value);
+		if(map.get(name)==null){
+			frame = new Frame(name, "noun", "bloodgasanalysis");
+			map.put(name, frame);
+		}
+		else frame = map.get(name);
+		frame.addInfo(value, date);
+	}
+	
+	public void buildFrame(String name, String value, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
+		if(value.length()<=20)
+		{
+			Frame frame = map.get(normalize(value));
+			if(frame == null)
+			{
+				String type = "noun";
+				String category = "";
+				EntityLookup4 el = new EntityLookup4();
+				List<Entity> entityList = matcher.getEntities(value);
+				if(entityList.size()>0)
+				{
+					String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+					Set<String> set = el.getSemanticTypeSet(cui);
+					category = set.toString().substring(1, set.toString().length()-1);
+				}
+				frame = new Frame(normalize(value),type,mapping.mapping(category));
+				map.put(normalize(value), frame);
+			}
+			else
+				frame.addRecurrency();
+			if(name!=null)
+				frame.addInfo(normalize(name), date);
 		}
 		else
 		{
 			buildFrame(value,date);
 		}
 	}
-	
+
 	public Collection<Frame> getFrames() {
 		return map.values();
 	}
-	
+
 	public Collection<Frame> buildFrame(String text, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
 	{
 
@@ -177,7 +202,7 @@ public class Extractor {
 						{
 							mergeMatchedRegex(matchedPatterns,extractedInfo);
 							for(String s : extractedInfo)
-								frame.addInfo(s, date);
+								frame.addInfo(normalize(s), date);
 							map.put(normalize(value), frame);
 							System.out.println(frame);
 						}
@@ -209,7 +234,7 @@ public class Extractor {
 							//it.remove();
 						}
 					}
-				//	System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
+					//	System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
 					//extractedInfo.add(g.originalText()+" "+d.originalText());
 				}
 				//System.out.println("NRemoving: "+g.originalText()+" and "+d.originalText());
@@ -284,15 +309,15 @@ public class Extractor {
 			return true;
 		}
 		return false;
-		
+
 		/*if(!(pos.equals("TO")||pos.equals("RB")||pos.equals("IN")||pos.equals("DT")||pos.equals(",")||pos.equals(".")||pos.equals(":")))
 		{
 			return false;
 		}
 		return true;*/
 	}
-	
+
 	private String normalize(String str) {
-		return str.toLowerCase().replaceAll("[^a-zA-Z]", "");
+		return str.toLowerCase().replaceAll("[^a-zA-Z0-9.]", "");
 	}
 }

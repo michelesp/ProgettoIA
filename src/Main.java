@@ -3,6 +3,8 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,6 +12,7 @@ import java.util.regex.Pattern;
 import extraction.Extractor;
 import protege.Frame;
 import protege.ProtegeHandler;
+import sourcedata.BloodAnalysisResults;
 import sourcedata.BloodAnalysisTable;
 import sourcedata.DailyClinicDiaryItem;
 import sourcedata.DailyClinicDiaryTable;
@@ -17,6 +20,7 @@ import sourcedata.Exam;
 import sourcedata.ExamTable;
 import sourcedata.StructuredDataType;
 import sourcedata.TableDataItem;
+import sourcedata.TypeSample;
 import sourcedata.TypeSampleTable;
 import translation.TableTranslator;
 import translation.Translator;
@@ -29,12 +33,13 @@ public class Main {
 	static final String ONTOLOGY_SOURCE = "StandardEntity1.owl";
 	static final String ONTOLOGY_OUTPUT = "mymodel.owl";
 	static final boolean TRADOTTA = true;
-	
+
 	public static void main(String[] args) throws IllegalAccessException, InvocationTargetException, Exception {
 		DocxReader dr = new DocxReader(new File((TRADOTTA?FILE_TRADOTTO:FILE)));
 		Translator t = new Translator();
 		TableTranslator tt = new TableTranslator("it", "eng", "plain", t);
 		Extractor ex = new Extractor();
+		LocalDateTime lastDatetime = null;
 		ProtegeHandler protegeHandler = new ProtegeHandler(SOURCE, 
 				new InputStreamReader(new FileInputStream(ONTOLOGY_SOURCE)), 
 				new PrintWriter(ONTOLOGY_OUTPUT));
@@ -44,12 +49,26 @@ public class Main {
 				String regex = "( )*(:)( )*";
 				String[] s = str.split(regex);
 				if(s.length>1){
-					System.out.println(s[0]+" \t "+s[1]);
 					ex.buildFrame(s[0], s[1], null);
+					if(s[0].equals("acceptance")){			//ultima data e ora
+						String[] datetime = s[1].split(" ");
+						String[] date = datetime[0].split("/");
+						String[] time = datetime[1].split(":");
+						lastDatetime = LocalDateTime.of(Integer.parseInt(date[2]), Integer.parseInt(date[1]), 
+								Integer.parseInt(date[0]), Integer.parseInt(time[0]), (time.length>1?Integer.parseInt(time[1]):0));
+						//System.err.println("last datetime: "+lastDatetime.toString());
+					}
+					else if(s[0].matches("[0-9]{2}/[0-9]{2}/[0-9]{4}[a-zA-Z0-9 ]*")){
+						System.err.println("trovato!!");
+						String[] s1=s[0].split("/");
+						lastDatetime = LocalDateTime.of(Integer.parseInt(s1[2].substring(0, 4)), Integer.parseInt(s1[1]), 
+								Integer.parseInt(s1[0]), Integer.parseInt(s1[2].substring(4)), 0);
+						System.err.println(lastDatetime.toString());
+					}
 				}
 				else ex.buildFrame(null, s[0], null);
 			}
-				/*for(Frame f : ex.buildFrame((TRADOTTA?dr.getNextString():t.translatePOST(dr.getNextString(), "it", "eng", "plain")),null))
+			/*for(Frame f : ex.buildFrame((TRADOTTA?dr.getNextString():t.translatePOST(dr.getNextString(), "it", "eng", "plain")),null))
 					protegeHandler.addFrame(f);*/
 			else{
 				List<TableDataItem> l = dr.getNextTableData();
@@ -69,17 +88,27 @@ public class Main {
 							ex.buildFrame(str, null);
 					}
 				}
-				else if(l instanceof TypeSampleTable)
-					//dw.addTable(tt.translate((TypeSampleTable)l));
-					;
-				else if(l instanceof BloodAnalysisTable)
-					//dw.addTable(tt.translate((BloodAnalysisTable)l));
-					;
+				else if(l instanceof TypeSampleTable) {
+					for(int i=0; i<l.size(); i++) {
+						TypeSample ts = (TypeSample) l.get(i);
+						//System.err.println(ts.getExam());
+						//System.err.println(ts.getParameter()+ts.getUnitsOfMisure());
+						//System.err.println(lastDatetime);
+						ex.buildBloodGasAnalysisFrame(ts.getExam(), ts.getParameter()+ts.getUnitsOfMisure(), lastDatetime);
+					}
+				}
+				else if(l instanceof BloodAnalysisTable){
+					for(int i=0; i<l.size(); i++) {
+						BloodAnalysisResults bar = (BloodAnalysisResults) l.get(i);
+						if(bar.getExam()!=null)
+							ex.buildCBCFrame(bar.getExam(), bar.getResult()+bar.getUnitsOfMisure(), lastDatetime);
+					}
+				}
 			}
 		}
 		for(Frame f : ex.getFrames())
 			protegeHandler.addFrame(f);
 		protegeHandler.save();
 	}
-	
+
 }
