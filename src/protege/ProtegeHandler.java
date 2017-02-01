@@ -3,6 +3,7 @@ package protege;
 
 import java.io.InputStreamReader;
 import java.io.Writer;
+import java.util.ArrayList;
 
 import org.apache.jena.ontology.DatatypeProperty;
 import org.apache.jena.ontology.Individual;
@@ -10,7 +11,12 @@ import org.apache.jena.ontology.ObjectProperty;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.query.*;
+import org.apache.jena.rdf.model.Literal;
+import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDFS;
 
 public class ProtegeHandler {
@@ -53,6 +59,39 @@ public class ProtegeHandler {
 		model.add(term, hasOccurred, ""+frame.getRecurrency());
 		model.add(term, isType, ""+frame.getType());
 		model.add(term, medicCohesion, ""+frame.getMedic_cohesion());
+	}
+	
+	/* -> query per rircercare tutti gli individuals 
+		PREFIX owl:<http://www.w3.org/2002/07/owl#>
+		PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+		SELECT ?individual WHERE { ?individual rdf:type owl:NamedIndividual . ?class rdf:type owl:Class . }
+	 * 
+	 * ->query per ricercare gli individuals di una determinata classe in questo caso person
+		 PREFIX uri:<http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#> SELECT ?x WHERE { ?x  a uri:person }
+	   
+	 * **/
+	public void querySPARQL(String queryStr, String ontology){
+		
+		
+		OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
+	    model.read(ontology);
+		Query query = QueryFactory.create(queryStr) ;
+		try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
+		    ResultSet results = qexec.execSelect() ;
+		    for ( ; results.hasNext() ; )
+		    {
+		      QuerySolution soln = results.nextSolution() ;
+		      RDFNode x = soln.get("x") ;       // Get a result variable by name.
+		      Resource r = soln.getResource("x") ; // Get a result variable - must be a resource
+		     // Literal l = soln.getLiteral("x") ;   // Get a result variable - must be a literal
+		      System.out.println(x.toString());
+		     // System.out.println(l.getString());
+		      System.out.println(r.getLocalName());
+		    }
+		  
+		    
+		  }
+		
 	}
 
 }
