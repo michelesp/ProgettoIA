@@ -66,7 +66,7 @@ public class ProtegeHandler {
 	 * 
 	 * ->query per ricercare gli individuals di una determinata classe in questo caso person
 		 PREFIX uri:<http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#> SELECT ?x WHERE { ?x  a uri:person }
-	   
+	  
 	 * **/
 	public void querySPARQL(String queryStr, String ontology){
 		
