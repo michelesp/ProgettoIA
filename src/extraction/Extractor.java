@@ -2,7 +2,10 @@ package extraction;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.ini4j.InvalidFileFormatException;
 
 import com.google.common.collect.Sets;
@@ -318,6 +322,11 @@ public class Extractor {
 	}
 
 	private String normalize(String str) {
-		return str.toLowerCase().replaceAll("[^a-zA-Z0-9.]", "");
+		try {
+			return URLEncoder.encode(str.toLowerCase().trim(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "";
+		}
 	}
 }
