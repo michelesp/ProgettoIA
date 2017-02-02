@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import disease.Sepsi;
 import extraction.Extractor;
 import protege.Frame;
 import protege.ProtegeHandler;
@@ -49,14 +50,13 @@ public class Main {
 				String regex = "( )*(:)( )*";
 				String[] s = str.split(regex);
 				if(s.length>1){
-					ex.buildFrame(s[0], s[1], null);
+					ex.buildFrame(s[0].trim().replaceAll(" ", "_"), s[1], null);
 					if(s[0].equals("acceptance")){			//ultima data e ora
 						String[] datetime = s[1].split(" ");
 						String[] date = datetime[0].split("/");
 						String[] time = datetime[1].split(":");
 						lastDatetime = LocalDateTime.of(Integer.parseInt(date[2]), Integer.parseInt(date[1]), 
 								Integer.parseInt(date[0]), Integer.parseInt(time[0]), (time.length>1?Integer.parseInt(time[1]):0));
-						//System.err.println("last datetime: "+lastDatetime.toString());
 					}
 					else if(s[0].matches("[0-9]{2}/[0-9]{2}/[0-9]{4}[a-zA-Z0-9 ]*")){
 						String[] s1=s[0].split("/");
@@ -67,8 +67,6 @@ public class Main {
 				}
 				else ex.buildFrame(null, s[0], null);
 			}
-			/*for(Frame f : ex.buildFrame((TRADOTTA?dr.getNextString():t.translatePOST(dr.getNextString(), "it", "eng", "plain")),null))
-					protegeHandler.addFrame(f);*/
 			else{
 				List<TableDataItem> l = dr.getNextTableData();
 				if(l instanceof ExamTable) {
@@ -76,7 +74,7 @@ public class Main {
 					for(int i=0; i<et.size(); i++) {
 						Exam e = (Exam)et.get(i);
 						for(String str : e.getData())
-							ex.buildFrame(str, null);
+							ex.buildFrame(str.trim(), null);
 					}
 				}
 				else if(l instanceof DailyClinicDiaryTable) {
@@ -84,21 +82,21 @@ public class Main {
 					for(int i=0; i<dcdt.size(); i++) {
 						DailyClinicDiaryItem dcdi = (DailyClinicDiaryItem)dcdt.get(i);
 						for(String str : dcdi.getData())
-							ex.buildFrame(str, null);
+							ex.buildFrame(str.trim(), null);
 					}
 				}
 				else if(l instanceof TypeSampleTable) {
 					for(int i=0; i<l.size(); i++) {
 						TypeSample ts = (TypeSample) l.get(i);
 						if(!ts.getExam().trim().equals(""))
-							ex.buildBloodGasAnalysisFrame(ts.getExam(), ts.getParameter()+ts.getUnitsOfMisure(), lastDatetime);
+							ex.buildBloodGasAnalysisFrame(ts.getExam().trim().replaceAll(" ", "_"), ts.getParameter()+ts.getUnitsOfMisure(), lastDatetime);
 					}
 				}
 				else if(l instanceof BloodAnalysisTable){
 					for(int i=0; i<l.size(); i++) {
 						BloodAnalysisResults bar = (BloodAnalysisResults) l.get(i);
 						if(bar.getExam()!=null && !bar.getExam().trim().equals(""))
-							ex.buildCBCFrame(bar.getExam(), bar.getResult()+bar.getUnitsOfMisure(), lastDatetime);
+							ex.buildCBCFrame(bar.getExam().trim().replaceAll(" ", "_"), bar.getResult()+bar.getUnitsOfMisure(), lastDatetime);
 					}
 				}
 			}
@@ -106,6 +104,9 @@ public class Main {
 		for(Frame f : ex.getFrames())
 			protegeHandler.addFrame(f);
 		protegeHandler.save();
+		
+		System.out.println(new Sepsi(protegeHandler).diagnose());
+		
 	}
 
 }

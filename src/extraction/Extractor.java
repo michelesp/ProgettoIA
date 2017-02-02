@@ -99,6 +99,8 @@ public class Extractor {
 	}
 	
 	public void buildFrame(String name, String value, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
+		if(name==null)
+			return;
 		if(value.length()<=20)
 		{
 			Frame frame = map.get(normalize(value));
@@ -107,22 +109,22 @@ public class Extractor {
 				String type = "noun";
 				String category = "";
 				EntityLookup4 el = new EntityLookup4();
-				List<Entity> entityList = matcher.getEntities(value);
+				List<Entity> entityList = matcher.getEntities(name);
 				if(entityList.size()>0)
 				{
 					String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
 					Set<String> set = el.getSemanticTypeSet(cui);
 					category = set.toString().substring(1, set.toString().length()-1);
 				}
-				frame = new Frame(normalize(value),type,mapping.mapping(category));
-				map.put(normalize(value), frame);
+				frame = new Frame(normalize(name),type,mapping.mapping(category));
+				map.put(normalize(name), frame);
 			}
 			else
 				frame.addRecurrency();
-			if(name!=null)
-				frame.addInfo(normalize(name), date);
+			if(value!=null)
+				frame.addInfo(normalize(value), date);
 			
-			System.out.println(frame);
+			//System.out.println(frame);
 		}
 		else
 		{
@@ -218,7 +220,7 @@ public class Extractor {
 							for(String s : extractedInfo)
 								frame.addInfo(normalize(s), date);
 							map.put(normalize(value), frame);
-							System.out.println(frame);
+							//System.out.println(frame);
 						}
 					}
 				}
@@ -245,10 +247,10 @@ public class Extractor {
 						{
 							
 						
-							System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
+							//System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
 							 
 							it.add(g.originalText()+" "+d.originalText());
-							buildFrame(d.originalText(),g.originalText(),null);
+							buildFrame(g.originalText(),d.originalText(),null);
 							added = true;
 							//it.remove();
 						}

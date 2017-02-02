@@ -96,9 +96,11 @@ public class DocxReader {
 			P p1 = (P) tc1.getContent().get(0);
 			if(p1.getContent().size()>0){
 				R r1 = (R) p1.getContent().get(0);
-				Text t1 = (Text) ((JAXBElement)r1.getContent().get(0)).getValue();
-				String[] s1 = t1.getValue().split("/");
-				localDate = LocalDate.of(Integer.parseInt(s1[2]), Integer.parseInt(s1[1]), Integer.parseInt(s1[0]));
+				for(int j=0; j<r1.getContent().size(); j++){
+					Text t1 = (Text) ((JAXBElement)r1.getContent().get(j)).getValue();
+					String[] s1 = t1.getValue().split("/");
+					localDate = LocalDate.of(Integer.parseInt(s1[2]), Integer.parseInt(s1[1]), Integer.parseInt(s1[0]));
+				}
 			}
 			Tc tc2 = (Tc) ((JAXBElement)tr.getContent().get(1)).getValue();
 			P p2 = (P) tc2.getContent().get(0);

@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Frame {
-	
+
 	private String term,type,category,medic_cohesion;
 	private ArrayList<Info> extracted_info;
 	private int recurrency;
-	
+
 	public Frame(String term,String type,String category,String med_coh,ArrayList<Info> ext,int recurrency){
 		this.term=term;
 		this.type=type;
@@ -26,13 +26,14 @@ public class Frame {
 		extracted_info = new ArrayList<Info>();
 	}
 	public void addInfo(String info, LocalDateTime datetime)
-	{
-		extracted_info.add(new Info(info,(datetime!=null?datetime.toString():"")));
+	{	
+		if(info!=null || info.length()<=0)
+			extracted_info.add(new Info(info,(datetime!=null?datetime.toString():"")));
 	}
 	public void setTerm(String term) {
 		this.term = term;
 	}
-	
+
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -56,7 +57,7 @@ public class Frame {
 	public String getTerm() {
 		return term;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
@@ -76,11 +77,11 @@ public class Frame {
 	public int getRecurrency() {
 		return recurrency;
 	}
-	
+
 	public void addRecurrency() {
 		recurrency++;
 	}
-	
+
 	public String toString()
 	{
 		return "Term:"+term+",type:"+type+",category:"+category+",cohesion:"+medic_cohesion+extracted_info.toString();
@@ -89,6 +90,6 @@ public class Frame {
 	{
 		return another.term.equals(this.term);
 	}
-	
+
 
 }
