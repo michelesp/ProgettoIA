@@ -105,7 +105,7 @@ public class Main {
 			protegeHandler.addFrame(f);
 		protegeHandler.save();
 		
-		System.out.println(new Sepsi(protegeHandler).diagnose());
+		System.out.println("Sepsi: "+new Sepsi(protegeHandler).diagnose());
 		
 	}
 
