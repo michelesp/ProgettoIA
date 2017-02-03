@@ -22,8 +22,8 @@ import sourcedata.ExamTable;
 import sourcedata.StructuredDataType;
 import sourcedata.TableDataItem;
 import sourcedata.TableType;
-import sourcedata.TypeSample;
-import sourcedata.TypeSampleTable;
+import sourcedata.BloodGasAnalysisResult;
+import sourcedata.BloodGasAnalysisTable;
 
 import org.docx4j.wml.Tbl;
 import org.docx4j.wml.Tc;
@@ -77,7 +77,7 @@ public class DocxReader {
 			return getExamTable(tbl);
 		case BLOOD_ANALYSIS:
 			return getBloodAnalysisTable(tbl);
-		case TYPE_SAMPLE:
+		case BLOOD_GAS_ANALYSIS:
 			return getTypeSampleTable(tbl);
 		case DAILY_CLINIC_DIARY:
 			return getDailyClinicDiaryTable(tbl);
@@ -129,7 +129,7 @@ public class DocxReader {
 	}
 
 	private List<TableDataItem> getTypeSampleTable(Tbl tbl) {
-		List<TableDataItem> table = new TypeSampleTable();
+		List<TableDataItem> table = new BloodGasAnalysisTable();
 		int i=2;
 		boolean derived = false;
 		for(; i<tbl.getContent().size() && !derived; i++) {
@@ -161,7 +161,7 @@ public class DocxReader {
 					}
 				}
 			}
-			table.add(new TypeSample(str[0], str[1], str[2], derived));
+			table.add(new BloodGasAnalysisResult(str[0], str[1], str[2], derived));
 		}
 		derived = true;
 		for(; i<tbl.getContent().size(); i++) {
@@ -189,7 +189,7 @@ public class DocxReader {
 					}
 				}
 			}
-			table.add(new TypeSample(str[0], str[1], str[2], derived));
+			table.add(new BloodGasAnalysisResult(str[0], str[1], str[2], derived));
 		}
 		return table;
 	}
@@ -287,7 +287,7 @@ public class DocxReader {
 		case 3:
 			P p = (P) ((Tc)((JAXBElement)tr.getContent().get(0)).getValue()).getContent().get(0);
 			if(p.getContent().size()==0)
-				return TableType.TYPE_SAMPLE;
+				return TableType.BLOOD_GAS_ANALYSIS;
 			else if(p.getContent().size()==1)
 				return TableType.DAILY_CLINIC_DIARY;
 			break;

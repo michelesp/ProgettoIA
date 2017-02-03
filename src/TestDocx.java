@@ -12,7 +12,7 @@ import sourcedata.DailyClinicDiaryTable;
 import sourcedata.ExamTable;
 import sourcedata.StructuredDataType;
 import sourcedata.TableDataItem;
-import sourcedata.TypeSampleTable;
+import sourcedata.BloodGasAnalysisTable;
 import translation.TableTranslator;
 import translation.Translator;
 
@@ -34,8 +34,8 @@ public class TestDocx {
 					dw.addTable(tt.translate((ExamTable)l));
 				else if(l instanceof DailyClinicDiaryTable)
 					dw.addTable(tt.translate((DailyClinicDiaryTable)l));
-				else if(l instanceof TypeSampleTable)
-					dw.addTable(tt.translate((TypeSampleTable)l));
+				else if(l instanceof BloodGasAnalysisTable)
+					dw.addTable(tt.translate((BloodGasAnalysisTable)l));
 				else if(l instanceof BloodAnalysisTable)
 					dw.addTable(tt.translate((BloodAnalysisTable)l));
 			}

@@ -285,10 +285,11 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#therapy"/>
     </rdfs:subClassOf>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
     <rdf:type>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#check"/>
     </rdf:type>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
     <rdf:type>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abg"/>
     </rdf:type>
@@ -390,24 +391,6 @@
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#bloodgasanalysis"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#patient">
-    <standard-entity-representation:medicCohesion>null</standard-entity-representation:medicCohesion>
-    <standard-entity-representation:isType>noun</standard-entity-representation:isType>
-    <standard-entity-representation:hasOccured>7</standard-entity-representation:hasOccured>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#person"/>
-    </rdfs:subClassOf>
-    <rdf:type>
-      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hospitalized"/>
-    </rdf:type>
-    <rdf:type>
-      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#failure"/>
-    </rdf:type>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
-    <rdf:type>
-      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedated"/>
-    </rdf:type>
-  </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#collapsed">
     <standard-entity-representation:medicCohesion>null</standard-entity-representation:medicCohesion>
     <standard-entity-representation:isType>verb</standard-entity-representation:isType>
@@ -486,7 +469,7 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medic"/>
     </rdfs:subClassOf>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#inf.k"/>
     </rdf:type>
@@ -650,19 +633,22 @@
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#control">
     <standard-entity-representation:medicCohesion>null</standard-entity-representation:medicCohesion>
     <standard-entity-representation:isType>noun</standard-entity-representation:isType>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <standard-entity-representation:hasOccured>3</standard-entity-representation:hasOccured>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medic"/>
-    </rdfs:subClassOf>
-    <rdf:type>
-      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#overlapping"/>
-    </rdf:type>
     <rdf:type>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameters"/>
     </rdf:type>
+    <standard-entity-representation:dateTime>0016-03-11T18:30</standard-entity-representation:dateTime>
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
     <rdf:type>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abg"/>
+    </rdf:type>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medic"/>
+    </rdfs:subClassOf>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
+    <rdf:type>
+      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#overlapping"/>
     </rdf:type>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#rate">
@@ -810,18 +796,20 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#infusion">
-    <standard-entity-representation:medicCohesion>null</standard-entity-representation:medicCohesion>
-    <standard-entity-representation:isType>noun</standard-entity-representation:isType>
-    <standard-entity-representation:hasOccured>7</standard-entity-representation:hasOccured>
+    <standard-entity-representation:dateTime>0016-03-10T23:00</standard-entity-representation:dateTime>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
-    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#observation"/>
-    <rdf:type>
-      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
-    </rdf:type>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:medicCohesion>null</standard-entity-representation:medicCohesion>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
     <rdf:type>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#instability"/>
     </rdf:type>
+    <standard-entity-representation:hasOccured>7</standard-entity-representation:hasOccured>
+    <rdf:type>
+      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
+    </rdf:type>
+    <standard-entity-representation:isType>noun</standard-entity-representation:isType>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#observation"/>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sample">
     <standard-entity-representation:medicCohesion>null</standard-entity-representation:medicCohesion>
@@ -878,7 +866,7 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medic"/>
     </rdfs:subClassOf>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
     <rdf:type>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#check"/>
     </rdf:type>
@@ -914,20 +902,6 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#CBC"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#amv">
-    <standard-entity-representation:medicCohesion>null</standard-entity-representation:medicCohesion>
-    <standard-entity-representation:isType>noun</standard-entity-representation:isType>
-    <standard-entity-representation:hasOccured>3</standard-entity-representation:hasOccured>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#therapy"/>
-    </rdfs:subClassOf>
-    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#described"/>
-    <rdf:type>
-      <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedation"/>
-    </rdf:type>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
-    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedated"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ca%2B%2B%3A">
     <standard-entity-representation:medicCohesion>null</standard-entity-representation:medicCohesion>
@@ -1186,7 +1160,7 @@
     <standard-entity-representation:isType>noun</standard-entity-representation:isType>
     <standard-entity-representation:hasOccured>0</standard-entity-representation:hasOccured>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#equipment"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
     <rdf:type>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#visualized"/>
     </rdf:type>
@@ -1603,7 +1577,8 @@
     <standard-entity-representation:isType>noun</standard-entity-representation:isType>
     <standard-entity-representation:hasOccured>0</standard-entity-representation:hasOccured>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medic"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedated"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ri%3A">
@@ -1701,7 +1676,7 @@
     <standard-entity-representation:isType>verb</standard-entity-representation:isType>
     <standard-entity-representation:hasOccured>1</standard-entity-representation:hasOccured>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameter"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hospitalized"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mmhg">
@@ -1767,7 +1742,7 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#location"/>
     </rdfs:subClassOf>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
     <rdf:type>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#visualized"/>
     </rdf:type>
@@ -1857,7 +1832,7 @@
     <standard-entity-representation:isType>noun</standard-entity-representation:isType>
     <standard-entity-representation:hasOccured>0</standard-entity-representation:hasOccured>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medic"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#contracted"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameters">
@@ -1865,7 +1840,7 @@
     <standard-entity-representation:isType>noun</standard-entity-representation:isType>
     <standard-entity-representation:hasOccured>2</standard-entity-representation:hasOccured>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medic"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fit"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#organized">
@@ -1938,7 +1913,7 @@
     <standard-entity-representation:isType>noun</standard-entity-representation:isType>
     <standard-entity-representation:hasOccured>9</standard-entity-representation:hasOccured>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medic"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type>
       <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#put"/>
     </rdf:type>
@@ -1982,7 +1957,7 @@
     <standard-entity-representation:isType>noun</standard-entity-representation:isType>
     <standard-entity-representation:hasOccured>0</standard-entity-representation:hasOccured>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medic"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T23:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#monitor"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vena">
@@ -2045,7 +2020,7 @@
     <standard-entity-representation:hasOccured>8</standard-entity-representation:hasOccured>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#medic"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#observation"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#contracted"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ph">
@@ -2170,7 +2145,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#reduced"/>
   </standard-entity-representation:murmur>
   <standard-entity-representation:cannulation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ultrasound-guided">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:cannulation>
   <standard-entity-representation:white_blood_cells rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#15970.00*%2F%C2%B5l">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2187,7 +2162,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pao2%2F_pao2%3A"/>
   </rdf:Description>
   <standard-entity-representation:ventilated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#intubationIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:ventilated>
   <j.2:massa rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#3.60ng%2Fml">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2204,7 +2179,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#lat%3A"/>
   </rdf:Description>
   <standard-entity-representation:observation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cf+111">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
   </standard-entity-representation:observation>
   <standard-entity-representation:hg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#90%2F70">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2219,7 +2194,7 @@
   </standard-entity-representation:creatinine>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%3E">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulin"/>
   </standard-entity-representation:infusion>
   <standard-entity-representation:white_blood_cells rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#15820.00*%2F%C2%B5l">
@@ -2243,7 +2218,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:candida>
   <standard-entity-representation:inferior rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#venaIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
   </standard-entity-representation:inferior>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#453mmhg">
     <standard-entity-representation:dateTime>2016-03-09T07:00</standard-entity-representation:dateTime>
@@ -2253,6 +2228,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:state>
   <standard-entity-representation:x-ray rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#chest">
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#murmur"/>
   </standard-entity-representation:x-ray>
@@ -2264,13 +2240,13 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pco2%3A"/>
   </rdf:Description>
   <standard-entity-representation:pressure rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#undetectable">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:pressure>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#100v.">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T23:00</standard-entity-representation:dateTime>
   </standard-entity-representation:monitor>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#dosaggio">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mmhg"/>
   </standard-entity-representation:monitor>
   <standard-entity-representation:city_of_residence rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#via+quadruviale">
@@ -2279,8 +2255,11 @@
   </standard-entity-representation:city_of_residence>
   <standard-entity-representation:organized rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abgIndividual">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#reading"/>
-    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tests"/>
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tests"/>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#check"/>
   </standard-entity-representation:organized>
   <standard-entity-representation:hospitalization rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#careIndividual">
@@ -2294,10 +2273,11 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:pco2>
   <standard-entity-representation:keep rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ventilation+abp+90">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T11:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T12:00</standard-entity-representation:dateTime>
   </standard-entity-representation:keep>
   <standard-entity-representation:parameters rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ventilatory">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:parameters>
   <standard-entity-representation:serum_myoglobin rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#80.4*pg%2Fml">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2330,18 +2310,22 @@
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#positive">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pvc"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#budget"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#contracted"/>
   </standard-entity-representation:diuresis>
   <standard-entity-representation:performed rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abg+ph">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
   </standard-entity-representation:performed>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#140mmol+%2F+l">
     <standard-entity-representation:dateTime>2016-03-11T07:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#na%2B%3A"/>
   </rdf:Description>
   <standard-entity-representation:condition rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#clinical">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T01:20</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
   </standard-entity-representation:condition>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#12%3A10">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2352,7 +2336,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#be_%28b%29%3A"/>
   </rdf:Description>
   <standard-entity-representation:so2 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#so2+84">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abg"/>
   </standard-entity-representation:so2>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#5.6*%25">
@@ -2369,22 +2353,22 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:fentanest>
   <standard-entity-representation:pressure rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#blood+pressure+115%2F80">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T19:45</standard-entity-representation:dateTime>
   </standard-entity-representation:pressure>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#38">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#08%2F03%2F201616"/>
   </rdf:Description>
   <standard-entity-representation:performed rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#so2+%25+98">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
   </standard-entity-representation:performed>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#acceptable">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameters"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fit"/>
   </standard-entity-representation:ventilation>
   <standard-entity-representation:keep rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#amv+abp+100%2F50">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T18:00</standard-entity-representation:dateTime>
   </standard-entity-representation:keep>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#94%25">
     <standard-entity-representation:dateTime>2016-03-09T07:00</standard-entity-representation:dateTime>
@@ -2398,7 +2382,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:rf>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#suspended">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T19:00</standard-entity-representation:dateTime>
   </standard-entity-representation:infusion>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#314mmhg">
     <standard-entity-representation:dateTime>2016-03-11T07:00</standard-entity-representation:dateTime>
@@ -2409,7 +2393,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#glu%3A"/>
   </rdf:Description>
   <standard-entity-representation:condition rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mm">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
   </standard-entity-representation:condition>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#---------mmhg">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#a-ado2%3A"/>
@@ -2418,8 +2402,10 @@
   </rdf:Description>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#continuous">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#observation"/>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T23:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#instability"/>
   </standard-entity-representation:infusion>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#14.7mmol+%2F+l">
@@ -2428,13 +2414,14 @@
   </rdf:Description>
   <standard-entity-representation:murmur rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#right">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#field"/>
+    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#reduced"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cannulation"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vein"/>
   </standard-entity-representation:murmur>
   <standard-entity-representation:consult rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#echocardiogram">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
   </standard-entity-representation:consult>
   <standard-entity-representation:admission rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#health+service">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2447,7 +2434,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:aptt>
   <standard-entity-representation:performed rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#po2+95">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
   </standard-entity-representation:performed>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#13.0g+%2F+dl">
     <standard-entity-representation:dateTime>2016-03-08T16:00</standard-entity-representation:dateTime>
@@ -2462,13 +2449,14 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:advice>
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#limitsIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T11:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
   </standard-entity-representation:diuresis>
   <standard-entity-representation:platelets rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#176000%2F%C2%B5l">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:platelets>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ph+pco2+7%2C12">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:alt rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#11u%2Fi">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2477,11 +2465,11 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:red_blood_cells>
   <standard-entity-representation:consult rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cardiology">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
   </standard-entity-representation:consult>
   <standard-entity-representation:inferior rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#inhalation">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vena"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#collapsed"/>
   </standard-entity-representation:inferior>
   <standard-entity-representation:sodium_in_serum rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#4.6*meq%2Fl">
@@ -2489,18 +2477,19 @@
   </standard-entity-representation:sodium_in_serum>
   <standard-entity-representation:therapy rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#arrhythmic">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#instability"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hypotension"/>
   </standard-entity-representation:therapy>
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#valid">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:diuresis>
   <standard-entity-representation:therapy rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hypotensionIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#instability"/>
   </standard-entity-representation:therapy>
   <standard-entity-representation:condition rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#critical">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
   </standard-entity-representation:condition>
   <standard-entity-representation:admission rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#national">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#service"/>
@@ -2531,74 +2520,81 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#obstruction"/>
   </standard-entity-representation:sounds>
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#contractedIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#observation"/>
   </standard-entity-representation:diuresis>
-  <standard-entity-representation:switch rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#kg+min">
+  <standard-entity-representation:increased rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#kg+min">
+    <standard-entity-representation:dateTime>2016-03-08T19:45</standard-entity-representation:dateTime>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#switch"/>
+    <standard-entity-representation:dateTime>2016-03-08T19:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#infusion"/>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#supported"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
-    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#increased"/>
-  </standard-entity-representation:switch>
+  </standard-entity-representation:increased>
   <standard-entity-representation:organized rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#readingIndividual">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:organized>
   <standard-entity-representation:control rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#compared">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameters"/>
   </standard-entity-representation:control>
   <standard-entity-representation:nahco3 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#correction+inf.k">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#administering"/>
   </standard-entity-representation:nahco3>
   <standard-entity-representation:ventilated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#endotracheal">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#intubation"/>
   </standard-entity-representation:ventilated>
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#e%2Fv+budget">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pvc"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#contracted"/>
   </standard-entity-representation:diuresis>
   <standard-entity-representation:surname_and_name rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fiume+vincenza+age">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:surname_and_name>
   <standard-entity-representation:inferior rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#small">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vena"/>
   </standard-entity-representation:inferior>
   <standard-entity-representation:potassium_in_serum rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#3.1*meq%2Fl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:potassium_in_serum>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#po2+92">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#po2"/>
   </standard-entity-representation:abg>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hco3+19.2">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:administering rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulin+actrapid">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:administering>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#-1.2mmol+%2F+l">
     <standard-entity-representation:dateTime>2016-03-10T07:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#beecf%3A"/>
   </rdf:Description>
   <standard-entity-representation:ventilated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#proceeded">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:ventilated>
   <standard-entity-representation:sugar rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#blood">
-    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#correction"/>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#taken"/>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tests"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sample"/>
-    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abg"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#glucose"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
-    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#taken"/>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#correction"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abg"/>
   </standard-entity-representation:sugar>
   <standard-entity-representation:therapy rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cardioactive">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#instability"/>
   </standard-entity-representation:therapy>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#24.3mmol+%2F+l">
@@ -2606,11 +2602,12 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hco3std%3A"/>
   </rdf:Description>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulinIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T19:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
   </standard-entity-representation:infusion>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#500ml">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T19:30</standard-entity-representation:dateTime>
   </standard-entity-representation:infusion>
   <standard-entity-representation:magnesium_in_serum rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#1.8mg%2Fdl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2620,11 +2617,12 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#g.neutrofili_%25"/>
   </rdf:Description>
   <standard-entity-representation:begin rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#persistent">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#glucose"/>
   </standard-entity-representation:begin>
   <standard-entity-representation:sedated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#connected">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:sedated>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#1.11mmol+%2F+l">
     <standard-entity-representation:dateTime>2016-03-11T07:00</standard-entity-representation:dateTime>
@@ -2633,13 +2631,13 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ca%2B%2B%3A"/>
   </rdf:Description>
   <standard-entity-representation:instability rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cmve">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
   </standard-entity-representation:instability>
   <standard-entity-representation:therapy rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#usual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
   </standard-entity-representation:therapy>
   <standard-entity-representation:condition rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#overlappingIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
   </standard-entity-representation:condition>
   <standard-entity-representation:dispenser rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%3F%3F%3F%3Fapplicant">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2648,7 +2646,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:hco3>
   <standard-entity-representation:parameters rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cardiorespiratory">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T18:30</standard-entity-representation:dateTime>
   </standard-entity-representation:parameters>
   <standard-entity-representation:white_blood_cells rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#15630.00*%2F%C2%B5l">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2660,7 +2658,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:nimbex>
   <standard-entity-representation:pco2 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pco2+34">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abg"/>
   </standard-entity-representation:pco2>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#-1.7mmol+%2F+l">
@@ -2668,14 +2666,14 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#beecf%3A"/>
   </rdf:Description>
   <standard-entity-representation:observation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pa+68%2F63">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
   </standard-entity-representation:observation>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#2.6mmol+%2F+l">
     <standard-entity-representation:dateTime>2016-03-10T07:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#lat%3A"/>
   </rdf:Description>
   <standard-entity-representation:inferior rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#collapsedIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vena"/>
   </standard-entity-representation:inferior>
   <j.10:il_medico rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%3F%3F%3F%3F%3F%3F">
@@ -2692,7 +2690,7 @@
   </standard-entity-representation:mean_corpuscolar_hemoglobin>
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#h2o+10cm">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pvc"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#contracted"/>
   </standard-entity-representation:diuresis>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#4.9%25">
@@ -2700,14 +2698,15 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#monocytes%25"/>
   </rdf:Description>
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pvcIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T19:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#infusion"/>
   </standard-entity-representation:diuresis>
   <standard-entity-representation:cf rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#111">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:cf>
   <standard-entity-representation:check rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#p%2Ff+100">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
   </standard-entity-representation:check>
   <standard-entity-representation:ischemia rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#2012">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2716,14 +2715,14 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:volume_platelet_middle>
   <standard-entity-representation:diameter rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tube+diameter+7%2C5">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:diameter>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#100%25">
     <standard-entity-representation:dateTime>2016-03-10T21:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#so2c%3A"/>
   </rdf:Description>
   <standard-entity-representation:sedated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mv">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T12:30</standard-entity-representation:dateTime>
   </standard-entity-representation:sedated>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#2.1mmol+%2F+l">
     <standard-entity-representation:dateTime>2016-03-09T07:00</standard-entity-representation:dateTime>
@@ -2734,7 +2733,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:mmhg>
   <standard-entity-representation:secretion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tet">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:secretion>
   <standard-entity-representation:ml rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#1">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2766,7 +2765,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:dystrophy>
   <standard-entity-representation:begin rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#blood+glucose">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
   </standard-entity-representation:begin>
   <standard-entity-representation:prothrombin_time rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#15.80secondi">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2780,7 +2779,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ph_%3A"/>
   </rdf:Description>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#well+-1.7">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:rate rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#113">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2789,44 +2788,49 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:platelets>
   <standard-entity-representation:patient rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#coming">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hospitalized"/>
   </standard-entity-representation:patient>
   <standard-entity-representation:check rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#po2+50">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
   </standard-entity-representation:check>
   <standard-entity-representation:applicant rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%3F%3F%3F%3Frequest">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:applicant>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#i.">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mmhg"/>
   </standard-entity-representation:monitor>
   <standard-entity-representation:condition rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#stationary">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T01:20</standard-entity-representation:dateTime>
   </standard-entity-representation:condition>
   <standard-entity-representation:sodium_in_serum rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#4.0*meq%2Fl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:sodium_in_serum>
   <standard-entity-representation:mode rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pcv">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mav"/>
   </standard-entity-representation:mode>
   <standard-entity-representation:cannulation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#jugular">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vein"/>
   </standard-entity-representation:cannulation>
   <standard-entity-representation:observation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%25+100">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
   </standard-entity-representation:observation>
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%28">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulin"/>
+    <standard-entity-representation:dateTime>0016-03-11T11:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#glucose"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#norepinephrine"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#budget"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#keep"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
+    <standard-entity-representation:dateTime>0016-03-10T12:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#check"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pvc"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#infusion"/>
@@ -2858,7 +2862,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#inferior"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vena"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#size"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#visualized"/>
   </standard-entity-representation:chambers>
   <standard-entity-representation:family_member_or_contact_person rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#-">
@@ -2869,32 +2873,33 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#g.neutrofili_%25"/>
   </rdf:Description>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#aumenta">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mmhg"/>
   </standard-entity-representation:monitor>
   <standard-entity-representation:keep rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hr+90">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T18:00</standard-entity-representation:dateTime>
   </standard-entity-representation:keep>
   <standard-entity-representation:inferior rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cava">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vena"/>
   </standard-entity-representation:inferior>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#kg%2Fmin">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mmhg"/>
   </standard-entity-representation:monitor>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#spirometric">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameters"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fit"/>
   </standard-entity-representation:ventilation>
   <standard-entity-representation:ventilated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fentanest+100%CE%B3">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fentanest"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#administration"/>
   </standard-entity-representation:ventilated>
   <standard-entity-representation:described rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedationIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T18:30</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T23:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#continued"/>
   </standard-entity-representation:described>
   <standard-entity-representation:pct rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#0.140%25">
@@ -2916,7 +2921,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#eosinophils%25"/>
   </rdf:Description>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pco2+39">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:fever rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#suspected">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -2944,16 +2949,16 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#po2%3A"/>
   </rdf:Description>
   <standard-entity-representation:parameters rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#modified">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:parameters>
   <standard-entity-representation:pct rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#0.143%25">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:pct>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parametersIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
   </standard-entity-representation:ventilation>
   <standard-entity-representation:patient rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ventilatedIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:patient>
   <standard-entity-representation:failure rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#respiratory">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3000,7 +3005,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hct%3A"/>
   </rdf:Description>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#unreadable+mode">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
   </standard-entity-representation:ventilation>
   <standard-entity-representation:mean_corpuscular_volume rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#98.1*fl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3012,7 +3017,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:chlorine_in_serum>
   <standard-entity-representation:glucose rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#administered">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
   </standard-entity-representation:glucose>
   <standard-entity-representation:cpk rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#50u%2Fi">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3022,16 +3027,17 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#so2c%3A"/>
   </rdf:Description>
   <standard-entity-representation:check rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pco2+30">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
   </standard-entity-representation:check>
   <standard-entity-representation:instability rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#therapyIndividual">
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#continue"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#set"/>
   </standard-entity-representation:instability>
   <standard-entity-representation:therapy rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tachycardia">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#instability"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hypotension"/>
   </standard-entity-representation:therapy>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#9.9g+%2F+dl">
@@ -3039,10 +3045,10 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#thbc%3A"/>
   </rdf:Description>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#dopamine">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:infusion>
   <standard-entity-representation:ventilated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#8mg">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#administration"/>
   </standard-entity-representation:ventilated>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#37mmhg">
@@ -3050,7 +3056,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pco2%3A"/>
   </rdf:Description>
   <standard-entity-representation:parameters rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#unchanged">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T18:30</standard-entity-representation:dateTime>
   </standard-entity-representation:parameters>
   <standard-entity-representation:cpk rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#39u%2Fi">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3067,7 +3073,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#thbc%3A"/>
   </rdf:Description>
   <standard-entity-representation:so2 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%25+88">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#check"/>
   </standard-entity-representation:so2>
   <standard-entity-representation:uisc rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#5">
@@ -3084,6 +3090,8 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ph_%3A"/>
   </rdf:Description>
   <standard-entity-representation:keep rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hr+98">
+    <standard-entity-representation:dateTime>0016-03-11T11:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T12:00</standard-entity-representation:dateTime>
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#monitor"/>
   </standard-entity-representation:keep>
@@ -3105,7 +3113,8 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#k%2B%3A"/>
   </rdf:Description>
   <standard-entity-representation:performed rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#lat+2.6">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#check"/>
   </standard-entity-representation:performed>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#0.4%25">
@@ -3123,7 +3132,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#a-ado2%3A"/>
   </rdf:Description>
   <standard-entity-representation:condition rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hr+108">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#overlapping"/>
   </standard-entity-representation:condition>
   <standard-entity-representation:hemoglobin rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#9.9*g%2Fdl">
@@ -3163,11 +3172,11 @@
   </standard-entity-representation:hospitalization>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#iu+50">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulin"/>
   </standard-entity-representation:infusion>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#rf+14">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#put"/>
   </standard-entity-representation:ventilation>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#34mmhg">
@@ -3175,16 +3184,16 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pco2%3A"/>
   </rdf:Description>
   <standard-entity-representation:hco3 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#22.6">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abg"/>
   </standard-entity-representation:hco3>
   <standard-entity-representation:ventilated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#nimbex+10mg">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#nimbex"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#administration"/>
   </standard-entity-representation:ventilated>
   <standard-entity-representation:ventilated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#having">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:ventilated>
   <standard-entity-representation:ast rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#21u%2Fi">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3212,7 +3221,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:glycemia>
   <standard-entity-representation:observation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cmve+instability">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
   </standard-entity-representation:observation>
   <standard-entity-representation:serum_potassium rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#3.0*meq%2Fl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3249,7 +3258,7 @@
   </rdf:Description>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#amine">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#observation"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#instability"/>
   </standard-entity-representation:infusion>
   <standard-entity-representation:bnp rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#48.0pg%2Fml">
@@ -3267,10 +3276,10 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#g.eosinofili_%25"/>
   </rdf:Description>
   <standard-entity-representation:supported rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#norepinephrine+%CE%B3+12%3A10">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
   </standard-entity-representation:supported>
   <standard-entity-representation:increased rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#noradrenaline+dosage">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
   </standard-entity-representation:increased>
   <standard-entity-representation:murmur rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#reducedIndividual">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3288,7 +3297,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#be_%28b%29%3A"/>
   </rdf:Description>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#lat+2%2C1">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:care rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#oti">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3312,7 +3321,9 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ri%3A"/>
   </rdf:Description>
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#lower">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T11:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T01:20</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#limits"/>
   </standard-entity-representation:diuresis>
   <standard-entity-representation:phosphorus_in_serum rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#0.7*mg%2Fdl">
@@ -3330,17 +3341,17 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#a-ado2%3A"/>
   </rdf:Description>
   <standard-entity-representation:pressure rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#heart+rate+113">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:pressure>
   <standard-entity-representation:cannulation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#internal">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vein"/>
   </standard-entity-representation:cannulation>
   <standard-entity-representation:anesthesia rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#resuscitation">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:anesthesia>
   <standard-entity-representation:nahco3 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#uisc+5">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#administering"/>
   </standard-entity-representation:nahco3>
   <standard-entity-representation:dystrophy rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#myotonic">
@@ -3361,7 +3372,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:lat>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ph+pco2+51">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:ischemia rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cerebral">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#stroke"/>
@@ -3388,20 +3399,20 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:posizione_professionale>
   <standard-entity-representation:pressure rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#blood+pressure+77%2F40">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:pressure>
   <standard-entity-representation:data rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#data+13.06">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:data>
   <standard-entity-representation:execution rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#acoustic">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#impedance"/>
   </standard-entity-representation:execution>
   <standard-entity-representation:monocytes rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#0.2310%5E3%2F%C2%B5l">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:monocytes>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fio2+0.6">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#put"/>
   </standard-entity-representation:ventilation>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#0.1%25">
@@ -3410,7 +3421,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#g._eosinophils%25"/>
   </rdf:Description>
   <standard-entity-representation:patient rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#emergency+room">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hospitalized"/>
   </standard-entity-representation:patient>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#----------">
@@ -3425,14 +3436,14 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </j.14:_sieric>
   <standard-entity-representation:ventilated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#midazolan">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#administration"/>
   </standard-entity-representation:ventilated>
   <standard-entity-representation:pt_ratio rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#1.55">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:pt_ratio>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#start">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:infusion>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#----------mmhg">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#a-ado2%3A"/>
@@ -3440,7 +3451,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pao2%3A"/>
   </rdf:Description>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#norepinephrine+%CE%B3+0.2">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T19:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
   </standard-entity-representation:infusion>
   <standard-entity-representation:overlapping rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#noninvasive">
@@ -3471,17 +3482,17 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#tests"/>
   </standard-entity-representation:organized>
   <standard-entity-representation:observation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#afebrile">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
   </standard-entity-representation:observation>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#good">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fit"/>
   </standard-entity-representation:ventilation>
   <standard-entity-representation:phosphorus_in_serum rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#7.5*mg%2Fdl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:phosphorus_in_serum>
   <standard-entity-representation:hco3 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hco3+16.7">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#performed"/>
   </standard-entity-representation:hco3>
   <standard-entity-representation:neutrophil rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#14.7710%5E3%2F%C2%B5l">
@@ -3498,7 +3509,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:volume_platelet_middle>
   <standard-entity-representation:evaluate rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#other">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
   </standard-entity-representation:evaluate>
   <standard-entity-representation:pazient rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fiume+vincenzagender">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3511,26 +3522,29 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:g.basofili>
   <standard-entity-representation:secretion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#aspired">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:secretion>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#05">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#11%2F03%2F201607"/>
   </rdf:Description>
   <standard-entity-representation:keep rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#assist-control">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T11:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T12:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T12:30</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T10:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ventilation"/>
   </standard-entity-representation:keep>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ml+1">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulin"/>
   </standard-entity-representation:infusion>
   <standard-entity-representation:mean_corpuscolar_hemoglobin rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#32.7g%2Fdl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:mean_corpuscolar_hemoglobin>
   <standard-entity-representation:nahco3 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#meq">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#administering"/>
   </standard-entity-representation:nahco3>
   <standard-entity-representation:volume_platelet_middle rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#9.2fl">
@@ -3541,10 +3555,10 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ca%2B%2B%287.4%29%3A"/>
   </rdf:Description>
   <standard-entity-representation:fio2 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fio2+0.8">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:fio2>
   <standard-entity-representation:instability rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#circulatory">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T01:20</standard-entity-representation:dateTime>
   </standard-entity-representation:instability>
   <standard-entity-representation:budget rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%29">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#contracted"/>
@@ -3552,10 +3566,14 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulin"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#norepinephrine"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#diuresis"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#check"/>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#keep"/>
+    <standard-entity-representation:dateTime>0016-03-11T11:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#infusion"/>
+    <standard-entity-representation:dateTime>0016-03-10T12:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#glucose"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pvc"/>
   </standard-entity-representation:budget>
@@ -3563,7 +3581,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:total_amylase>
   <standard-entity-representation:nahco3 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#bicarbonate+nahco3+50">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#administering"/>
   </standard-entity-representation:nahco3>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#--------">
@@ -3572,7 +3590,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pao2%2F_pao2%3A"/>
   </rdf:Description>
   <standard-entity-representation:execution rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#difficult">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
   </standard-entity-representation:execution>
   <standard-entity-representation:ast rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#20u%2Fi">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3581,30 +3599,32 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:performance>
   <standard-entity-representation:keep rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ventilationIndividual">
-    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#overlapping"/>
+    <standard-entity-representation:dateTime>2016-03-09T10:00</standard-entity-representation:dateTime>
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#overlapping"/>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#observation"/>
   </standard-entity-representation:keep>
   <standard-entity-representation:azotemia rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#43mg%2Fdl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:azotemia>
   <standard-entity-representation:ventilated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#administrationIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:ventilated>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#h">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulin"/>
   </standard-entity-representation:infusion>
   <standard-entity-representation:nationality rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#italiana">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:nationality>
   <standard-entity-representation:begin rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mg+234">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#glucose"/>
   </standard-entity-representation:begin>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ph+7%3A43">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:total_amylase rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#59u%2Fi">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3634,7 +3654,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:code>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pcv+mode">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
   </standard-entity-representation:ventilation>
   <standard-entity-representation:gender rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#f">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3643,7 +3663,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:ph>
   <standard-entity-representation:hco-3 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hco-3+16%2C6">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abg"/>
   </standard-entity-representation:hco-3>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#51mmhg">
@@ -3654,7 +3674,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:code>
   <standard-entity-representation:hco3 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#24.3">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#check"/>
   </standard-entity-representation:hco3>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#76mmhg">
@@ -3662,11 +3682,11 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#po2%3A"/>
   </rdf:Description>
   <standard-entity-representation:budget rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#e%2Fv">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
   </standard-entity-representation:budget>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ml+sf+50">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#insulin"/>
   </standard-entity-representation:infusion>
   <standard-entity-representation:advice rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#treating">
@@ -3675,18 +3695,18 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#taken"/>
   </standard-entity-representation:advice>
   <standard-entity-representation:described rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#continueIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedation"/>
   </standard-entity-representation:described>
   <standard-entity-representation:pressure rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#monitorized">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:pressure>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#141mmol+%2F+l">
     <standard-entity-representation:dateTime>2016-03-09T07:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#na%2B%3A"/>
   </rdf:Description>
   <standard-entity-representation:check rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ph+7.48">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
   </standard-entity-representation:check>
   <standard-entity-representation:ischemia rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#operated">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3695,10 +3715,10 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:hemoglobin>
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#diuresis+500cc">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
   </standard-entity-representation:diuresis>
   <standard-entity-representation:continued rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mild">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T23:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedation"/>
   </standard-entity-representation:continued>
   <standard-entity-representation:aptt_ratio rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#1.02">
@@ -3718,10 +3738,10 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:g.basofili>
   <standard-entity-representation:sample rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#takenIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
   </standard-entity-representation:sample>
   <standard-entity-representation:check rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ega">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
   </standard-entity-representation:check>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#32mmhg">
     <standard-entity-representation:dateTime>2016-03-10T21:00</standard-entity-representation:dateTime>
@@ -3748,7 +3768,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ph_%3A"/>
   </rdf:Description>
   <standard-entity-representation:sample rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abg+tests">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#taken"/>
   </standard-entity-representation:sample>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#23.6mmol+%2F+l">
@@ -3792,7 +3812,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hct%3A"/>
   </rdf:Description>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sao2+%25+97">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:sounds rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#obstructionIndividual">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#murmur"/>
@@ -3808,8 +3828,9 @@
   </standard-entity-representation:mean_corpuscular_volume>
   <standard-entity-representation:execution rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#high">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#begin"/>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#impedance"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#glucose"/>
   </standard-entity-representation:execution>
   <standard-entity-representation:glycemia rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#155*mg%2Fdl">
@@ -3822,15 +3843,15 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:mg>
   <standard-entity-representation:performed rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pco2+23">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
   </standard-entity-representation:performed>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%CE%B3+0.8">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mmhg"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#increased"/>
   </standard-entity-representation:monitor>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ph+7.30">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#2.8mmol+%2F+l">
     <standard-entity-representation:dateTime>2016-03-11T07:00</standard-entity-representation:dateTime>
@@ -3862,14 +3883,15 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:organized>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#po2+63">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abp+mmhg+84%2F55">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mmhg"/>
   </standard-entity-representation:monitor>
   <standard-entity-representation:pressure rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#spo2Individual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#observation"/>
   </standard-entity-representation:pressure>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#1.6mmol+%2F+l">
@@ -3881,9 +3903,10 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ph_%3A"/>
   </rdf:Description>
   <standard-entity-representation:glucose rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#250ml">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
   </standard-entity-representation:glucose>
   <standard-entity-representation:diuresis rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#morning">
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#taken"/>
   </standard-entity-representation:diuresis>
@@ -3898,13 +3921,13 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:h2o>
   <standard-entity-representation:cannulation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#veinIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:cannulation>
   <standard-entity-representation:po2 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#92">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:po2>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#po2+65">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <j.20:_serum rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#0.03ng%2Fml">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3914,11 +3937,11 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hco3-_%3A"/>
   </rdf:Description>
   <standard-entity-representation:control rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#control+7%3A47">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#performed"/>
   </standard-entity-representation:control>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#di">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mmhg"/>
   </standard-entity-representation:monitor>
   <standard-entity-representation:ldh rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#435u%2Fi">
@@ -3928,14 +3951,14 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:rdw>
   <standard-entity-representation:sugar rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#correctionIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:sugar>
   <standard-entity-representation:calcium_in_serum rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#7.9*mg%2Fdl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:calcium_in_serum>
   <standard-entity-representation:amv rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#amv%28vt+450%2C+rf+14%2C+peep5%2C+fio2+0.6%29">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fio2"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedated"/>
   </standard-entity-representation:amv>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#spo2+81">
@@ -3945,10 +3968,10 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:patient>
   <standard-entity-representation:sugar rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#be">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:sugar>
   <standard-entity-representation:hypotension rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#severe">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T19:30</standard-entity-representation:dateTime>
   </standard-entity-representation:hypotension>
   <standard-entity-representation:creatinine rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#1.10mg%2Fdl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3961,7 +3984,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:pdw>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#fitIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
   </standard-entity-representation:ventilation>
   <standard-entity-representation:code rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#regionIndividual">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3972,11 +3995,11 @@
   </rdf:Description>
   <standard-entity-representation:patient rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#garat%28ps18%2Cpeep5%2Cfio2+0.6%29">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ventilated"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hospitalized"/>
   </standard-entity-representation:patient>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#voluven">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T19:30</standard-entity-representation:dateTime>
   </standard-entity-representation:infusion>
   <standard-entity-representation:platelets rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#218000%2F%C2%B5l">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -3985,51 +4008,55 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:receiving_diagnosis>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#si">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mmhg"/>
   </standard-entity-representation:monitor>
   <standard-entity-representation:chambers rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cardiac">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#visualized"/>
   </standard-entity-representation:chambers>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vt+450ml">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#put"/>
   </standard-entity-representation:ventilation>
   <standard-entity-representation:glycemia rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#360*mg%2Fdl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:glycemia>
   <standard-entity-representation:begin rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#dl">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#glucose"/>
   </standard-entity-representation:begin>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#executed">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:ventilated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#vacuum">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
   </standard-entity-representation:ventilated>
   <standard-entity-representation:ventilation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mechanical">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T07:15</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#put"/>
   </standard-entity-representation:ventilation>
   <standard-entity-representation:chambers rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sizeIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
   </standard-entity-representation:chambers>
   <standard-entity-representation:switch rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#dopa-norepinephrine">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T19:45</standard-entity-representation:dateTime>
   </standard-entity-representation:switch>
   <standard-entity-representation:rdw rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#17.75%25">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:rdw>
   <standard-entity-representation:keep rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#max">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T11:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T12:00</standard-entity-representation:dateTime>
   </standard-entity-representation:keep>
   <standard-entity-representation:execution rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#impedanceIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:30</standard-entity-representation:dateTime>
   </standard-entity-representation:execution>
   <standard-entity-representation:glucose rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#bi">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
   </standard-entity-representation:glucose>
   <standard-entity-representation:albumin rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#1.8*gr%2Fdl">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -4044,15 +4071,16 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:region>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hr+89">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
   </standard-entity-representation:monitor>
   <standard-entity-representation:control rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#previous">
-    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#overlapping"/>
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#overlapping"/>
+    <standard-entity-representation:dateTime>0016-03-11T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#parameters"/>
   </standard-entity-representation:control>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#beginIndividual">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T19:30</standard-entity-representation:dateTime>
   </standard-entity-representation:infusion>
   <standard-entity-representation:town rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cava+de+tirrenicap">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -4062,8 +4090,9 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%25"/>
   </rdf:Description>
   <standard-entity-representation:sedation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#ultiva">
+    <standard-entity-representation:dateTime>0016-03-11T11:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#midazolam"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedated"/>
   </standard-entity-representation:sedation>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#0.29">
@@ -4077,7 +4106,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:hemoglobin>
   <standard-entity-representation:described rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#manner">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-11T18:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedation"/>
   </standard-entity-representation:described>
   <standard-entity-representation:eosinophils rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#0.0610%5E3%2F%C2%B5l">
@@ -4088,13 +4117,13 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hco3-_%3A"/>
   </rdf:Description>
   <standard-entity-representation:begin rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#pvc+infusion">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T19:30</standard-entity-representation:dateTime>
   </standard-entity-representation:begin>
   <standard-entity-representation:mode rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#unreadable">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
   </standard-entity-representation:mode>
   <standard-entity-representation:so2 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%25+99">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T18:00</standard-entity-representation:dateTime>
   </standard-entity-representation:so2>
   <standard-entity-representation:nahco3 rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#50">
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#iu"/>
@@ -4112,7 +4141,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#be_%28b%29%3A"/>
   </rdf:Description>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#lat+3.1">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
   <standard-entity-representation:g.neutrofili rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#15.0410%5E3%2F%C2%B5l">
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
@@ -4121,7 +4150,7 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:well>
   <standard-entity-representation:monitor rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#spo2+noradrenalina+100">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#mmhg"/>
   </standard-entity-representation:monitor>
   <standard-entity-representation:rdw rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#17.31%25">
@@ -4131,26 +4160,31 @@
     <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
   </standard-entity-representation:code>
   <standard-entity-representation:keep rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#norepinephrineIndividual">
+    <standard-entity-representation:dateTime>0016-03-11T11:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T12:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T18:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#infusion"/>
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T23:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#instability"/>
   </standard-entity-representation:keep>
   <standard-entity-representation:switch rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%CE%B3+0.2">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T19:45</standard-entity-representation:dateTime>
   </standard-entity-representation:switch>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#32%25">
     <standard-entity-representation:dateTime>2016-03-10T07:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hct%3A"/>
   </rdf:Description>
   <standard-entity-representation:condition rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#abc+hg+90%2F70">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T18:10</standard-entity-representation:dateTime>
   </standard-entity-representation:condition>
   <rdf:Description rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#128mg+%2F+dl">
     <standard-entity-representation:dateTime>2016-03-10T07:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#glu%3A"/>
   </rdf:Description>
   <standard-entity-representation:observation rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hemodynamic">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T23:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T15:00</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T10:00</standard-entity-representation:dateTime>
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#instability"/>
   </standard-entity-representation:observation>
   <standard-entity-representation:clauss_fibrinogen rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#670.0*mg%2Fdl">
@@ -4172,18 +4206,44 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#beecf%3A"/>
   </rdf:Description>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#progress">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T18:00</standard-entity-representation:dateTime>
   </standard-entity-representation:infusion>
   <standard-entity-representation:infusion rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#%CE%B3+5">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:infusion>
   <standard-entity-representation:instability rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#cardiovascular">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T08:30</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-09T22:00</standard-entity-representation:dateTime>
   </standard-entity-representation:instability>
   <standard-entity-representation:dosage rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#noradrenaline">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>0016-03-10T20:30</standard-entity-representation:dateTime>
   </standard-entity-representation:dosage>
   <standard-entity-representation:abg rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#spo2+89">
-    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
   </standard-entity-representation:abg>
+  <standard-entity-representation:sedated rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#patient">
+    <standard-entity-representation:medicCohesion>null</standard-entity-representation:medicCohesion>
+    <standard-entity-representation:isType>noun</standard-entity-representation:isType>
+    <standard-entity-representation:dateTime>0016-03-11T07:10</standard-entity-representation:dateTime>
+    <standard-entity-representation:dateTime>2016-03-08T15:20</standard-entity-representation:dateTime>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <standard-entity-representation:hasOccured>7</standard-entity-representation:hasOccured>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#failure"/>
+    <standard-entity-representation:dateTime></standard-entity-representation:dateTime>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#person"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#hospitalized"/>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
+  </standard-entity-representation:sedated>
+  <standard-entity-representation:described rdf:about="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#amv">
+    <standard-entity-representation:dateTime>0016-03-11T18:30</standard-entity-representation:dateTime>
+    <standard-entity-representation:isType>noun</standard-entity-representation:isType>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#therapy"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <standard-entity-representation:medicCohesion>null</standard-entity-representation:medicCohesion>
+    <standard-entity-representation:dateTime>2016-03-08T18:45</standard-entity-representation:dateTime>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedated"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/vecch/ontologies/2016/3/standard-entity-representation#sedation"/>
+    <standard-entity-representation:hasOccured>3</standard-entity-representation:hasOccured>
+  </standard-entity-representation:described>
 </rdf:RDF>

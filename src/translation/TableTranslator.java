@@ -12,7 +12,7 @@ import sourcedata.DailyClinicDiaryItem;
 import sourcedata.DailyClinicDiaryTable;
 import sourcedata.Exam;
 import sourcedata.ExamTable;
-import sourcedata.TypeSampleTable;
+import sourcedata.BloodGasAnalysisTable;
 
 public class TableTranslator {
 	private Translator translator;
@@ -49,7 +49,7 @@ public class TableTranslator {
 		return et;
 	}
 	
-	public TypeSampleTable translate(TypeSampleTable tst) {
+	public BloodGasAnalysisTable translate(BloodGasAnalysisTable tst) {
 		
 		return tst;
 	}

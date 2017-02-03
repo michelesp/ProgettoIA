@@ -10,7 +10,7 @@ import sourcedata.Exam;
 import sourcedata.ExamTable;
 import sourcedata.StructuredDataType;
 import sourcedata.TableDataItem;
-import sourcedata.TypeSampleTable;
+import sourcedata.BloodGasAnalysisTable;
 
 public class TestDocx1 {
 	static final String FILE = "Cartella_Clinica_Tradotta.docx";
@@ -27,8 +27,8 @@ public class TestDocx1 {
 					print((ExamTable)l);
 				else if(l instanceof DailyClinicDiaryTable)
 					print((DailyClinicDiaryTable)l);
-				else if(l instanceof TypeSampleTable)
-					print((TypeSampleTable)l);
+				else if(l instanceof BloodGasAnalysisTable)
+					print((BloodGasAnalysisTable)l);
 				else if(l instanceof BloodAnalysisTable)
 					print((BloodAnalysisTable)l);
 				else System.err.println("array");
@@ -48,7 +48,7 @@ public class TestDocx1 {
 
 	}
 
-	private static void print(TypeSampleTable l) {
+	private static void print(BloodGasAnalysisTable l) {
 	
 	}
 

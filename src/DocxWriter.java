@@ -24,8 +24,8 @@ import sourcedata.DailyClinicDiaryItem;
 import sourcedata.DailyClinicDiaryTable;
 import sourcedata.Exam;
 import sourcedata.ExamTable;
-import sourcedata.TypeSample;
-import sourcedata.TypeSampleTable;
+import sourcedata.BloodGasAnalysisResult;
+import sourcedata.BloodGasAnalysisTable;
 
 
 public class DocxWriter {
@@ -165,10 +165,10 @@ public class DocxWriter {
 		wordMLPackage.getMainDocumentPart().addObject(tbl);
 	}
 
-	public void addTable(TypeSampleTable tst) {
+	public void addTable(BloodGasAnalysisTable tst) {
 		Tbl tbl = TblFactory.createTable(0, 3, 3000);
 		for(int i=0; i<tst.size(); i++){
-			TypeSample ts = (TypeSample) tst.get(i);
+			BloodGasAnalysisResult ts = (BloodGasAnalysisResult) tst.get(i);
 			Tr tr = new Tr();
 			Tc tc1 = new Tc();
 			P p1 = new P();

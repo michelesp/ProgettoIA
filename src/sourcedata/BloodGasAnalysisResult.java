@@ -1,12 +1,12 @@
 package sourcedata;
 
-public class TypeSample extends TableDataItem {
+public class BloodGasAnalysisResult extends TableDataItem {
 	private String exam;
 	private String parameter;
 	private String unitsOfMisure;
 	private boolean derived;
 	
-	public TypeSample(String exam, String parameter, String unitsOfMisure, boolean derived) {
+	public BloodGasAnalysisResult(String exam, String parameter, String unitsOfMisure, boolean derived) {
 		super();
 		this.exam = exam;
 		this.parameter = parameter;
