@@ -25,6 +25,7 @@ import org.ini4j.InvalidFileFormatException;
 import com.google.common.collect.Sets;
 import com.sun.java_cup.internal.runtime.Symbol;
 
+import antlr.StringUtils;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.IndexedWord;
@@ -42,6 +43,7 @@ import edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations;
 import edu.stanford.nlp.util.CoreMap;
 import gov.nih.nlm.nls.metamap.lite.EntityLookup4;
 import gov.nih.nlm.nls.metamap.lite.types.Entity;
+import opennlp.tools.util.StringUtil;
 import protege.Frame;
 import util.UMLStoProtegeCategotyMapping;
 
@@ -103,7 +105,7 @@ public class Extractor {
 			return;
 		if(value.length()<=20)
 		{
-			Frame frame = map.get(normalize(value));
+			Frame frame = map.get(normalize(name));
 			if(frame == null)
 			{
 				String type = "noun";
@@ -139,10 +141,6 @@ public class Extractor {
 
 	public Collection<Frame> buildFrame(String text, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
 	{
-
-		//Usare una Mappa di Term,Frame cos� da scorrere il testo un'unica volta
-		//e aggiungere informazioni al frame precedente eventualmente
-		//ci siano informazioni da aggiungere
 		EntityLookup4 el = new EntityLookup4();
 		//Frasi annotate dall'NLPProcessor
 		List<CoreMap> sentences = processor.getAnnotatedSentences(text);
@@ -166,7 +164,6 @@ public class Extractor {
 				//System.out.println(sentence.toShorterString());
 				//Grafo semantico con dipendenze e valori di pos 
 				SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.EnhancedDependenciesAnnotation.class);
-				//Possibile ottimizzazione prendendo solo i figli con determinate relazioni?
 				Collection<TypedDependency> deps = sg.typedDependencies();
 				//System.out.println(deps.toString());
 				for(IndexedWord iWord: sg.vertexListSorted())
@@ -199,8 +196,7 @@ public class Extractor {
 						else
 							frame.addRecurrency();
 
-						//Prendo quelle che io SUPPONGO siano le dipendenze grammaticali che dobbiamo considerare
-						//Potrei accedervi prendendo dalla parola tutte le grammatical relation ma non so cosa farmene 
+						//Prendo quelle che sono le dipendenze grammaticali che dobbiamo considerare
 						Set<IndexedWord> descWords = sg.descendants(iWord);
 						for(IndexedWord desc : descWords)
 						{
@@ -213,7 +209,7 @@ public class Extractor {
 								extractedInfo.add(desc.originalText());
 							}
 						}
-						mergeExtractedInfo(extractedInfo,deps);
+						mergeExtractedInfo(extractedInfo,deps,date);
 						if(extractedInfo.size()>0)
 						{
 							mergeMatchedRegex(matchedPatterns,extractedInfo);
@@ -228,7 +224,7 @@ public class Extractor {
 		}
 		return map.values();
 	}
-	private void mergeExtractedInfo(ArrayList<String> extractedInfo, Collection<TypedDependency> deps) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
+	private void mergeExtractedInfo(ArrayList<String> extractedInfo, Collection<TypedDependency> deps, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
 		// TODO Auto-generated method stub
 		//System.out.println("Before:\n"+extractedInfo);
 		for(TypedDependency dep : deps)
@@ -245,17 +241,17 @@ public class Extractor {
 						String s = it.next();
 						if((s.contains(g.originalText()) || s.contains(d.originalText())) && !s.contains(g.originalText()+" "+d.originalText()) && !added)
 						{
-							
-						
-							//System.out.println("NAdding: "+g.originalText()+" "+d.originalText());
-							 
 							it.add(g.originalText()+" "+d.originalText());
-							buildFrame(g.originalText(),d.originalText(),null);
+						//	System.out.println("Call to buildframe: "+g.originalText()+" "+d.originalText());
+							if(org.apache.commons.lang3.StringUtils.isNumeric(d.originalText()))							
+								buildFrame(g.originalText(),d.originalText(),date);
+							else	
+								buildFrame(d.originalText(),g.originalText(),date);
 							added = true;
 							//it.remove();
 						}
 					}
-					//extractedInfo.add(g.originalText()+" "+d.originalText());
+					extractedInfo.add(g.originalText()+" "+d.originalText());
 				}
 				//System.out.println("NRemoving: "+g.originalText()+" and "+d.originalText());
 				extractedInfo.remove(g.originalText());

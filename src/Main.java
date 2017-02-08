@@ -11,7 +11,9 @@ import org.ini4j.Ini;
 import org.ini4j.InvalidFileFormatException;
 import org.ini4j.Profile.Section;
 
+import disease.Bradicardia;
 import disease.Sepsi;
+import disease.Tachicardia;
 import extraction.Extractor;
 import protege.Frame;
 import protege.ProtegeHandler;
@@ -108,6 +110,8 @@ public class Main {
 		protegeHandler.save();
 
 		System.out.println("Sepsi: "+new Sepsi(protegeHandler).diagnose());
+		System.out.println("Bradicarda: "+new Bradicardia(protegeHandler).diagnose());
+		System.out.println("Tachicardia: "+new Tachicardia(protegeHandler).diagnose());
 
 	}
 
