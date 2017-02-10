@@ -100,8 +100,8 @@ public class Design {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	    ImageIcon loading = new ImageIcon("loader.gif");
-	    frame.getContentPane().add(new JLabel("loading... ", loading, JLabel.CENTER));
+	  //  ImageIcon loading = new ImageIcon("loader.gif");
+	   // frame.getContentPane().add(new JLabel("loading... ", loading, JLabel.CENTER));
 
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -112,13 +112,13 @@ public class Design {
 				int returnVal = fileChooser.showOpenDialog(frame);
 		        if (returnVal == JFileChooser.APPROVE_OPTION) {
 		             file =fileChooser.getSelectedFile();
-		             //This is where a real application would open the file.
-		             ImageIcon loading = new ImageIcon(".\tagliaferri.jpg");
-		             JLabel label = new JLabel("loading... ", loading, JLabel.CENTER);
-		             frame.getContentPane().add(label, BorderLayout.CENTER);
+		             ImageIcon loading = new ImageIcon("./loader.gif");
+		             JLabel label2 = new JLabel("loading... ", loading, JLabel.CENTER);
+		             frame.getContentPane().add(label2, BorderLayout.CENTER);
 		             System.out.println("File: " + file.getName() + ".");  
 		             try {
 						createOntology(file);
+						label2.setVisible(false);
 						label.setText("Caricamento completato");
 					} catch (IllegalAccessException ex) {
 						// TODO Auto-generated catch block
@@ -180,6 +180,7 @@ public class Design {
 				});
 		
 		label = new JLabel("");
+		label.setText("Hey");
 		frame.getContentPane().add(label, BorderLayout.CENTER);
 	}
 
@@ -266,17 +267,21 @@ public class Design {
 	}
 	void diagnose()
 	{
-		label.setText("");
-		String toPrint= "";
-
+		label.setVisible(false);
+		frame.remove(label);
+		label = new JLabel("");
+		frame.revalidate();
+		frame.repaint();
+		String toPrint = "";
 		if(sepsi)
 			toPrint += "Sepsi: "+new Sepsi(protegeHandler).diagnose()+"\n";
 		if(bradic)
 			toPrint += "Bradicarda: "+new Bradicardia(protegeHandler).diagnose()+"\n";
 		if(tachic)
 			toPrint += "Tachicardia: "+new Tachicardia(protegeHandler).diagnose()+"\n";
-
-		label.setText(toPrint);
+		System.out.println(toPrint);
+		label.setText(label.getText()+" "+toPrint);
+		frame.getContentPane().add(label, BorderLayout.CENTER);
 	}
 
 
