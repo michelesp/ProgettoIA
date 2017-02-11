@@ -1,3 +1,5 @@
+package docxExtractor;
+
 import java.io.File;
 import java.math.BigInteger;
 

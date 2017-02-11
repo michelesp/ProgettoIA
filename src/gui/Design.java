@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JToolBar;
@@ -11,11 +13,15 @@ import org.ini4j.InvalidFileFormatException;
 import org.ini4j.Profile.Section;
 import org.opendope.SmartArt.dataHierarchy.SmartArtDataHierarchy.Images;
 
+import com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label;
+
 import disease.Bradicardia;
 import disease.Sepsi;
 import disease.Tachicardia;
 import docxExtractor.DocxReader;
 import extraction.Extractor;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.Border;
 import protege.Frame;
 import protege.ProtegeHandler;
 import sourcedata.BloodAnalysisResults;
@@ -35,6 +41,9 @@ import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
@@ -46,9 +55,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
@@ -57,8 +69,11 @@ import java.awt.event.ActionEvent;
 
 public class Design {
 
+	private int SIZE_W = 450;
+	private int SIZE_H = 300;
+	
 	private JFrame frame;
-	private JLabel label;
+	private List<JLabel> label;
 	static final String CONF_FILE = "conf.ini";
 	//static String FILE;
 	private File file;
@@ -68,6 +83,10 @@ public class Design {
 	static boolean TRANSLATED;
 	private boolean sepsi,bradic,tachic;
 	private ProtegeHandler protegeHandler;
+	private boolean loaded;
+	private JProgressBar progressBar;
+	private JPanel panel;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -99,89 +118,115 @@ public class Design {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	  //  ImageIcon loading = new ImageIcon("loader.gif");
-	   // frame.getContentPane().add(new JLabel("loading... ", loading, JLabel.CENTER));
+		frame.setLayout(new BorderLayout());
+		
+		panel = new JPanel();
+		
+		progressBar = new JProgressBar();
+		progressBar.setVisible(false);
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		frame.getContentPane().add(progressBar, BorderLayout.SOUTH);
+		
+		loaded = false;
+		label = new ArrayList<>();
+		//  ImageIcon loading = new ImageIcon("loader.gif");
+		// frame.getContentPane().add(new JLabel("loading... ", loading, JLabel.CENTER));
 
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File("./"));
 		JMenuItem mntmCaricaCartella = new JMenuItem("Carica Cartella...");
 		mntmCaricaCartella.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int returnVal = fileChooser.showOpenDialog(frame);
-		        if (returnVal == JFileChooser.APPROVE_OPTION) {
-		             file =fileChooser.getSelectedFile();
-		             ImageIcon loading = new ImageIcon("./loader.gif");
-		             JLabel label2 = new JLabel("loading... ", loading, JLabel.CENTER);
-		             frame.getContentPane().add(label2, BorderLayout.CENTER);
-		             System.out.println("File: " + file.getName() + ".");  
-		             try {
-						createOntology(file);
-						label2.setVisible(false);
-						label.setText("Caricamento completato");
-					} catch (IllegalAccessException ex) {
-						// TODO Auto-generated catch block
-						ex.printStackTrace();
-					} catch (InvocationTargetException ex) {
-						// TODO Auto-generated catch block
-						ex.printStackTrace();
-					} catch (Exception ex) {
-						// TODO Auto-generated catch block
-						ex.printStackTrace();
-					}
-		        }
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					file =fileChooser.getSelectedFile();
+					ImageIcon loading = new ImageIcon("./loader.gif");
+					JLabel label2 = new JLabel("loading... ", loading, JLabel.CENTER);
+					progressBar.setVisible(true);
+					//frame.removeAll();
+					while(panel.getComponentCount()>0)
+						panel.remove(0);
+					panel.add(label2, BorderLayout.CENTER);
+					panel.invalidate();
+					frame.pack();
+					frame.setSize(SIZE_W, SIZE_H);
+					frame.repaint();
+					System.out.println("File: " + file.getName() + ".");  
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							try {
+								loaded = false;
+								createOntology(file);
+								loaded = true;
+								label2.setVisible(false);
+								//label.get(0).setText("Caricamento completato");
+								//label.get(0).invalidate();
+								diagnose();
+							} catch (IllegalAccessException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (InvocationTargetException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}).start();
+				}
 			}
 		});
-	
+
 
 		JMenu mnNewMenu = new JMenu("File");
 		menuBar.add(mnNewMenu);
 
 		mnNewMenu.add(mntmCaricaCartella);
 		//mnNewMenu.add(fileChooser);
-		
-		JMenu mnNewMenu_1 = new JMenu("Malattie");
+
+		/*JMenu mnNewMenu_1 = new JMenu("Malattie");
 		menuBar.add(mnNewMenu_1);
-		
+
 		JMenu mnScegliMalattie = new JMenu("Scegli malattie");
 		mnNewMenu_1.add(mnScegliMalattie);
-				
-						JCheckBoxMenuItem chckbxmntmTachicardia = new JCheckBoxMenuItem("Tachicardia");
-						mnScegliMalattie.add(chckbxmntmTachicardia);
-						chckbxmntmTachicardia.addPropertyChangeListener(new PropertyChangeListener() {
-							public void propertyChange(PropertyChangeEvent arg0) {
-								tachic = chckbxmntmTachicardia.isSelected();
-							}
-						});
-		
-				JCheckBoxMenuItem chckbxmntmSepsi = new JCheckBoxMenuItem("Sepsi");
-				mnScegliMalattie.add(chckbxmntmSepsi);
-				
-						JCheckBoxMenuItem chckbxmntmBradicardia = new JCheckBoxMenuItem("Bradicardia");
-						mnScegliMalattie.add(chckbxmntmBradicardia);
-						
-						JMenuItem mntmDiagnostica = new JMenuItem("Diagnostica");
-						mntmDiagnostica.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								diagnose();
-							}
-						});
-						mnNewMenu_1.add(mntmDiagnostica);
-						chckbxmntmBradicardia.addPropertyChangeListener(new PropertyChangeListener() {
-							public void propertyChange(PropertyChangeEvent arg0) {
-								bradic = chckbxmntmBradicardia.isSelected();
-							}
-						});
-				chckbxmntmSepsi.addPropertyChangeListener(new PropertyChangeListener() {
-					public void propertyChange(PropertyChangeEvent arg0) {
-						sepsi = chckbxmntmSepsi.isSelected();
-					}
-				});
-		
-		label = new JLabel("");
-		label.setText("Hey");
-		frame.getContentPane().add(label, BorderLayout.CENTER);
+
+		JCheckBoxMenuItem chckbxmntmTachicardia = new JCheckBoxMenuItem("Tachicardia");
+		mnScegliMalattie.add(chckbxmntmTachicardia);
+		chckbxmntmTachicardia.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent arg0) {
+				tachic = chckbxmntmTachicardia.isSelected();
+			}
+		});
+
+		JCheckBoxMenuItem chckbxmntmSepsi = new JCheckBoxMenuItem("Sepsi");
+		mnScegliMalattie.add(chckbxmntmSepsi);
+
+		JCheckBoxMenuItem chckbxmntmBradicardia = new JCheckBoxMenuItem("Bradicardia");
+		mnScegliMalattie.add(chckbxmntmBradicardia);
+
+		JMenuItem mntmDiagnostica = new JMenuItem("Diagnostica");
+		mntmDiagnostica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				diagnose();
+			}
+		});
+		mnNewMenu_1.add(mntmDiagnostica);
+		chckbxmntmBradicardia.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent arg0) {
+				bradic = chckbxmntmBradicardia.isSelected();
+			}
+		});
+		chckbxmntmSepsi.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent arg0) {
+				sepsi = chckbxmntmSepsi.isSelected();
+			}
+		});*/
+
+		panel.add(new JLabel("Per cominciare selezionare una cartella clinica"), BorderLayout.CENTER);
 	}
 
 	private void createOntology(File file) throws IllegalAccessException, InvocationTargetException, Exception
@@ -195,7 +240,13 @@ public class Design {
 		protegeHandler = new ProtegeHandler(BASE, 
 				new InputStreamReader(new FileInputStream(ONTOLOGY_SOURCE)), 
 				new PrintWriter(ONTOLOGY_OUTPUT));
+		int max = dr.getSize();
+		int n=0;
 		while(dr.hasNext()){
+			n++;
+			progressBar.setValue(n*100/max);
+			progressBar.invalidate();
+			progressBar.repaint();
 			if(dr.getNextObjectType()==StructuredDataType.STRING) {
 				String str = (TRANSLATED?dr.getNextString():t.translatePOST(dr.getNextString(), "it", "eng", "plain"));
 				String regex = "( )*(:)( )*";
@@ -254,7 +305,7 @@ public class Design {
 		for(Frame f : ex.getFrames())
 			protegeHandler.addFrame(f);
 		protegeHandler.save();
-		
+
 	}
 
 	static void loadParameters() throws InvalidFileFormatException, IOException {
@@ -267,21 +318,26 @@ public class Design {
 	}
 	void diagnose()
 	{
-		label.setVisible(false);
-		frame.remove(label);
-		label = new JLabel("");
-		frame.revalidate();
+		progressBar.setVisible(false);
+		while(panel.getComponentCount()>0)
+			panel.remove(0);
+		panel.setLayout(new GridLayout(3, 1));
+		label.clear();
+		frame.invalidate();
 		frame.repaint();
-		String toPrint = "";
-		if(sepsi)
-			toPrint += "Sepsi: "+new Sepsi(protegeHandler).diagnose()+"\n";
-		if(bradic)
-			toPrint += "Bradicarda: "+new Bradicardia(protegeHandler).diagnose()+"\n";
-		if(tachic)
-			toPrint += "Tachicardia: "+new Tachicardia(protegeHandler).diagnose()+"\n";
-		System.out.println(toPrint);
-		label.setText(label.getText()+" "+toPrint);
-		frame.getContentPane().add(label, BorderLayout.CENTER);
+		//if(sepsi)
+			panel.add(new JLabel("Sepsi: "+new Sepsi(protegeHandler).diagnose()));
+		//if(bradic)
+			panel.add(new JLabel("Bradicarda: "+new Bradicardia(protegeHandler).diagnose()));
+		//if(tachic)
+			panel.add(new JLabel("Tachicardia: "+new Tachicardia(protegeHandler).diagnose()));
+		//for(int i=0; i<label.size(); i++)
+		//	panel.add(label.get(i), BorderLayout.CENTER);
+		panel.invalidate();
+		frame.invalidate();
+		frame.repaint();
+		frame.pack();
+		frame.setSize(SIZE_W, SIZE_H);
 	}
 
 

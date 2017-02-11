@@ -14,6 +14,7 @@ import org.ini4j.Profile.Section;
 import disease.Bradicardia;
 import disease.Sepsi;
 import disease.Tachicardia;
+import docxExtractor.DocxReader;
 import extraction.Extractor;
 import protege.Frame;
 import protege.ProtegeHandler;

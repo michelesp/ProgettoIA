@@ -1,3 +1,5 @@
+package docxExtractor;
+
 import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -35,6 +37,10 @@ public class DocxReader {
 	public DocxReader(File file) throws Docx4JException {
 		documentElm = Docx4J.load(file).getMainDocumentPart().getContent();
 		index = 0;
+	}
+	
+	public int getSize() {
+		return documentElm.size();
 	}
 
 	public boolean hasNext() {
