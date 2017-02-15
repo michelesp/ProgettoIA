@@ -64,6 +64,7 @@ public class Core {
 		protegeHandler = new ProtegeHandler(base, 
 				new InputStreamReader(new FileInputStream(ontologySource)), 
 				new PrintWriter(ontologyOutput));
+		ex.clear();
 		int max = dr.getSize();
 		int n=0;
 		while(dr.hasNext()){

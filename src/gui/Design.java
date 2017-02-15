@@ -44,7 +44,7 @@ public class Design implements Upgradable {
 		this.core=core;
 		initialize();
 		frame.setVisible(true);
-		frame.setResizable(false);
+		//frame.setResizable(false);
 		frame.setSize(SIZE_W, SIZE_H);
 	}
 

@@ -224,6 +224,11 @@ public class Extractor {
 		}
 		return map.values();
 	}
+	
+	public void clear() {
+		map.clear();
+	}
+	
 	private void mergeExtractedInfo(ArrayList<String> extractedInfo, Collection<TypedDependency> deps, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
 		// TODO Auto-generated method stub
 		//System.out.println("Before:\n"+extractedInfo);
