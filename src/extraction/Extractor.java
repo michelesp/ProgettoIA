@@ -1,6 +1,7 @@
 package extraction;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
@@ -64,8 +65,9 @@ public class Extractor {
 	String regex = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*( )*[a-z0-9]*))( )*((?:(,( )*[a-z][a-z]*( )*[a-z0-9]*( )*((\\d*\\.\\d+))?)*))( )*((?:-RRB-))";
 	String regexFOriginal = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*[0-9]+[a-z0-9]*))( )*((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+))?)*))( )*((?:-RRB-))";
 	Set<String> toFilter = Sets.newHashSet("CC","TO","RB","IN",":",".",",","RP","DT");
+	Set<String> infectious = Sets.newHashSet("fngs","bact","virs");
 	UMLStoProtegeCategotyMapping mapping;
-
+	
 	public Extractor() throws InvalidFileFormatException, IOException
 	{
 		processor = new NLProcessor();
@@ -118,6 +120,12 @@ public class Extractor {
 					Set<String> set = el.getSemanticTypeSet(cui);
 					category = set.toString().substring(1, set.toString().length()-1);
 				}
+				if(infectious.contains(category))
+				{
+					System.out.println("SuspectedInfection");
+					suspectInfection(name,category,value,date);
+					
+				}
 				frame = new Frame(normalize(name),type,mapping.mapping(category));
 				map.put(normalize(name), frame);
 			}
@@ -137,6 +145,10 @@ public class Extractor {
 	public Collection<Frame> getFrames() {
 		return map.values();
 		
+	}
+	
+	public void clear() {
+		map.clear();
 	}
 
 	public Collection<Frame> buildFrame(String text, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
@@ -191,6 +203,7 @@ public class Extractor {
 								category = "noun";
 							else 
 								category = "verb";
+							
 							frame = new Frame(normalize(value),category,mapping.mapping(set.toString().substring(1, set.toString().length()-1)));
 						}
 						else
@@ -224,11 +237,6 @@ public class Extractor {
 		}
 		return map.values();
 	}
-	
-	public void clear() {
-		map.clear();
-	}
-	
 	private void mergeExtractedInfo(ArrayList<String> extractedInfo, Collection<TypedDependency> deps, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
 		// TODO Auto-generated method stub
 		//System.out.println("Before:\n"+extractedInfo);
@@ -344,6 +352,32 @@ public class Extractor {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return "";
+		}
+	}
+	private void suspectInfection(String name,String nameCategory, String value, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, Exception
+	{
+		String category = null;
+		EntityLookup4 el = new EntityLookup4();
+		List<Entity> entityList = matcher.getEntities(value);
+		if(entityList.size()>0)
+		{
+			String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+			Set<String> set = el.getSemanticTypeSet(cui);
+			category = set.toString().substring(1, set.toString().length()-1);
+		}
+		if(infectious.contains(category))
+		{
+			Frame f = map.get("infection");
+			if(f==null)
+			{
+				f = new Frame("infection","noun","Sympt");
+				map.put("infection",f);
+			}
+			
+			f.addInfo(name, date);
+			f.addInfo(nameCategory, date);
+			f.addInfo(value, date);
+			f.addInfo(category, date);
 		}
 	}
 }

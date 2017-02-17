@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -141,6 +142,22 @@ public class Core {
 
 	public boolean diagnosticsTachicardia() {
 		return new Tachicardia(protegeHandler).diagnose();
+	}
+	
+	public String getDiagnosis() {
+		String msg ="";
+		Sepsi s = new Sepsi(protegeHandler);
+		try {
+			msg += "Infezione:\t\t\t\t"+s.getInfection()+"\n";
+			msg += "Frequenza cardiaca:\t\t\t"+s.getHR()+"\n";
+			msg += "Frequenza respiratoria (tachypnea):\t"+s.verifyTachypnea()+"\n";
+			msg += "Frequenza respiratoria (bradipnea):\t"+s.verifyBradipnea()+"\n";
+			msg += "Globuli bianchi:\t\t\t"+s.getWhiteBloodCellsCount()+"\n";
+			msg += "Neutrofili:\t\t\t\t"+s.getNeutrophilCount()+"\n";
+		} catch (NumberFormatException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return msg;
 	}
 
 }

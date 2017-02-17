@@ -39,8 +39,9 @@ public class Main {
 		else {
 			core.execute(FILE);
 			System.out.println("Sepsi: "+core.diagnosticsSepsi());
-			System.out.println("Bradicarda: "+core.diagnosticsBradicardia());
-			System.out.println("Tachicardia: "+core.diagnosticsTachicardia());
+			System.out.println(core.getDiagnosis());
+			//System.out.println("Bradicarda: "+core.diagnosticsBradicardia());
+			//System.out.println("Tachicardia: "+core.diagnosticsTachicardia());
 		}
 	}
 

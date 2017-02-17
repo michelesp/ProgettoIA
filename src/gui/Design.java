@@ -128,11 +128,13 @@ public class Design implements Upgradable {
 		frame.repaint();
 		frame.pack();
 		frame.setSize(SIZE_W, SIZE_H);
-		panel.setLayout(new GridLayout(3, 1));
+		/*panel.setLayout(new GridLayout(3, 1));
 		label.clear();
 		panel.add(new JLabel("Sepsi: "+core.diagnosticsSepsi()));
 		panel.add(new JLabel("Bradicarda: "+core.diagnosticsBradicardia()));
 		panel.add(new JLabel("Tachicardia: "+core.diagnosticsTachicardia()));
+		*/
+		panel.add(new ResultPanel(core.diagnosticsSepsi(), core.getDiagnosis()));
 		panel.invalidate();
 		frame.invalidate();
 		frame.repaint();
