@@ -55,7 +55,7 @@ public class Extractor {
 	Set<String> toFilter = Sets.newHashSet("CC","TO","RB","IN",":",".",",","RP","DT");
 	Set<String> infectious = Sets.newHashSet("fngs","bact","virs");
 	UMLStoProtegeCategotyMapping mapping;
-	
+
 	public Extractor() throws InvalidFileFormatException, IOException
 	{
 		processor = new NLProcessor();
@@ -63,23 +63,9 @@ public class Extractor {
 		map = new HashMap<>();
 		mapping = new UMLStoProtegeCategotyMapping(new File("conf.ini"));
 	}
-	
-	public void buildCBCFrame(String name, String value, LocalDateTime date) {
+
+	public void buildCBCFrame(String name, String value, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, Exception {
 		Frame frame;
-		name = normalize(name);
-		value = normalize(value);
-		if(map.get(name)==null){
-			frame = new Frame(name, "noun", "CBC");
-			map.put(name, frame);
-		}
-		else frame = map.get(name);
-		frame.addInfo(value, date);
-	}
-	
-	public void buildBloodGasAnalysisFrame(String name, String value, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, Exception {
-		Frame frame;
-		//System.err.println(name+" \t => \t "+normalize(name));
-		//System.err.println(value+" \t => \t "+normalize(value));
 		name = normalize(name);
 		value = normalize(value);
 		EntityLookup4 el = new EntityLookup4();
@@ -95,16 +81,29 @@ public class Extractor {
 				suspectInfection(name,category,value,date);
 			}
 		}
-		
+		if(map.get(name)==null){
+			frame = new Frame(name, "noun", "CBC");
+			map.put(name, frame);
+		}
+		else frame = map.get(name);
+		frame.addInfo(value, date);
+	}
+
+	public void buildBloodGasAnalysisFrame(String name, String value, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, Exception {
+		Frame frame;
+		//System.err.println(name+" \t => \t "+normalize(name));
+		//System.err.println(value+" \t => \t "+normalize(value));
+		name = normalize(name);
+		value = normalize(value);
+
 		if(map.get(name)==null){
 			frame = new Frame(name, "noun", "bloodgasanalysis");
 			map.put(name, frame);
 		}
-	
 		else frame = map.get(name);
 		frame.addInfo(value, date);
 	}
-	
+
 	public void buildFrame(String name, String value, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception {
 		if(name==null)
 			return;
@@ -128,7 +127,7 @@ public class Extractor {
 						suspectInfection(name,category,value,date);
 					}
 				}
-				
+
 				frame = new Frame(normalize(name),type,mapping.mapping(category));
 				map.put(normalize(name), frame);
 			}
@@ -136,7 +135,7 @@ public class Extractor {
 				frame.addRecurrency();
 			if(value!=null)
 				frame.addInfo(normalize(value), date);
-			
+
 			//System.out.println(frame);
 		}
 		else
@@ -147,9 +146,9 @@ public class Extractor {
 
 	public Collection<Frame> getFrames() {
 		return map.values();
-		
+
 	}
-	
+
 	public void clear() {
 		map.clear();
 	}
@@ -175,7 +174,7 @@ public class Extractor {
 					matchedPatterns.add(matcherT.group().replaceAll("-LRB-", "(").replaceAll("-RRB-", ")"));
 					//System.out.println("Matched:" +matcherT.group());
 				}
-				
+
 				//System.out.println(sentence.toShorterString());
 				//Grafo semantico con dipendenze e valori di pos 
 				SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.EnhancedDependenciesAnnotation.class);
@@ -234,6 +233,8 @@ public class Extractor {
 							for(String s : extractedInfo)
 							{
 								entityList = matcher.getEntities(s);
+								if(entityList.size()==0 || entityList.get(0).getEvList().size()==0)
+									continue;
 								cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
 								set = el.getSemanticTypeSet(cui);
 								String semanticType = set.toString().substring(1, set.toString().length()-1);
@@ -268,7 +269,7 @@ public class Extractor {
 						if((s.contains(g.originalText()) || s.contains(d.originalText())) && !s.contains(g.originalText()+" "+d.originalText()) && !added)
 						{
 							it.add(g.originalText()+" "+d.originalText());
-						//	System.out.println("Call to buildframe: "+g.originalText()+" "+d.originalText());
+							//	System.out.println("Call to buildframe: "+g.originalText()+" "+d.originalText());
 							if(org.apache.commons.lang3.StringUtils.isNumeric(d.originalText()))							
 								buildFrame(g.originalText(),d.originalText(),date);
 							else	
@@ -378,21 +379,21 @@ public class Extractor {
 			Set<String> set = el.getSemanticTypeSet(cui);
 			category = set.toString().substring(1, set.toString().length()-1);
 		}
-		if(infectious.contains(category))
+		if(infectious.contains(nameCategory))
 		{
 			Frame f = map.get("infection");
 			if(f==null)
 			{
-				f = new Frame("infection","noun","Sympt");
+				f = new Frame("infection","noun","symptom");
 				map.put("infection",f);
 			}
-			if(name!=null)
+			/*if(name!=null)
 			{
-			f.addInfo(name, date);
-			f.addInfo(nameCategory, date);
-			}
+				f.addInfo(name, date);
+				f.addInfo(nameCategory, date);
+			}*/
 			f.addInfo(value, date);
-			f.addInfo(category, date);
+			//f.addInfo(category, date);
 		}
 	}
 }

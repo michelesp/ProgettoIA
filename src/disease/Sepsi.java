@@ -19,6 +19,8 @@ public class Sepsi implements Disease {
 	public boolean diagnose() {
 		int parameters=0;
 		try{
+			if(getInfection().equals("false"))
+				return false;
 			if(verifyHR())
 				parameters++;
 			if(verifyNeutrophilCount())
@@ -148,12 +150,13 @@ public class Sepsi implements Disease {
 		return false;
 	}
 	
-	public boolean getInfection() 
+	public String getInfection() throws UnsupportedEncodingException 
 	{
+		String str ="false";
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:infection }"))
 		{
-			System.out.println(s);
+			return URLDecoder.decode(s, "UTF-8");
 		}
-		return true;
+		return str;
 	}
 }
