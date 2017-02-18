@@ -5,46 +5,34 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URI;
 import java.net.URLEncoder;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.ini4j.InvalidFileFormatException;
 
 import com.google.common.collect.Sets;
-import com.sun.java_cup.internal.runtime.Symbol;
 
-import antlr.StringUtils;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.IndexedWord;
-import edu.stanford.nlp.ling.tokensregex.CoreMapExpressionExtractor;
 import edu.stanford.nlp.ling.tokensregex.Env;
-import edu.stanford.nlp.ling.tokensregex.MatchedExpression;
 import edu.stanford.nlp.ling.tokensregex.NodePattern;
 import edu.stanford.nlp.ling.tokensregex.TokenSequenceMatcher;
 import edu.stanford.nlp.ling.tokensregex.TokenSequencePattern;
-import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
 import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations;
 import edu.stanford.nlp.trees.TypedDependency;
-import edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations;
 import edu.stanford.nlp.util.CoreMap;
 import gov.nih.nlm.nls.metamap.lite.EntityLookup4;
 import gov.nih.nlm.nls.metamap.lite.types.Entity;
-import opennlp.tools.util.StringUtil;
 import protege.Frame;
 import util.UMLStoProtegeCategotyMapping;
 
@@ -88,16 +76,31 @@ public class Extractor {
 		frame.addInfo(value, date);
 	}
 	
-	public void buildBloodGasAnalysisFrame(String name, String value, LocalDateTime date) {
+	public void buildBloodGasAnalysisFrame(String name, String value, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, Exception {
 		Frame frame;
 		//System.err.println(name+" \t => \t "+normalize(name));
 		//System.err.println(value+" \t => \t "+normalize(value));
 		name = normalize(name);
 		value = normalize(value);
+		EntityLookup4 el = new EntityLookup4();
+		List<Entity> entityList = matcher.getEntities(name);
+		if(entityList.size()>0)
+		{
+			String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+			Set<String> set = el.getSemanticTypeSet(cui);
+			String category = set.toString().substring(1, set.toString().length()-1);
+			if(infectious.contains(category))
+			{
+				System.out.println("SuspectedInfection");
+				suspectInfection(name,category,value,date);
+			}
+		}
+		
 		if(map.get(name)==null){
 			frame = new Frame(name, "noun", "bloodgasanalysis");
 			map.put(name, frame);
 		}
+	
 		else frame = map.get(name);
 		frame.addInfo(value, date);
 	}
@@ -119,13 +122,13 @@ public class Extractor {
 					String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
 					Set<String> set = el.getSemanticTypeSet(cui);
 					category = set.toString().substring(1, set.toString().length()-1);
+					if(infectious.contains(category))
+					{
+						System.out.println("SuspectedInfection");
+						suspectInfection(name,category,value,date);
+					}
 				}
-				if(infectious.contains(category))
-				{
-					System.out.println("SuspectedInfection");
-					suspectInfection(name,category,value,date);
-					
-				}
+				
 				frame = new Frame(normalize(name),type,mapping.mapping(category));
 				map.put(normalize(name), frame);
 			}
@@ -203,8 +206,10 @@ public class Extractor {
 								category = "noun";
 							else 
 								category = "verb";
-							
-							frame = new Frame(normalize(value),category,mapping.mapping(set.toString().substring(1, set.toString().length()-1)));
+							String semanticType = set.toString().substring(1, set.toString().length()-1);
+							if(infectious.contains(semanticType))
+								suspectInfection(null, null, value, date);
+							frame = new Frame(normalize(value),category,mapping.mapping(semanticType));
 						}
 						else
 							frame.addRecurrency();
@@ -227,7 +232,15 @@ public class Extractor {
 						{
 							mergeMatchedRegex(matchedPatterns,extractedInfo);
 							for(String s : extractedInfo)
+							{
+								entityList = matcher.getEntities(s);
+								cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+								set = el.getSemanticTypeSet(cui);
+								String semanticType = set.toString().substring(1, set.toString().length()-1);
+								if(infectious.contains(semanticType))
+									suspectInfection(null, null, s, date);
 								frame.addInfo(normalize(s), date);
+							}
 							map.put(normalize(value), frame);
 							//System.out.println(frame);
 						}
@@ -373,9 +386,11 @@ public class Extractor {
 				f = new Frame("infection","noun","Sympt");
 				map.put("infection",f);
 			}
-			
+			if(name!=null)
+			{
 			f.addInfo(name, date);
 			f.addInfo(nameCategory, date);
+			}
 			f.addInfo(value, date);
 			f.addInfo(category, date);
 		}
