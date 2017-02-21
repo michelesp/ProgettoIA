@@ -72,9 +72,9 @@ public class Extractor {
 		List<Entity> entityList = matcher.getEntities(name);
 		if(entityList.size()>0)
 		{
-			String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
-			Set<String> set = el.getSemanticTypeSet(cui);
-			String category = set.toString().substring(1, set.toString().length()-1);
+			//String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+			//Set<String> set = el.getSemanticTypeSet(cui);
+			String category = matcher.getSemanticType(entityList);//set.toString().substring(1, set.toString().length()-1);
 			if(infectious.contains(category))
 			{
 				System.out.println("SuspectedInfection");
@@ -118,9 +118,9 @@ public class Extractor {
 				List<Entity> entityList = matcher.getEntities(name);
 				if(entityList.size()>0)
 				{
-					String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
-					Set<String> set = el.getSemanticTypeSet(cui);
-					category = set.toString().substring(1, set.toString().length()-1);
+					//String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+					//Set<String> set = el.getSemanticTypeSet(cui);
+					category =matcher.getSemanticType(entityList);// set.toString().substring(1, set.toString().length()-1);
 					if(infectious.contains(category))
 					{
 						System.out.println("SuspectedInfection");
@@ -195,8 +195,9 @@ public class Extractor {
 					else
 					{
 						//SemanticType con score massimo
-						String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
-						Set<String> set = el.getSemanticTypeSet(cui);
+						
+						//String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+						//Set<String> set = el.getSemanticTypeSet(cui);
 						frame = map.get(normalize(value));
 						if(frame == null)
 						{
@@ -205,9 +206,10 @@ public class Extractor {
 								category = "noun";
 							else 
 								category = "verb";
-							String semanticType = set.toString().substring(1, set.toString().length()-1);
-							if(infectious.contains(semanticType))
-								suspectInfection(null, null, value, date);
+							//String semanticType = set.toString().substring(1, set.toString().length()-1);
+							String semanticType = matcher.getSemanticType(entityList);
+							//if(infectious.contains(semanticType))
+							//	suspectInfection(null, null, value, date);
 							frame = new Frame(normalize(value),category,mapping.mapping(semanticType));
 						}
 						else
@@ -233,13 +235,12 @@ public class Extractor {
 							for(String s : extractedInfo)
 							{
 								entityList = matcher.getEntities(s);
-								if(entityList.size()==0 || entityList.get(0).getEvList().size()==0)
+								if(entityList.size()==0)
 									continue;
-								cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
-								set = el.getSemanticTypeSet(cui);
-								String semanticType = set.toString().substring(1, set.toString().length()-1);
-								if(infectious.contains(semanticType))
-									suspectInfection(null, null, s, date);
+								String semanticType = matcher.getSemanticType(entityList);
+								if(semanticType!=null)
+									if(infectious.contains(semanticType))
+										suspectInfection(null, null, s, date);
 								frame.addInfo(normalize(s), date);
 							}
 							map.put(normalize(value), frame);
@@ -353,11 +354,6 @@ public class Extractor {
 		}
 		return false;
 
-		/*if(!(pos.equals("TO")||pos.equals("RB")||pos.equals("IN")||pos.equals("DT")||pos.equals(",")||pos.equals(".")||pos.equals(":")))
-		{
-			return false;
-		}
-		return true;*/
 	}
 
 	private String normalize(String str) {
@@ -374,17 +370,16 @@ public class Extractor {
 		EntityLookup4 el = new EntityLookup4();
 		List<Entity> entityList = matcher.getEntities(value);
 		if(entityList.size()>0)
-		{
-			String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
-			Set<String> set = el.getSemanticTypeSet(cui);
-			category = set.toString().substring(1, set.toString().length()-1);
-		}
+			category = matcher.getSemanticType(entityList);
+			//String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
+			//Set<String> set = el.getSemanticTypeSet(cui);
+			//category = set.toString().substring(1, set.toString().length()-1);
 		if(infectious.contains(nameCategory))
 		{
 			Frame f = map.get("infection");
 			if(f==null)
 			{
-				f = new Frame("infection","noun","symptom");
+				f = new Frame("infection","noun","disease");
 				map.put("infection",f);
 			}
 			/*if(name!=null)

@@ -149,11 +149,11 @@ public class Core {
 		Sepsi s = new Sepsi(protegeHandler);
 		try {
 			msg += "Infezione:\t\t\t\t"+s.getInfection()+"\n";
-			msg += "Frequenza cardiaca:\t\t\t"+s.getHR()+"\n";
+			msg += "Frequenza cardiaca:\t\t\t"+s.getHR()+(s.verifyHR()?"*":"")+"\n";
 			msg += "Frequenza respiratoria (tachypnea):\t"+s.verifyTachypnea()+"\n";
 			msg += "Frequenza respiratoria (bradipnea):\t"+s.verifyBradipnea()+"\n";
-			msg += "Globuli bianchi:\t\t\t"+s.getWhiteBloodCellsCount()+"\n";
-			msg += "Neutrofili:\t\t\t\t"+s.getNeutrophilCount()+"\n";
+			msg += "Globuli bianchi:\t\t\t"+s.getWhiteBloodCellsCount()+(s.verifyWhiteBloodCellsCount()?"*":"")+"\n";
+			msg += "Neutrofili:\t\t\t\t"+s.getNeutrophilCount()+(s.verifyNeutrophilCount()?"*":"")+"\n";
 		} catch (NumberFormatException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

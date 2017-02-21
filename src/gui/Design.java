@@ -99,11 +99,17 @@ public class Design implements Upgradable {
 								loaded = false;
 								core.execute(file.getAbsolutePath());
 								System.out.println("caricamento completo");
-								loaded = true;
 								label2.setVisible(false);
 								diagnose();
 							} catch (Exception e) {
-								e.printStackTrace();
+								panel.removeAll();
+								panel.add(new JLabel("Per cominciare selezionare una cartella clinica"), BorderLayout.CENTER);
+								frame.pack();
+								frame.setSize(SIZE_W, SIZE_H);
+								frame.repaint();
+								JOptionPane.showMessageDialog(frame, "File non supportato", "Error", JOptionPane.ERROR_MESSAGE);
+							} finally {
+								loaded = true;
 							}
 						}
 					}).start();

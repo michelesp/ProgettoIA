@@ -44,7 +44,7 @@ public class Sepsi implements Disease {
 		return (i>0?hr/i:0);
 	}
 	
-	private boolean verifyHR() throws NumberFormatException, UnsupportedEncodingException {
+	public boolean verifyHR() throws NumberFormatException, UnsupportedEncodingException {
 		int i = 0, j=0;
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:hr }")) {
 			i++;
@@ -137,7 +137,7 @@ public class Sepsi implements Disease {
 		return m/i;
 	}
 	
-	private boolean verifyNeutrophilCount() throws NumberFormatException, UnsupportedEncodingException {
+	public boolean verifyNeutrophilCount() throws NumberFormatException, UnsupportedEncodingException {
 		int i=0, j=0, k=0;
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:neutrophil }"))
 		{
