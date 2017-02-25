@@ -32,6 +32,7 @@ import sourcedata.StructuredDataType;
 import sourcedata.TableDataItem;
 import translation.TableTranslator;
 import translation.Translator;
+import util.ValueAndDateTime;
 
 public class Core {
 	private Translator t;
@@ -54,7 +55,7 @@ public class Core {
 		this.ontologySource = ontologySource;
 		this.ontologyOutput = ontologyOutput;
 	}
-	
+
 	public void setGUI(Upgradable gui) {
 		this.gui = gui;
 	}
@@ -78,7 +79,7 @@ public class Core {
 				String[] s = str.split(regex);
 				if(s.length>1) {
 					ex.buildFrame(s[0].trim().replaceAll(" ", "_"), s[1], null);
-					if(s[0].equals("acceptance")){			//ultima data e ora
+					if(s[0].toLowerCase().equals("acceptance")){			//ultima data e ora
 						String[] datetime = s[1].split(" ");
 						String[] date = datetime[0].split("/");
 						String[] time = datetime[1].split(":");
@@ -145,17 +146,41 @@ public class Core {
 	public boolean diagnosticsTachicardia() {
 		return new Tachicardia(protegeHandler).diagnose();
 	}
-	
+
 	public String getDiagnosis() {
 		String msg ="";
 		Sepsi s = new Sepsi(protegeHandler);
 		try {
 			msg += "Infezione:\t\t\t\t"+s.getInfection()+"\n";
-			msg += "Frequenza cardiaca:\t\t\t"+s.getHR()+(s.verifyHR()?"*":"")+"\n";
+			msg += "Frequenza cardiaca:\n";
+			List<ValueAndDateTime> list = s.getHR();
+			if(list.size()==0)
+				msg += "\tNA\n";
+			for(int i=0; i<list.size(); i++){
+				ValueAndDateTime v = list.get(i);
+				LocalDateTime ldt = v.getDateTime();
+				msg += "\t"+v.getValue()+"\t\t\t"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"\t"+ldt.getHour()+":"+ldt.getMinute()+"\n";
+			}
 			msg += "Frequenza respiratoria (tachypnea):\t"+s.verifyTachypnea()+"\n";
 			msg += "Frequenza respiratoria (bradipnea):\t"+s.verifyBradipnea()+"\n";
-			msg += "Globuli bianchi:\t\t\t"+s.getWhiteBloodCellsCount()+(s.verifyWhiteBloodCellsCount()?"*":"")+"\n";
-			msg += "Neutrofili:\t\t\t\t"+s.getNeutrophilCount()+(s.verifyNeutrophilCount()?"*":"")+"\n";
+			msg += "Globuli bianchi:\n";
+			list = s.getWhiteBloodCellsCount();
+			if(list.size()==0)
+				msg += "\tNA\n";
+			for(int i=0; i<list.size(); i++){
+				ValueAndDateTime v = list.get(i);
+				LocalDateTime ldt = v.getDateTime();
+				msg += "\t"+v.getValue()+"\t\t\t"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"\t"+ldt.getHour()+":"+ldt.getMinute()+"\n";
+			}
+			msg += "Neutrofili:\n";
+			list = s.getNeutrophilCount();
+			if(list.size()==0)
+				msg += "\tNA\n";
+			for(int i=0; i<list.size(); i++){
+				ValueAndDateTime v = list.get(i);
+				LocalDateTime ldt = v.getDateTime();
+				msg += "\t"+v.getValue()+"\t\t\t"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"\t"+ldt.getHour()+":"+ldt.getMinute()+"\n";
+			}
 		} catch (NumberFormatException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

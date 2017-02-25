@@ -4,10 +4,15 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
 import protege.ProtegeHandler;
+import util.ValueAndDateTime;
+import util.ValueAndDateTimeComparator;
 
 public class Sepsi implements Disease {
 	private ProtegeHandler protegeHandler;
@@ -37,13 +42,12 @@ public class Sepsi implements Disease {
 		}
 	}
 
-	public int getHR() throws NumberFormatException, UnsupportedEncodingException {
-		int hr=0, i=0;
-		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:hr }")) {
-			hr+=Integer.parseInt(URLDecoder.decode(s, "UTF-8"));
-			i++;
-		}
-		return (i>0?hr/i:0);
+	public List<ValueAndDateTime> getHR() throws NumberFormatException, UnsupportedEncodingException {
+		List<ValueAndDateTime> toReturn = new ArrayList<>();
+		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:hr }")) 
+			toReturn.add(new ValueAndDateTime(Integer.parseInt(URLDecoder.decode(s, "UTF-8")), protegeHandler.getDateTime(s)));
+		toReturn.sort(new ValueAndDateTimeComparator());
+		return toReturn;
 	}
 
 	public boolean verifyHR() throws NumberFormatException, UnsupportedEncodingException {
@@ -105,16 +109,13 @@ public class Sepsi implements Disease {
 		return ((age<=1&&rf<30)||(age<=3&&rf<25)||(age<=12&&rf<20)||(age>12&&rf<16));
 	}
 
-	public int getWhiteBloodCellsCount() throws NumberFormatException, UnsupportedEncodingException {
-		int m = 0, i=0;
+	public List<ValueAndDateTime> getWhiteBloodCellsCount() throws NumberFormatException, UnsupportedEncodingException {
+		//int m = 0, i=0;
+		List<ValueAndDateTime> toReturn = new ArrayList<>();
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:white_blood_cells }"))
-		{
-			i++;
-			m+=Float.parseFloat(URLDecoder.decode(s, "UTF-8").split("\\*?/")[0]);
-		}
-		if(i==0)
-			return 0;
-		return m/i;
+			toReturn.add(new ValueAndDateTime(Float.parseFloat(URLDecoder.decode(s, "UTF-8").split("\\*?/")[0]), protegeHandler.getDateTime(s)));
+		toReturn.sort(new ValueAndDateTimeComparator());
+		return toReturn;
 	}
 
 	public boolean verifyWhiteBloodCellsCount() throws NumberFormatException, UnsupportedEncodingException {
@@ -132,17 +133,12 @@ public class Sepsi implements Disease {
 		return false;
 	}
 
-	public int getNeutrophilCount() throws NumberFormatException, UnsupportedEncodingException {
-		int m=0, i=0;
+	public List<ValueAndDateTime> getNeutrophilCount() throws NumberFormatException, UnsupportedEncodingException {
+		List<ValueAndDateTime> toReturn = new ArrayList<>();
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:neutrophil }"))
-		{
-			i++;
-			m+=Float.parseFloat(URLDecoder.decode(s, "UTF-8").split("\\^")[0]);
-
-		}
-		if(i==0)
-			return 0;
-		return m/i;
+			toReturn.add(new ValueAndDateTime(Float.parseFloat(URLDecoder.decode(s, "UTF-8").split("\\^")[0]), protegeHandler.getDateTime(s)));
+		toReturn.sort(new ValueAndDateTimeComparator());
+		return toReturn;
 	}
 
 	public boolean verifyNeutrophilCount() throws NumberFormatException, UnsupportedEncodingException {

@@ -8,6 +8,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -25,7 +26,7 @@ import core.Core;
 public class Design implements Upgradable {
 
 	private static final int SIZE_W = 450;
-	private static final int SIZE_H = 200;
+	private static final int SIZE_H = 420;
 
 	private Core core;
 
@@ -53,7 +54,7 @@ public class Design implements Upgradable {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 250);
+		frame.setBounds(100, 100, SIZE_W, SIZE_H);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
 
@@ -86,6 +87,7 @@ public class Design implements Upgradable {
 					progressBar.setVisible(true);
 					while(panel.getComponentCount()>0)
 						panel.remove(0);
+					panel.add(Box.createVerticalStrut(SIZE_H*2/3), BorderLayout.NORTH);
 					panel.add(label2, BorderLayout.CENTER);
 					panel.invalidate();
 					frame.pack();
@@ -104,6 +106,7 @@ public class Design implements Upgradable {
 							} catch (Exception e) {
 								e.printStackTrace();
 								panel.removeAll();
+								panel.add(Box.createVerticalStrut(SIZE_H*2/3), BorderLayout.NORTH);
 								panel.add(new JLabel("Per cominciare selezionare una cartella clinica"), BorderLayout.CENTER);
 								frame.pack();
 								frame.setSize(SIZE_W, SIZE_H);
@@ -123,8 +126,13 @@ public class Design implements Upgradable {
 		menuBar.add(mnNewMenu);
 
 		mnNewMenu.add(mntmCaricaCartella);
-
+		
+		panel.add(Box.createVerticalStrut(SIZE_H*2/3), BorderLayout.NORTH);
 		panel.add(new JLabel("Per cominciare selezionare una cartella clinica"), BorderLayout.CENTER);
+		frame.invalidate();
+		frame.repaint();
+		frame.pack();
+		frame.setSize(SIZE_W, SIZE_H);
 	}
 
 	private void diagnose() {
@@ -135,12 +143,6 @@ public class Design implements Upgradable {
 		frame.repaint();
 		frame.pack();
 		frame.setSize(SIZE_W, SIZE_H);
-		/*panel.setLayout(new GridLayout(3, 1));
-		label.clear();
-		panel.add(new JLabel("Sepsi: "+core.diagnosticsSepsi()));
-		panel.add(new JLabel("Bradicarda: "+core.diagnosticsBradicardia()));
-		panel.add(new JLabel("Tachicardia: "+core.diagnosticsTachicardia()));
-		*/
 		panel.add(new ResultPanel(core.diagnosticsSepsi(), core.getDiagnosis()));
 		panel.invalidate();
 		frame.invalidate();

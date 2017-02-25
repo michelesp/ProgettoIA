@@ -2,6 +2,7 @@ package protege;
 
 import java.io.InputStreamReader;
 import java.io.Writer;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,11 @@ import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.Statement;
+import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.vocabulary.RDFS;
+
+import com.oracle.webservices.internal.api.message.PropertySet.Property;
 
 public class ProtegeHandler {
 	private final String NS;
@@ -75,6 +80,29 @@ public class ProtegeHandler {
 		}
 		return list;
 
+	}
+
+	public LocalDateTime getDateTime(String str) {
+		Individual ind = model.getIndividual(NS+str);
+		LocalDateTime ldt = null;
+		if(ind!=null) {
+			for (StmtIterator j = ind.listProperties(); j.hasNext(); ) {
+				Statement s = j.next();
+				if(s.getPredicate().getLocalName().equals("dateTime") && s.getLiteral().getLexicalForm().length()>0){
+					String[] sdt = s.getLiteral().getLexicalForm().split("T");
+					String[] sd = sdt[0].split("-");
+					String[] so = sdt[1].split(":");
+					int yy = Integer.parseInt(sd[0]);
+					LocalDateTime ldt1 = LocalDateTime.of((yy<2000?yy+2000:yy), 
+							Integer.parseInt(sd[1]), Integer.parseInt(sd[2]), 
+							Integer.parseInt(so[0]), Integer.parseInt(so[1]));
+					if(ldt==null || ldt.compareTo(ldt1)<0)
+						ldt = ldt1;
+				}
+			}
+		}
+		else System.err.println("null!");
+		return ldt;
 	}
 
 }
