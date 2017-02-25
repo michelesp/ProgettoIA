@@ -26,7 +26,7 @@ import core.Core;
 public class Design implements Upgradable {
 
 	private static final int SIZE_W = 450;
-	private static final int SIZE_H = 420;
+	private static final int SIZE_H = 450;
 
 	private Core core;
 
