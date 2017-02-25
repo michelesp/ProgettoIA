@@ -128,7 +128,9 @@ public class Core {
 			}
 		}
 		for(Frame f : ex.getFrames())
+		{
 			protegeHandler.addFrame(f);
+		}
 		protegeHandler.save();
 	}
 

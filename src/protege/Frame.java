@@ -28,7 +28,14 @@ public class Frame {
 	public void addInfo(String info, LocalDateTime datetime)
 	{	
 		if(info!=null || info.length()<=0)
-			extracted_info.add(new Info(info,(datetime!=null?datetime.toString():"")));
+		{
+			Info toAdd = new Info(info,(datetime!=null?datetime.toString():""));
+		//	for(Info i : extracted_info)
+		//		if(i.equals(toAdd))
+		//			return;
+			
+			extracted_info.add(toAdd);
+		}
 	}
 	public void setTerm(String term) {
 		this.term = term;

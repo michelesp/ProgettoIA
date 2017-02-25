@@ -58,7 +58,7 @@ public class UMLSMatcher {
 	public String getSemanticType(List<Entity> entityList) throws Exception
 	{
 		if(entityList.isEmpty())
-			throw new Exception("The entity list is empty");
+			return "";
 		if(!entityList.get(0).getEvList().isEmpty())
 		{
 			String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
@@ -66,6 +66,6 @@ public class UMLSMatcher {
 			String semanticType = set.toString().substring(1, set.toString().length()-1);
 			return semanticType;
 		}
-		return null;
+		return "";
 	}
 }

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations;
 import edu.stanford.nlp.trees.TypedDependency;
 import edu.stanford.nlp.util.CoreMap;
+import edu.stanford.nlp.util.StringUtils;
 import gov.nih.nlm.nls.metamap.lite.EntityLookup4;
 import gov.nih.nlm.nls.metamap.lite.types.Entity;
 import protege.Frame;
@@ -54,6 +56,7 @@ public class Extractor {
 	String regexFOriginal = "((?:[a-z][a-z]+))( )*((?:-LRB-))( )*((?:[a-z][a-z]*[0-9]+[a-z0-9]*))( )*((?:(,( )*[a-z][a-z]*[0-9]+[a-z0-9]*( )*((\\d*\\.\\d+))?)*))( )*((?:-RRB-))";
 	Set<String> toFilter = Sets.newHashSet("CC","TO","RB","IN",":",".",",","RP","DT");
 	Set<String> infectious = Sets.newHashSet("fngs","bact","virs");
+	Set<String> acronyms = Sets.newHashSet("hr","rf","cf","spo2","ph","hco3","po2","pco2","abp","pa","lat","so2","na+","k+","hco2");
 	UMLStoProtegeCategotyMapping mapping;
 
 	public Extractor() throws InvalidFileFormatException, IOException
@@ -81,11 +84,11 @@ public class Extractor {
 				suspectInfection(name,category,value,date);
 			}
 		}
-		if(map.get(name)==null){
+		if(map.get(normalize(name))==null){
 			frame = new Frame(name, "noun", "CBC");
-			map.put(name, frame);
+			map.put(normalize(name), frame);
 		}
-		else frame = map.get(name);
+		else frame = map.get(normalize(name));
 		frame.addInfo(value, date);
 	}
 
@@ -96,11 +99,11 @@ public class Extractor {
 		name = normalize(name);
 		value = normalize(value);
 
-		if(map.get(name)==null){
+		if(map.get(normalize(name))==null){
 			frame = new Frame(name, "noun", "bloodgasanalysis");
-			map.put(name, frame);
+			map.put(normalize(name), frame);
 		}
-		else frame = map.get(name);
+		else frame = map.get(normalize(name));
 		frame.addInfo(value, date);
 	}
 
@@ -116,18 +119,12 @@ public class Extractor {
 				String category = "";
 				EntityLookup4 el = new EntityLookup4();
 				List<Entity> entityList = matcher.getEntities(name);
-				if(entityList.size()>0)
+				category = matcher.getSemanticType(entityList);// set.toString().substring(1, set.toString().length()-1);
+				if(infectious.contains(category))
 				{
-					//String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
-					//Set<String> set = el.getSemanticTypeSet(cui);
-					category =matcher.getSemanticType(entityList);// set.toString().substring(1, set.toString().length()-1);
-					if(infectious.contains(category))
-					{
-						System.out.println("SuspectedInfection");
-						suspectInfection(name,category,value,date);
-					}
+					System.out.println("SuspectedInfection");
+					suspectInfection(name,category,value,date);
 				}
-
 				frame = new Frame(normalize(name),type,mapping.mapping(category));
 				map.put(normalize(name), frame);
 			}
@@ -155,6 +152,7 @@ public class Extractor {
 
 	public Collection<Frame> buildFrame(String text, LocalDateTime date) throws IllegalAccessException, InvocationTargetException, IOException, Exception
 	{
+		//System.out.println(text);
 		EntityLookup4 el = new EntityLookup4();
 		//Frasi annotate dall'NLPProcessor
 		List<CoreMap> sentences = processor.getAnnotatedSentences(text);
@@ -184,20 +182,20 @@ public class Extractor {
 				{
 					ArrayList<String> extractedInfo = new ArrayList<>();
 					String value = iWord.originalText();
+					//System.out.println("Word:"+value);
 					String pos = iWord.get(CoreAnnotations.PartOfSpeechAnnotation.class);
 					//Se non � un nome o un verbo non considero la creazione del frame
 					if(!(pos.startsWith("NN")||pos.startsWith("VB")))
 						continue;
 					List<Entity> entityList = matcher.getEntities(value);
+					//System.out.println("EntityListSize:"+entityList.size());
 					Frame frame = null;
-					if(entityList.isEmpty())
+					if(entityList.isEmpty() && !acronyms.contains(value.toLowerCase()))
+					{
 						continue;
+					}
 					else
 					{
-						//SemanticType con score massimo
-						
-						//String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
-						//Set<String> set = el.getSemanticTypeSet(cui);
 						frame = map.get(normalize(value));
 						if(frame == null)
 						{
@@ -206,10 +204,7 @@ public class Extractor {
 								category = "noun";
 							else 
 								category = "verb";
-							//String semanticType = set.toString().substring(1, set.toString().length()-1);
 							String semanticType = matcher.getSemanticType(entityList);
-							//if(infectious.contains(semanticType))
-							//	suspectInfection(null, null, value, date);
 							frame = new Frame(normalize(value),category,mapping.mapping(semanticType));
 						}
 						else
@@ -217,6 +212,9 @@ public class Extractor {
 
 						//Prendo quelle che sono le dipendenze grammaticali che dobbiamo considerare
 						Set<IndexedWord> descWords = sg.descendants(iWord);
+
+						//System.out.println("Descs"+descWords);
+						//System.out.print("Root:"+sg.getFirstRoot().originalText());
 						for(IndexedWord desc : descWords)
 						{
 							//Nei discendenti compare anche il nodo stesso
@@ -237,10 +235,12 @@ public class Extractor {
 								entityList = matcher.getEntities(s);
 								if(entityList.size()==0)
 									continue;
-								String semanticType = matcher.getSemanticType(entityList);
-								if(semanticType!=null)
-									if(infectious.contains(semanticType))
-										suspectInfection(null, null, s, date);
+								
+								//Sospetta infezione nel linguaggio naturale, per ora commentata
+								//String semanticType = matcher.getSemanticType(entityList);
+								//if(semanticType!=null)
+								//	if(infectious.contains(semanticType))
+								//		suspectInfection(null, null, s, date);
 								frame.addInfo(normalize(s), date);
 							}
 							map.put(normalize(value), frame);
@@ -270,16 +270,57 @@ public class Extractor {
 						if((s.contains(g.originalText()) || s.contains(d.originalText())) && !s.contains(g.originalText()+" "+d.originalText()) && !added)
 						{
 							it.add(g.originalText()+" "+d.originalText());
-							//	System.out.println("Call to buildframe: "+g.originalText()+" "+d.originalText());
-							if(org.apache.commons.lang3.StringUtils.isNumeric(d.originalText()))							
-								buildFrame(g.originalText(),d.originalText(),date);
+							/*System.out.println("Call to buildframe: "+g.originalText()+" "+d.originalText());
+							if(StringUtils.isAlphanumeric(g.originalText()) && !StringUtils.isNumeric(g.originalText()))					
+							{
+								//buildFrame(g.originalText(),d.originalText(),date);
+								Frame f = map.get(g.originalText());
+								String category = matcher.getSemanticType(matcher.getEntities(g.originalText()));
+								if(f==null)
+								{
+									f = new Frame(g.originalText(),"noun",category);
+									System.out.println(f);
+									map.put(g.originalText(), f);
+								}
+								f.addInfo(d.originalText(), date);
+							}
 							else	
-								buildFrame(d.originalText(),g.originalText(),date);
+							{
+								if(!StringUtils.isNumeric(d.originalText()))
+								{
+									Frame f = map.get(d.originalText());
+									String category = matcher.getSemanticType(matcher.getEntities(d.originalText()));
+									if(f==null)
+									{
+										f = new Frame(d.originalText(),"noun",category);
+										System.out.println(f);
+										map.put(d.originalText(), f);
+									}
+									f.addInfo(g.originalText(), date);
+								}
+							}*/
+							if(StringUtils.isAlphanumeric(g.originalText()))
+							{
+								//System.out.println(g.originalText()+ " "+d.originalText());
+								Frame f = map.get(normalize(g.originalText()));
+								String category = matcher.getSemanticType(matcher.getEntities(g.originalText()));
+								if(f==null)
+								{
+									//System.out.println("get failed, creation of new frame:");
+									f = new Frame(normalize(g.originalText()),"noun",mapping.mapping(category));
+									//System.out.println(f);
+									map.put(normalize(g.originalText()), f);
+								}
+								else
+									f.addRecurrency();
+								//System.out.println("Add info:"+d.originalText()+ " "+date);
+								f.addInfo(d.originalText(), date);
+							}
 							added = true;
 							//it.remove();
 						}
 					}
-					extractedInfo.add(g.originalText()+" "+d.originalText());
+					//extractedInfo.add(g.originalText()+" "+d.originalText());
 				}
 				//System.out.println("NRemoving: "+g.originalText()+" and "+d.originalText());
 				extractedInfo.remove(g.originalText());
@@ -368,27 +409,21 @@ public class Extractor {
 	{
 		String category = null;
 		EntityLookup4 el = new EntityLookup4();
-		List<Entity> entityList = matcher.getEntities(value);
+		//List<Entity> entityList = matcher.getEntities(value.replaceAll("\\+", " "));
+		List<Entity> entityList = matcher.getEntities(URLDecoder.decode(value));
 		if(entityList.size()>0)
 			category = matcher.getSemanticType(entityList);
-			//String cui = entityList.get(0).getEvList().get(0).getConceptInfo().getCUI();
-			//Set<String> set = el.getSemanticTypeSet(cui);
-			//category = set.toString().substring(1, set.toString().length()-1);
-		if(infectious.contains(nameCategory))
+		if(infectious.contains(category))
 		{
+			//System.out.println("Inside if:"+category);
 			Frame f = map.get("infection");
 			if(f==null)
 			{
 				f = new Frame("infection","noun","disease");
 				map.put("infection",f);
 			}
-			/*if(name!=null)
-			{
-				f.addInfo(name, date);
-				f.addInfo(nameCategory, date);
-			}*/
 			f.addInfo(value, date);
-			//f.addInfo(category, date);
+			//f.addInfo(value, date);
 		}
 	}
 }

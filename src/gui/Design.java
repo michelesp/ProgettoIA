@@ -102,6 +102,7 @@ public class Design implements Upgradable {
 								label2.setVisible(false);
 								diagnose();
 							} catch (Exception e) {
+								e.printStackTrace();
 								panel.removeAll();
 								panel.add(new JLabel("Per cominciare selezionare una cartella clinica"), BorderLayout.CENTER);
 								frame.pack();

@@ -5,6 +5,8 @@ import java.net.URLDecoder;
 import java.time.LocalDate;
 import java.time.Period;
 
+import org.apache.commons.lang3.StringUtils;
+
 import protege.ProtegeHandler;
 
 public class Sepsi implements Disease {
@@ -34,7 +36,7 @@ public class Sepsi implements Disease {
 			return false;
 		}
 	}
-	
+
 	public int getHR() throws NumberFormatException, UnsupportedEncodingException {
 		int hr=0, i=0;
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:hr }")) {
@@ -43,7 +45,7 @@ public class Sepsi implements Disease {
 		}
 		return (i>0?hr/i:0);
 	}
-	
+
 	public boolean verifyHR() throws NumberFormatException, UnsupportedEncodingException {
 		int i = 0, j=0;
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:hr }")) {
@@ -55,7 +57,7 @@ public class Sepsi implements Disease {
 			return true;
 		return false;
 	}
-		
+
 	public boolean verifyTachypnea() throws NumberFormatException, UnsupportedEncodingException {
 		int age=0, i=0, j=0, k=0;
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:date_of_birth }")){
@@ -66,9 +68,12 @@ public class Sepsi implements Disease {
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:rf }"))
 		{
 			i++;
-			k += Integer.parseInt(URLDecoder.decode(s, "UTF-8"));
-			if(Integer.parseInt(URLDecoder.decode(s, "UTF-8"))>20)
-				j++;
+			if(StringUtils.isNumeric(s))
+			{
+				k += Integer.parseInt(URLDecoder.decode(s, "UTF-8"));
+				if(Integer.parseInt(URLDecoder.decode(s, "UTF-8"))>20)
+					j++;
+			}
 		}
 		if(i==0)
 			return false;
@@ -76,7 +81,7 @@ public class Sepsi implements Disease {
 			return true;
 		return false;
 	}
-	
+
 	public boolean verifyBradipnea() throws UnsupportedEncodingException {
 		int age=0, i=0, k=0;
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:date_of_birth }")){
@@ -87,8 +92,11 @@ public class Sepsi implements Disease {
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:rf }"))
 		{
 			i++;
-			k += Integer.parseInt(URLDecoder.decode(s, "UTF-8"));
-			if(Integer.parseInt(URLDecoder.decode(s, "UTF-8"))>20) {
+			if(StringUtils.isNumeric(s))
+			{
+				k += Integer.parseInt(URLDecoder.decode(s, "UTF-8"));
+				if(Integer.parseInt(URLDecoder.decode(s, "UTF-8"))>20) {
+				}
 			}
 		}
 		if(i==0)
@@ -108,7 +116,7 @@ public class Sepsi implements Disease {
 			return 0;
 		return m/i;
 	}
-	
+
 	public boolean verifyWhiteBloodCellsCount() throws NumberFormatException, UnsupportedEncodingException {
 		int i=0, j=0, k=0;
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:white_blood_cells }"))
@@ -123,7 +131,7 @@ public class Sepsi implements Disease {
 			return true;
 		return false;
 	}
-	
+
 	public int getNeutrophilCount() throws NumberFormatException, UnsupportedEncodingException {
 		int m=0, i=0;
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:neutrophil }"))
@@ -136,7 +144,7 @@ public class Sepsi implements Disease {
 			return 0;
 		return m/i;
 	}
-	
+
 	public boolean verifyNeutrophilCount() throws NumberFormatException, UnsupportedEncodingException {
 		int i=0, j=0, k=0;
 		for(String s : protegeHandler.querySPARQL("SELECT ?x WHERE { ?x  a uri:neutrophil }"))
@@ -149,7 +157,7 @@ public class Sepsi implements Disease {
 			return true;
 		return false;
 	}
-	
+
 	public String getInfection() throws UnsupportedEncodingException 
 	{
 		String str ="false";

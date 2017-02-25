@@ -29,5 +29,8 @@ public class Info {
 	{
 		return "Info:"+info+",date:"+date;
 	}
-	
+	public boolean equals(Info other) {
+		// TODO Auto-generated method stub
+		return other.getDate().equals(date) && other.getInfo().equals(info);
+	}
 }
