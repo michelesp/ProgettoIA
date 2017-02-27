@@ -19,6 +19,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JTextPane;
 
 import core.Core;
 
@@ -129,6 +130,11 @@ public class Design implements Upgradable {
 		
 		panel.add(Box.createVerticalStrut(SIZE_H*2/3), BorderLayout.NORTH);
 		panel.add(new JLabel("Per cominciare selezionare una cartella clinica"), BorderLayout.CENTER);
+		//JTextPane textPane = new JTextPane();
+		//textPane.setContentType("text/html");
+		//textPane.setText("<font color=\"red\"> CIAOCIAOCIAO</font>");
+		//textPane.setEditable(false);
+		//panel.add(textPane, BorderLayout.CENTER);
 		frame.invalidate();
 		frame.repaint();
 		frame.pack();

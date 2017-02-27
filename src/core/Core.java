@@ -151,40 +151,100 @@ public class Core {
 		String msg ="";
 		Sepsi s = new Sepsi(protegeHandler);
 		try {
-			msg += "Infezione:\t\t\t\t"+s.getInfection()+"\n";
-			msg += "Frequenza cardiaca:\n";
+			msg += "<b>Infezione:</b>&#09;&#09;&#09;&#09;"+getInfectionString(s.getInfection())+"<br>";
+			msg += "<b>Frequenza cardiaca:</b><br>";
 			List<ValueAndDateTime> list = s.getHR();
 			if(list.size()==0)
 				msg += "\tNA\n";
 			for(int i=0; i<list.size(); i++){
 				ValueAndDateTime v = list.get(i);
 				LocalDateTime ldt = v.getDateTime();
-				msg += "\t"+v.getValue()+"\t\t\t"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"\t"+ldt.getHour()+":"+ldt.getMinute()+"\n";
+				msg += "&#09;"+getHRString(v.getValue())+"&#09;&#09;&#09;"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"&#09;"+ldt.getHour()+":"+ldt.getMinute()+"<br>";
+			}
+			msg += "<b>Frequenza respiratoria (tachypnea):</b>&#09;"+s.verifyTachypnea()+"<br>";
+			msg += "<b>Frequenza respiratoria (bradipnea):</b>&#09;"+s.verifyBradipnea()+"<br>";
+			msg += "<b>Globuli bianchi:</b><br>";
+			list = s.getWhiteBloodCellsCount();
+			if(list.size()==0)
+				msg += "&#09;NA<br>";
+			for(int i=0; i<list.size(); i++){
+				ValueAndDateTime v = list.get(i);
+				LocalDateTime ldt = v.getDateTime();
+				msg += "&#09;<b>"+getWBCString(v.getValue())+"</b>&#09;&#09;&#09;"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"&#09;"+ldt.getHour()+":"+ldt.getMinute()+"<br>";
+			}
+			msg += "<b>Neutrofili:</b><br>";
+			list = s.getNeutrophilCount();
+			if(list.size()==0)
+				msg += "&#09;NA<br>";
+			for(int i=0; i<list.size(); i++){
+				ValueAndDateTime v = list.get(i);
+				LocalDateTime ldt = v.getDateTime();
+				msg += "&#09;"+getNeutrophilString(v.getValue())+"&#09;&#09;&#09;"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"&#09;"+ldt.getHour()+":"+ldt.getMinute()+"<br>";
+			}
+			/*msg += "Infezione:\t\t\t\t"+s.getInfection()+"\n";
+			msg += "<b>Frequenza cardiaca:</b>\n";
+			List<ValueAndDateTime> list = s.getHR();
+			if(list.size()==0)
+				msg += "\tNA\n";
+			for(int i=0; i<list.size(); i++){
+				ValueAndDateTime v = list.get(i);
+				LocalDateTime ldt = v.getDateTime();
+				msg += "\t"+getHRString(v.getValue())+"\t\t\t"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"\t"+ldt.getHour()+":"+ldt.getMinute()+"\n";
 			}
 			msg += "Frequenza respiratoria (tachypnea):\t"+s.verifyTachypnea()+"\n";
 			msg += "Frequenza respiratoria (bradipnea):\t"+s.verifyBradipnea()+"\n";
-			msg += "Globuli bianchi:\n";
+			msg += "<b>Globuli bianchi:</b>\n";
 			list = s.getWhiteBloodCellsCount();
 			if(list.size()==0)
 				msg += "\tNA\n";
 			for(int i=0; i<list.size(); i++){
 				ValueAndDateTime v = list.get(i);
 				LocalDateTime ldt = v.getDateTime();
-				msg += "\t"+v.getValue()+"\t\t\t"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"\t"+ldt.getHour()+":"+ldt.getMinute()+"\n";
+				msg += "\t<b>"+getWBCString(v.getValue())+"</b>\t\t\t"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"\t"+ldt.getHour()+":"+ldt.getMinute()+"\n";
 			}
-			msg += "Neutrofili:\n";
+			msg += "<b>Neutrofili:</b>\n";
 			list = s.getNeutrophilCount();
 			if(list.size()==0)
 				msg += "\tNA\n";
 			for(int i=0; i<list.size(); i++){
 				ValueAndDateTime v = list.get(i);
 				LocalDateTime ldt = v.getDateTime();
-				msg += "\t"+v.getValue()+"\t\t\t"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"\t"+ldt.getHour()+":"+ldt.getMinute()+"\n";
-			}
+				msg += "\t"+getNeutrophilString(v.getValue())+"\t\t\t"+ldt.getDayOfMonth()+"/"+ldt.getMonthValue()+"/"+ldt.getYear()+"\t"+ldt.getHour()+":"+ldt.getMinute()+"\n";
+			} */
 		} catch (NumberFormatException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		return msg;
+	}
+	private String getHRString(float value)
+	{
+		String toRet = value+"";
+		if(value>90)
+			toRet = "<font color=\"red\"><b>"+value+"</b></font>";
+		return toRet;
+	}
+	private String getNeutrophilString(float value)
+	{
+		String toRet = value+"";
+		if(value>10)
+			toRet = "<font color=\"red\"><b>"+value+"</b></font>";
+		return toRet;
+	}
+	private String getWBCString(float value)
+	{
+		String toRet = value+"";
+		if(value<4000)
+			toRet = "<font color=\"blue\"><b>"+value+"</b></font>";
+		if(value>12000)
+			toRet = "<font color=\"red\"><b>"+value+"</b></font>";
+		return toRet;
+	}
+	private String getInfectionString(String infection)
+	{
+		String toRet = infection;
+		if(!infection.equals("false"))
+			toRet = "<font color=\"red\"><b>"+infection+"</b></font>";
+		return toRet;
 	}
 
 }

@@ -3,7 +3,6 @@ package gui;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
 import javax.swing.JTextPane;
 import java.awt.Component;
 import javax.swing.Box;
@@ -23,6 +22,7 @@ public class ResultPanel extends JPanel {
 		bottomPanel.add(sepsiResult);
 
 		JTextPane textPane = new JTextPane();
+		textPane.setContentType("text/html");
 		textPane.setText(text);
 		textPane.setEditable(false);
 		add(textPane, BorderLayout.CENTER);
